@@ -6,12 +6,13 @@ namespace ayy
 
 using Super = Application;
 
-XApplication::XApplication(const std::string& title,int screenWidth,int screenHeight)
+XApplication::XApplication(const std::string& title,int screenWidth,int screenHeight, int targetFPS)
 	:_title(title)
 	,_screenWidth(screenWidth)
 	,_screenHeight(screenHeight)
 {
 	printf("Welcome to XGame!\n");
+	SetTargetFPS(targetFPS);
 }
 
 XApplication::~XApplication()
@@ -29,16 +30,28 @@ bool XApplication::Prepare()
 	{
 		return false;
 	}
+	SetTargetFPS(_targetFPS);
 	return true;
 }
 
 void XApplication::MainLoop()
 {
+	static Uint32 sTimeCounter = SDL_GetTicks();
 	while (!ShallQuit())
-	{
-		HandleSDLEvent();
-		UpdateFrame(0.0f);
-		DrawFrame();
+	{	
+		Uint32 now = SDL_GetTicks();
+		Uint32 delta = now - sTimeCounter;
+		delta = delta <= 1000 ? delta : 1000;
+		if (delta >= _targetFrameGap)
+		{
+			sTimeCounter = now;
+			_lastDeltaTime = delta;
+			//printf("Do Update At:%d,[delta] %d\n", SDL_GetTicks(), delta);
+
+			HandleSDLEvent();
+			UpdateFrame(delta);
+			DrawFrame();
+		}
 	}
 }
 
@@ -115,7 +128,18 @@ void XApplication::UpdateFrame(float deltaTime)
 
 void XApplication::DrawFrame()
 {
+	SDL_UpdateWindowSurface(_window);
+}
 
+void XApplication::SetTargetFPS(int fps)
+{
+	_targetFPS = fps;
+	_targetFrameGap = 1000 / _targetFPS;
+}
+
+int XApplication::GetLastDeltaTime() const
+{
+	return _lastDeltaTime;
 }
 
 }

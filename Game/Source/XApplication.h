@@ -10,12 +10,15 @@ namespace ayy
 	class XApplication : public Application
 	{
 	public:
-		XApplication(const std::string& title,int screenWidth,int screenHeight);
+		XApplication(const std::string& title,int screenWidth,int screenHeight,int targetFPS);
 		virtual ~XApplication();
 
 		virtual bool Prepare() override;
 		virtual void MainLoop() override;
 		virtual bool Cleanup() override;
+
+		void SetTargetFPS(int fps);
+		int GetLastDeltaTime() const;
 
 	private:
 		bool InitSDL();
@@ -25,7 +28,7 @@ namespace ayy
 	private:
 		void UpdateFrame(float deltaTime);
 		void DrawFrame();
-
+		
 	private:
 		int				_screenWidth;
 		int				_screenHeight;
@@ -34,6 +37,11 @@ namespace ayy
 		SDL_Window*		_window			= nullptr;
 		SDL_Surface*	_screenSurface	= nullptr;
 		SDL_Renderer*	_screenRenderer = nullptr;
+
+	private:
+		int				_targetFPS;
+		int				_targetFrameGap;
+		int				_lastDeltaTime = 0;
 
 	private:
 		Game*	_game = nullptr;

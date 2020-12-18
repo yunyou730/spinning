@@ -14,6 +14,15 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Source\base">
+      <UniqueIdentifier>{49c0439d-00e9-4029-8dac-fa80ea5ba232}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\manager">
+      <UniqueIdentifier>{441a1576-9837-4f2f-9e87-1930874d5e9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\utils">
+      <UniqueIdentifier>{4cc5c954-122a-467e-b879-28f07b3f4924}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp">
@@ -44,19 +53,19 @@
       <Filter>3rd\gl3w</Filter>
     </ClCompile>
     <ClCompile Include="Source\Application.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source\base</Filter>
     </ClCompile>
     <ClCompile Include="Source\Game.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GUI.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\XApplication.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source\base</Filter>
     </ClCompile>
     <ClCompile Include="Source\Global.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source\base</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GUI.cpp">
+      <Filter>Source\base</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\XApplication.cpp">
+      <Filter>Source\base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,19 +88,19 @@
       <Filter>3rd\gl3w</Filter>
     </ClInclude>
     <ClInclude Include="Source\Application.h">
-      <Filter>Source</Filter>
+      <Filter>Source\base</Filter>
     </ClInclude>
     <ClInclude Include="Source\Game.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GUI.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\XApplication.h">
-      <Filter>Source</Filter>
+      <Filter>Source\base</Filter>
     </ClInclude>
     <ClInclude Include="Source\Global.h">
-      <Filter>Source</Filter>
+      <Filter>Source\base</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GUI.h">
+      <Filter>Source\base</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\XApplication.h">
+      <Filter>Source\base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
