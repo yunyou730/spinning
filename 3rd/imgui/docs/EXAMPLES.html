@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>EXAMPLES</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<p><em>(You may browse this at https://github.com/ocornut/imgui/blob/master/docs/EXAMPLES.md or view this file with any Markdown viewer)</em></p>
+<h2>Dear ImGui: Examples</h2>
+<p><strong>The <a href="https://github.com/ocornut/imgui/blob/master/examples">examples/</a> folder example applications (standalone, ready-to-build) for variety of
+platforms and graphics APIs.</strong> They all use standard backends from the <a href="https://github.com/ocornut/imgui/blob/master/backends">backends/</a> folder.</p>
+<p>You can find Windows binaries for some of those example applications at:
+  http://www.dearimgui.org/binaries</p>
+<h3>Getting Started</h3>
+<p>Integration in a typical existing application, should take &lt;20 lines when using standard backends.</p>
+<pre><code>At initialization:
+  call ImGui::CreateContext()
+  call ImGui_ImplXXXX_Init() for each backend.
+
+At the beginning of your frame:
+  call ImGui_ImplXXXX_NewFrame() for each backend.
+  call ImGui::NewFrame()
+
+At the end of your frame:
+  call ImGui::Render()
+  call ImGui_ImplXXXX_RenderDrawData() for your Renderer backend.
+
+At shutdown:
+  call ImGui_ImplXXXX_Shutdown() for each backend.
+  call ImGui::DestroyContext()
+</code></pre>
+
+<p>Example (using <a href="https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_win32.cpp">backends/imgui<em>impl</em>win32.cpp</a> + <a href="https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_dx11.cpp">backends/imgui<em>impl</em>dx11.cpp</a>):</p>
+<pre><code>// Create a Dear ImGui context, setup some options
+ImGui::CreateContext();
+ImGuiIO&amp; io = ImGui::GetIO();
+io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard; // Enable some options
+
+// Initialize Platform + Renderer backends (here: using imgui_impl_win32.cpp + imgui_impl_dx11.cpp)
+ImGui_ImplWin32_Init(my_hwnd);
+ImGui_ImplDX11_Init(my_d3d_device, my_d3d_device_context);
+
+// Application main loop
+while (true)
+{
+    // Beginning of frame: update Renderer + Platform backend, start Dear ImGui frame
+    ImGui_ImplDX11_NewFrame();
+    ImGui_ImplWin32_NewFrame();
+    ImGui::NewFrame();
+
+    // Any application code here
+    ImGui::Text(&quot;Hello, world!&quot;);
+
+    // End of frame: render Dear ImGui
+    ImGui::Render();
+    ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+
+    // Swap
+    g_pSwapChain-&gt;Present(1, 0);
+}
+
+// Shutdown
+ImGui_ImplDX11_Shutdown();
+ImGui_ImplWin32_Shutdown();
+ImGui::DestroyContext();
+</code></pre>
+
+<p>Please read 'PROGRAMMER GUIDE' in imgui.cpp for notes on how to setup Dear ImGui in your codebase.
+Please read the comments and instruction at the top of each file.
+Please read FAQ at http://www.dearimgui.org/faq</p>
+<p>If you are using of the backend provided here, you can add the backends/imgui<em>impl</em>xxxx(.cpp,.h)
+files to your project and use as-in. Each imgui<em>impl</em>xxxx.cpp file comes with its own individual
+Changelog, so if you want to update them later it will be easier to catch up with what changed.</p>
+<h3>Examples Applications</h3>
+<p><a href="https://github.com/ocornut/imgui/blob/master/examples/example_allegro5/">example_allegro5/</a> <BR>
+Allegro 5 example. <BR>
+= main.cpp + imgui<em>impl</em>allegro5.cpp</p>
+<p><a href="https://github.com/ocornut/imgui/blob/master/examples/example_metal/">example<em>apple</em>metal/</a> <BR>
+OSX &amp; iOS + Metal example. <BR>
+= main.m + imgui<em>impl</em>osx.mm + imgui<em>impl<em>metal.mm <BR>
+It is based on the &quot;cross-platform&quot; game template provided with Xcode as of Xcode 9.
+(NB: imgui</em>impl</em>osx.mm is currently not as feature complete as other platforms backends.
+You may prefer to use the GLFW Or SDL backends, which will also support Windows and Linux.)</p>
+<p><a href="https://github.com/ocornut/imgui/blob/master/examples/example_apple_opengl2/">example<em>apple</em>opengl2/</a> <BR>
+OSX + OpenGL2 example. <BR>
+= main.mm + imgui<em>impl</em>osx.mm + imgui<em>impl<em>opengl2.cpp <BR>
+(NB: imgui</em>impl</em>osx.mm is currently not as feature complete as other platforms backends.
+ You may prefer to use the GLFW Or SDL backends, which will also support Windows and Linux.)</p>
+<p><a href="https://github.com/ocornut/imgui/blob/master/examples/example_emscripten_opengl3/">example<em>emscripten</em>opengl3/</a> <BR>
+Emcripten + SDL2 + OpenGL3+/ES2/ES3 example. <BR>
+= main.cpp + imgui<em>impl</em>sdl.cpp + imgui<em>impl</em>opengl3.cpp <BR>
+Note that other examples based on SDL or GLFW + OpenGL could easily be modified to work with Emscripten.
+We provide this to make the Emscripten differences obvious, and have them not pollute all other examples.</p>
+<p><a href="https://github.com/ocornut/imgui/blob/master/examples/example_glfw_metal/">example<em>glfw</em>metal/</a> <BR>
+GLFW (Mac) + Metal example. <BR>
+= main.mm + imgui<em>impl</em>glfw.cpp + imgui<em>impl</em>metal.mm</p>
+<p><a href="https://github.com/ocornut/imgui/blob/master/examples/example_glfw_opengl2/">example<em>glfw</em>opengl2/</a> <BR>
+GLFW + OpenGL2 example (legacy, fixed pipeline). <BR>
+= main.cpp + imgui<em>impl</em>glfw.cpp + imgui<em>impl</em>opengl2.cpp <BR>
+<strong>DO NOT USE OPENGL2 CODE IF YOUR CODE/ENGINE IS USING MODERN OPENGL (SHADERS, VBO, VAO, etc.)</strong> <BR>
+<strong>Prefer using OPENGL3 code (with gl3w/glew/glad/glad2/glbinding, you can replace the OpenGL function loader)</strong> <BR>
+This code is mostly provided as a reference to learn about Dear ImGui integration, because it is shorter.
+If your code is using GL3+ context or any semi modern OpenGL calls, using this renderer is likely to
+make things more complicated, will require your code to reset many OpenGL attributes to their initial
+state, and might confuse your GPU driver. One star, not recommended.</p>
+<p><a href="https://github.com/ocornut/imgui/blob/master/examples/example_glfw_opengl3/">example<em>glfw</em>opengl3/</a> <BR>
+GLFW (Win32, Mac, Linux) + OpenGL3+/ES2/ES3 example (programmable pipeline). <BR>
+= main.cpp + imgui<em>impl</em>glfw.cpp + imgui<em>impl<em>opengl3.cpp <BR>
+This uses more modern OpenGL calls and custom shaders. <BR>
+Prefer using that if you are using modern OpenGL in your application (anything with shaders).
+(Please be mindful that accessing OpenGL3+ functions requires a function loader, which are a frequent
+source for confusion for new users. We use a loader in imgui</em>impl</em>opengl3.cpp which may be different
+from the one your app normally use. Read imgui<em>impl</em>opengl3.h for details and how to change it.)</p>
+<p><a href="https://github.com/ocornut/imgui/blob/master/examples/example_glfw_vulkan/">example<em>glfw</em>vulkan/</a> <BR>
+GLFW (Win32, Mac, Linux) + Vulkan example. <BR>
+= main.cpp + imgui<em>impl</em>glfw.cpp + imgui<em>impl<em>vulkan.cpp <BR>
+This is quite long and tedious, because: Vulkan.
+For this example, the main.cpp file exceptionally use helpers function from imgui</em>impl</em>vulkan.h/cpp.</p>
+<p><a href="https://github.com/ocornut/imgui/blob/master/examples/example_glut_opengl2/">example<em>glut</em>opengl2/</a> <BR>
+GLUT (e.g., FreeGLUT on Linux/Windows, GLUT framework on OSX) + OpenGL2 example. <BR>
+= main.cpp + imgui<em>impl</em>glut.cpp + imgui<em>impl</em>opengl2.cpp <BR>
+Note that GLUT/FreeGLUT is largely obsolete software, prefer using GLFW or SDL.</p>
+<p><a href="https://github.com/ocornut/imgui/blob/master/examples/example_marmalade/">example_marmalade/</a> <BR>
+Marmalade example using IwGx. <BR>
+= main.cpp + imgui<em>impl</em>marmalade.cpp</p>
+<p><a href="https://github.com/ocornut/imgui/blob/master/examples/example_null/">example_null/</a> <BR>
+Null example, compile and link imgui, create context, run headless with no inputs and no graphics output. <BR>
+= main.cpp <BR>
+This is used to quickly test compilation of core imgui files in as many setups as possible.
+Because this application doesn't create a window nor a graphic context, there's no graphics output.</p>
+<p><a href="https://github.com/ocornut/imgui/blob/master/examples/example_sdl_directx11/">example<em>sdl</em>directx11/</a> <BR>
+SDL2 + DirectX11 example, Windows only. <BR>
+= main.cpp + imgui<em>impl</em>sdl.cpp + imgui<em>impl</em>dx11.cpp <BR>
+This to demonstrate usage of DirectX with SDL.</p>
+<p><a href="https://github.com/ocornut/imgui/blob/master/examples/example_sdl_metal/">example<em>sdl</em>metal/</a> <BR>
+SDL2 (Mac) + Metal example. <BR>
+= main.mm + imgui<em>impl</em>sdl.cpp + imgui<em>impl</em>metal.mm</p>
+<p><a href="https://github.com/ocornut/imgui/blob/master/examples/example_sdl_opengl2/">example<em>sdl</em>opengl2/</a> <BR>
+SDL2 (Win32, Mac, Linux etc.) + OpenGL example (legacy, fixed pipeline). <BR>
+= main.cpp + imgui<em>impl</em>sdl.cpp + imgui<em>impl</em>opengl2.cpp <BR>
+<strong>DO NOT USE OPENGL2 CODE IF YOUR CODE/ENGINE IS USING MODERN OPENGL (SHADERS, VBO, VAO, etc.)</strong> <BR>
+<strong>Prefer using OPENGL3 code (with gl3w/glew/glad/glad2/glbinding, you can replace the OpenGL function loader)</strong> <BR>
+This code is mostly provided as a reference to learn about Dear ImGui integration, because it is shorter.
+If your code is using GL3+ context or any semi modern OpenGL calls, using this renderer is likely to
+make things more complicated, will require your code to reset many OpenGL attributes to their initial
+state, and might confuse your GPU driver. One star, not recommended.</p>
+<p><a href="https://github.com/ocornut/imgui/blob/master/examples/example_sdl_opengl3/">example<em>sdl</em>opengl3/</a> <BR>
+SDL2 (Win32, Mac, Linux, etc.) + OpenGL3+/ES2/ES3 example. <BR>
+= main.cpp + imgui<em>impl</em>sdl.cpp + imgui<em>impl<em>opengl3.cpp <BR>
+This uses more modern OpenGL calls and custom shaders. <BR>
+Prefer using that if you are using modern OpenGL in your application (anything with shaders).
+(Please be mindful that accessing OpenGL3+ functions requires a function loader, which are a frequent
+source for confusion for new users. We use a loader in imgui</em>impl</em>opengl3.cpp which may be different
+from the one your app normally use. Read imgui<em>impl</em>opengl3.h for details and how to change it.)</p>
+<p><a href="https://github.com/ocornut/imgui/blob/master/examples/example_sdl_vulkan/">example<em>sdl</em>vulkan/</a> <BR>
+SDL2 (Win32, Mac, Linux, etc.) + Vulkan example. <BR>
+= main.cpp + imgui<em>impl</em>sdl.cpp + imgui<em>impl<em>vulkan.cpp <BR>
+This is quite long and tedious, because: Vulkan. <BR>
+For this example, the main.cpp file exceptionally use helpers function from imgui</em>impl</em>vulkan.h/cpp.</p>
+<p><a href="https://github.com/ocornut/imgui/blob/master/examples/example_win32_directx9/">example<em>win32</em>directx9/</a> <BR>
+DirectX9 example, Windows only. <BR>
+= main.cpp + imgui<em>impl</em>win32.cpp + imgui<em>impl</em>dx9.cpp</p>
+<p><a href="https://github.com/ocornut/imgui/blob/master/examples/example_win32_directx10/">example<em>win32</em>directx10/</a> <BR>
+DirectX10 example, Windows only. <BR>
+= main.cpp + imgui<em>impl</em>win32.cpp + imgui<em>impl</em>dx10.cpp</p>
+<p><a href="https://github.com/ocornut/imgui/blob/master/examples/example_win32_directx11/">example<em>win32</em>directx11/</a> <BR>
+DirectX11 example, Windows only. <BR>
+= main.cpp + imgui<em>impl</em>win32.cpp + imgui<em>impl</em>dx11.cpp</p>
+<p><a href="https://github.com/ocornut/imgui/blob/master/examples/example_win32_directx12/">example<em>win32</em>directx12/</a> <BR>
+DirectX12 example, Windows only. <BR>
+= main.cpp + imgui<em>impl</em>win32.cpp + imgui<em>impl</em>dx12.cpp <BR>
+This is quite long and tedious, because: DirectX12.</p>
+<h3>Miscallaneous</h3>
+<p><strong>Building</strong></p>
+<p>Unfortunately in 2020 it is still tedious to create and maintain portable build files using external
+libraries (the kind we're using here to create a window and render 3D triangles) without relying on
+third party software. For most examples here we choose to provide:
+ - Makefiles for Linux/OSX
+ - Batch files for Visual Studio 2008+
+ - A .sln project file for Visual Studio 2012+
+ - Xcode project files for the Apple examples
+Please let us know if they don't work with your setup!
+You can probably just import the imgui<em>impl</em>xxx.cpp/.h files into your own codebase or compile those
+directly with a command-line compiler.</p>
+<p>If you are interested in using Cmake to build and links examples, see:
+  https://github.com/ocornut/imgui/pull/1713 and https://github.com/ocornut/imgui/pull/3027</p>
+<p><strong>About mouse cursor latency</strong></p>
+<p>Dear ImGui has no particular extra lag for most behaviors,
+e.g. the value of 'io.MousePos' provided at the time of NewFrame() will result in windows being moved
+to the right spot at the time of EndFrame()/Render(). At 60 FPS your experience should be pleasant.</p>
+<p>However, consider that OS mouse cursors are typically drawn through a very specific hardware accelerated
+path and will feel smoother than the majority of contents rendered via regular graphics API (including,
+but not limited to Dear ImGui windows). Because UI rendering and interaction happens on the same plane
+as the mouse, that disconnect may be jarring to particularly sensitive users.
+You may experiment with enabling the io.MouseDrawCursor flag to request Dear ImGui to draw a mouse cursor
+using the regular graphics API, to help you visualize the difference between a &quot;hardware&quot; cursor and a
+regularly rendered software cursor.
+However, rendering a mouse cursor at 60 FPS will feel sluggish so you likely won't want to enable that at
+all times. It might be beneficial for the user experience to switch to a software rendered cursor <em>only</em>
+when an interactive drag is in progress.</p>
+<p>Note that some setup or GPU drivers are likely to be causing extra display lag depending on their settings.
+If you feel that dragging windows feels laggy and you are not sure what the cause is: try to build a simple
+drawing a flat 2D shape directly under the mouse cursor!</p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
