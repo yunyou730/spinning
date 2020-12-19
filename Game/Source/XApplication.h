@@ -2,11 +2,12 @@
 #include "Application.h"
 #include <SDL.h>
 #include <string>
+#include <memory>
+#include "Game.h"
+#include "GUI.h"
 
 namespace ayy
 {
-	class Game;
-	class GUI;
 	class XApplication : public Application
 	{
 	public:
@@ -20,13 +21,16 @@ namespace ayy
 		void SetTargetFPS(int fps);
 		int GetLastDeltaTime() const;
 
+		std::shared_ptr<Game>& GetGame() { return _game; }
+		SDL_Renderer* GetRenderer() const { return _screenRenderer; }
+		
 	private:
 		bool InitSDL();
 		void CleanupSDL();
 		void HandleSDLEvent();
 
 	private:
-		void UpdateFrame(float deltaTime);
+		void UpdateFrame();
 		void DrawFrame();
 		
 	private:
@@ -44,7 +48,7 @@ namespace ayy
 		int				_lastDeltaTime = 0;
 
 	private:
-		Game*	_game = nullptr;
-		GUI*	_gui = nullptr;
+		std::shared_ptr<Game>	_game	= nullptr;
+		std::shared_ptr<GUI>	_gui	= nullptr;
 	};
 }

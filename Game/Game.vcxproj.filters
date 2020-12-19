@@ -17,11 +17,26 @@
     <Filter Include="Source\base">
       <UniqueIdentifier>{49c0439d-00e9-4029-8dac-fa80ea5ba232}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\manager">
-      <UniqueIdentifier>{441a1576-9837-4f2f-9e87-1930874d5e9b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\utils">
       <UniqueIdentifier>{4cc5c954-122a-467e-b879-28f07b3f4924}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\game">
+      <UniqueIdentifier>{bc719a03-65ab-451e-a120-4dc9072aa654}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\game\manager">
+      <UniqueIdentifier>{441a1576-9837-4f2f-9e87-1930874d5e9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\game\mvc">
+      <UniqueIdentifier>{d5ce3ed0-b2d4-4af9-9bb8-66cea0894cf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\game\gameplay">
+      <UniqueIdentifier>{3ba99269-8134-4eee-93cc-ea05c4d86f73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\game\renderer">
+      <UniqueIdentifier>{63bcbb4c-9d50-4915-a848-644f9f0353b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GUI">
+      <UniqueIdentifier>{bfedb922-ab9a-4287-9f80-3222c801c85d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +82,12 @@
     <ClCompile Include="Source\XApplication.cpp">
       <Filter>Source\base</Filter>
     </ClCompile>
+    <ClCompile Include="Source\RenderManager.cpp">
+      <Filter>Source\game\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ManagerBase.cpp">
+      <Filter>Source\game\manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\3rd\imgui\backends\imgui_impl_sdl.h">
@@ -101,6 +122,15 @@
     </ClInclude>
     <ClInclude Include="Source\XApplication.h">
       <Filter>Source\base</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RenderManager.h">
+      <Filter>Source\game\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ManagerBase.h">
+      <Filter>Source\game\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\utils\Vector.hpp">
+      <Filter>Source\utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

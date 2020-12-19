@@ -1,6 +1,10 @@
 #include "Global.h"
+#include <SDL.h>
 #include "XApplication.h"
 #include <memory>
+#include "RenderManager.h"
+
+using namespace ayy;
 
 int main(int, char**)
 {

@@ -31,6 +31,9 @@ bool XApplication::Prepare()
 		return false;
 	}
 	SetTargetFPS(_targetFPS);
+
+	_game	= std::make_shared<ayy::Game>();
+	_gui	= std::make_shared<ayy::GUI>();
 	return true;
 }
 
@@ -49,7 +52,7 @@ void XApplication::MainLoop()
 			//printf("Do Update At:%d,[delta] %d\n", SDL_GetTicks(), delta);
 
 			HandleSDLEvent();
-			UpdateFrame(delta);
+			UpdateFrame();
 			DrawFrame();
 		}
 	}
@@ -90,6 +93,14 @@ bool XApplication::InitSDL()
 			break;
 		}
 
+		_screenRenderer = SDL_CreateRenderer(_window,-1, SDL_RENDERER_ACCELERATED);
+		if (_screenRenderer == nullptr)
+		{
+			std::string msg = "SDL_CreateRenderer Error: " + std::string(SDL_GetError());
+			throw std::runtime_error(msg);
+			break;
+		}
+
 		_screenSurface = SDL_GetWindowSurface(_window);
 
 		return true;
@@ -121,14 +132,14 @@ void XApplication::HandleSDLEvent()
 	}
 }
 
-void XApplication::UpdateFrame(float deltaTime)
+void XApplication::UpdateFrame()
 {
-
+	_game->UpdateFrame();
 }
 
 void XApplication::DrawFrame()
 {
-	SDL_UpdateWindowSurface(_window);
+	_game->DrawFrame();
 }
 
 void XApplication::SetTargetFPS(int fps)
