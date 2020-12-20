@@ -157,6 +157,9 @@
     <ClCompile Include="Source\Delegate.cpp" />
     <ClCompile Include="Source\EventManager.cpp" />
     <ClCompile Include="Source\Game.cpp" />
+    <ClCompile Include="Source\mvc\EventDefine.cpp" />
+    <ClCompile Include="Source\renderer\Node.cpp" />
+    <ClCompile Include="Source\renderer\RectNode.cpp" />
     <ClCompile Include="Source\WorkflowManager.cpp" />
     <ClCompile Include="Source\ManagerBase.cpp" />
     <ClCompile Include="Source\RenderManager.cpp" />
@@ -176,6 +179,9 @@
     <ClInclude Include="Source\Delegate.h" />
     <ClInclude Include="Source\EventManager.h" />
     <ClInclude Include="Source\Game.h" />
+    <ClInclude Include="Source\mvc\EventDefine.h" />
+    <ClInclude Include="Source\renderer\Node.h" />
+    <ClInclude Include="Source\renderer\RectNode.h" />
     <ClInclude Include="Source\WorkflowManager.h" />
     <ClInclude Include="Source\ManagerBase.h" />
     <ClInclude Include="Source\RenderManager.h" />

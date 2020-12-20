@@ -11,7 +11,6 @@ namespace ayy
 	template<typename... TArgs>
 	class Delegate
 	{
-
 	public:
 		using HandleID = size_t;
 		using FuncProto = std::function<bool(TArgs... args)>;
@@ -58,7 +57,6 @@ namespace ayy
 			for(auto it : _callbackMap)
 			{
 				it.second->func(args...);
-				//it.second->func(args...);
 			}
 		}
 

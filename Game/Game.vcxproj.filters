@@ -38,6 +38,9 @@
     <Filter Include="Source\game\workflow">
       <UniqueIdentifier>{b9ec9e7a-063e-481a-be7d-e5c532fbfef8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\game\renderer">
+      <UniqueIdentifier>{86bb098e-3bec-43a0-9b99-369e60ffc94b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp">
@@ -70,18 +73,6 @@
     <ClCompile Include="Source\Application.cpp">
       <Filter>Source\base</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game.cpp">
-      <Filter>Source\base</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Global.cpp">
-      <Filter>Source\base</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GUI.cpp">
-      <Filter>Source\base</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\XApplication.cpp">
-      <Filter>Source\base</Filter>
-    </ClCompile>
     <ClCompile Include="Source\RenderManager.cpp">
       <Filter>Source\game\manager</Filter>
     </ClCompile>
@@ -96,6 +87,27 @@
     </ClCompile>
     <ClCompile Include="Source\Delegate.cpp">
       <Filter>Source\base</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\mvc\EventDefine.cpp">
+      <Filter>Source\game\mvc</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\XApplication.cpp">
+      <Filter>Source\game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game.cpp">
+      <Filter>Source\game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Global.cpp">
+      <Filter>Source\game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GUI.cpp">
+      <Filter>Source\game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\renderer\Node.cpp">
+      <Filter>Source\game\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\renderer\RectNode.cpp">
+      <Filter>Source\game\renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -120,18 +132,6 @@
     <ClInclude Include="Source\Application.h">
       <Filter>Source\base</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game.h">
-      <Filter>Source\base</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Global.h">
-      <Filter>Source\base</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GUI.h">
-      <Filter>Source\base</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\XApplication.h">
-      <Filter>Source\base</Filter>
-    </ClInclude>
     <ClInclude Include="Source\RenderManager.h">
       <Filter>Source\game\manager</Filter>
     </ClInclude>
@@ -149,6 +149,27 @@
     </ClInclude>
     <ClInclude Include="Source\Delegate.h">
       <Filter>Source\base</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\mvc\EventDefine.h">
+      <Filter>Source\game\mvc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\XApplication.h">
+      <Filter>Source\game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game.h">
+      <Filter>Source\game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GUI.h">
+      <Filter>Source\game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Global.h">
+      <Filter>Source\game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\renderer\Node.h">
+      <Filter>Source\game\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\renderer\RectNode.h">
+      <Filter>Source\game\renderer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

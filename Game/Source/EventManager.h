@@ -4,45 +4,19 @@
 #include <map>
 #include <vector>
 #include <functional>
+#include "Delegate.h"
 
+/*
+@TODO shall remove, event declarations shall put into EventDefine.h.cpp
+*/
 namespace ayy
 {
-
-
-
-
+class Game;
 class EventManager : public ManagerBase,public IManagerNeedInit<>
 {
 public:
-	using EventType = size_t;
-
 	EventManager();
-	virtual ~EventManager();
-	
+	virtual ~EventManager();	
 	virtual void Init() override;
-
-	template<typename... TArgs>
-	void RegisterEvent(EventType eventType)
-	{
-		
-	}
-
-	template<typename... TArgs>
-	void MapEvent(EventType eventType, const std::function<void(TArgs... args)>& func)
-	{
-		
-	}
-
-	template<typename... TArgs>
-	void UnMapEvent(EventType eventType, const std::function<void(TArgs... args)>& func)
-	{
-	
-	}
-
-protected:
-	
 };
-
-
-
 }

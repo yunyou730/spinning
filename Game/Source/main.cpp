@@ -3,6 +3,7 @@
 #include "XApplication.h"
 #include <memory>
 #include "Delegate.h"
+#include "EventManager.h"
 
 using namespace ayy;
 
@@ -41,16 +42,22 @@ void Test()
 	deleg1.Execute(3, 0.1f);
 }
 
+void Test1()
+{
+	//EventManager::EVT_TEST_1();
+
+}
+
 int main(int, char**)
 {
-	Test();
-
-	/*
+	//Test();
+	//Test1();
+	
 	std::shared_ptr<ayy::XApplication> app = std::make_shared<ayy::XApplication>("XGame",640,480,60);
 	ayy::Global::RegisterApp(app);
 	app->Prepare();
 	app->MainLoop();
 	app->Cleanup();
-	*/
+	
 	return 0;
 }

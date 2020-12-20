@@ -34,5 +34,25 @@ namespace ayy
 			};
 		};
 	};
+
+	template<typename T>
+	struct Vector2 {
+		Vector2() :x(0),y(0) {}
+		Vector2(const T& x, const T& y) : x(x), y(y) {}
+
+		void operator = (const Vector2& other)
+		{
+			x = other.x;
+			y = other.y;
+		}
+
+		void operator = (const Vector2&& other)
+		{
+			x = other.x;
+			y = other.y;
+		}
+
+		T x, y;
+	};
 }
 
