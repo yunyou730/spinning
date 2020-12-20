@@ -154,7 +154,10 @@
     <ClCompile Include="..\3rd\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\3rd\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Source\Application.cpp" />
+    <ClCompile Include="Source\Delegate.cpp" />
+    <ClCompile Include="Source\EventManager.cpp" />
     <ClCompile Include="Source\Game.cpp" />
+    <ClCompile Include="Source\WorkflowManager.cpp" />
     <ClCompile Include="Source\ManagerBase.cpp" />
     <ClCompile Include="Source\RenderManager.cpp" />
     <ClCompile Include="Source\Global.cpp" />
@@ -170,7 +173,10 @@
     <ClInclude Include="..\3rd\imgui\imgui.h" />
     <ClInclude Include="..\3rd\imgui\imgui_internal.h" />
     <ClInclude Include="Source\Application.h" />
+    <ClInclude Include="Source\Delegate.h" />
+    <ClInclude Include="Source\EventManager.h" />
     <ClInclude Include="Source\Game.h" />
+    <ClInclude Include="Source\WorkflowManager.h" />
     <ClInclude Include="Source\ManagerBase.h" />
     <ClInclude Include="Source\RenderManager.h" />
     <ClInclude Include="Source\Global.h" />

@@ -2,12 +2,15 @@
 #include "Global.h"
 #include "ManagerBase.h"
 #include "RenderManager.h"
+#include "EventManager.h"
+#include <stdexcept>
+#include "WorkflowManager.h"
 
 namespace ayy
 {
 Game::Game()
 {
-	Init();
+	
 }
 
 Game::~Game()
@@ -24,7 +27,7 @@ void Game::Clean()
 {
 	for (auto it : _allManagers)
 	{
-		delete it;
+		delete it.second;
 	}
 	_allManagers.clear();
 	_drawManagers.clear();
@@ -53,13 +56,22 @@ void Game::RegisterManagers()
 		Global::GetFrameRenderer(),
 		Vector4<Uint8>(180,90,64,255)
 	);
+	RegisterManager<EventManager>();
+	RegisterManager<WorkflowManager>();
 }
 
 template<typename TManager, typename... TArgs>
-void Game::RegisterManager(TArgs... args)
+TManager* Game::RegisterManager(TArgs... args)
 {
+	auto it = _allManagers.find(typeid(TManager).hash_code());
+	if (it != _allManagers.end())
+	{
+		std::string msg = std::string("Register same manager : ") + typeid(TManager).name();
+		throw std::runtime_error(msg);
+	}
+
 	TManager* manager = new TManager();
-	_allManagers.push_back(manager);
+	_allManagers[typeid(TManager).hash_code()] = manager;
 
 	IManagerNeedInit<TArgs...>* managerNeedInit = dynamic_cast<IManagerNeedInit<TArgs...>*>(manager);
 	if (managerNeedInit != nullptr)
@@ -78,6 +90,9 @@ void Game::RegisterManager(TArgs... args)
 	{
 		_drawManagers.push_back(managerNeedDraw);
 	}
+
+	typeid(manager);
+	return manager;
 }
 
 }

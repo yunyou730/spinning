@@ -8,6 +8,7 @@ namespace ayy
 {
 	class XApplication;
 	class Game;
+	class EventManager;
 
 	struct Global
 	{

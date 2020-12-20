@@ -32,11 +32,11 @@
     <Filter Include="Source\game\gameplay">
       <UniqueIdentifier>{3ba99269-8134-4eee-93cc-ea05c4d86f73}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\game\renderer">
-      <UniqueIdentifier>{63bcbb4c-9d50-4915-a848-644f9f0353b1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\GUI">
       <UniqueIdentifier>{bfedb922-ab9a-4287-9f80-3222c801c85d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\game\workflow">
+      <UniqueIdentifier>{b9ec9e7a-063e-481a-be7d-e5c532fbfef8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +88,15 @@
     <ClCompile Include="Source\ManagerBase.cpp">
       <Filter>Source\game\manager</Filter>
     </ClCompile>
+    <ClCompile Include="Source\EventManager.cpp">
+      <Filter>Source\game\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WorkflowManager.cpp">
+      <Filter>Source\game\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Delegate.cpp">
+      <Filter>Source\base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\3rd\imgui\backends\imgui_impl_sdl.h">
@@ -131,6 +140,15 @@
     </ClInclude>
     <ClInclude Include="Source\utils\Vector.hpp">
       <Filter>Source\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EventManager.h">
+      <Filter>Source\game\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\WorkflowManager.h">
+      <Filter>Source\game\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Delegate.h">
+      <Filter>Source\base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

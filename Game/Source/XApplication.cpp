@@ -32,7 +32,9 @@ bool XApplication::Prepare()
 	}
 	SetTargetFPS(_targetFPS);
 
-	_game	= std::make_shared<ayy::Game>();
+	_game = std::make_shared<ayy::Game>();
+	_game->Init();
+
 	_gui	= std::make_shared<ayy::GUI>();
 	return true;
 }
