@@ -1,6 +1,12 @@
 #include "XApplication.h"
 #include <stdexcept>
 
+#include "imgui.h"
+#include "imgui_impl_sdl.h"
+#include "imgui_impl_opengl3.h"
+
+#include <GL/gl3w.h>
+
 namespace ayy
 {
 
@@ -26,16 +32,29 @@ bool XApplication::Prepare()
 	{
 		return false;
 	}
+
+	
+	// GL 3.0 + GLSL 130
+	//const char* glsl_version = "#version 130";
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, 0);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+
 	if (!InitSDL())
 	{
 		return false;
 	}
+	InitGLContext();
+
 	SetTargetFPS(_targetFPS);
 
 	_game = std::make_shared<ayy::Game>();
 	_game->Init();
 
-	_gui	= std::make_shared<ayy::GUI>();
+	_gui = std::make_shared<ayy::GUI>();
+	_gui->Init(_window,_glContext);
+
 	return true;
 }
 
@@ -65,7 +84,12 @@ bool XApplication::Cleanup()
 	if (!Super::Cleanup())
 	{
 		return false;
-	}	
+	}
+
+	_gui->Cleanup();
+
+	SDL_GL_DeleteContext(_glContext);
+
 	CleanupSDL();
 	return true;
 }
@@ -81,12 +105,18 @@ bool XApplication::InitSDL()
 			break;
 		}
 
+		// Create window with graphics context
+		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+		SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+		SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
+		SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
+
 		_window = SDL_CreateWindow(_title.c_str(), 
 									SDL_WINDOWPOS_CENTERED, 
 									SDL_WINDOWPOS_CENTERED, 
 									_screenWidth, 
 									_screenHeight,
-									SDL_WINDOW_SHOWN);
+									window_flags);
 
 		if (_window == nullptr)
 		{
@@ -112,6 +142,15 @@ bool XApplication::InitSDL()
 	return false;
 }
 
+void XApplication::InitGLContext()
+{
+	_glContext = SDL_GL_CreateContext(_window);
+	SDL_GL_MakeCurrent(_window, _glContext);
+	SDL_GL_SetSwapInterval(1); // Enable vsync
+
+	gl3wInit();
+}
+
 void XApplication::CleanupSDL()
 {
 	SDL_DestroyWindow(_window);
@@ -125,6 +164,7 @@ void XApplication::HandleSDLEvent()
 	SDL_Event e;
 	while (SDL_PollEvent(&e) != 0)
 	{
+		_gui->ProcessEvent(e);
 		switch (e.type)
 		{
 		case SDL_QUIT:

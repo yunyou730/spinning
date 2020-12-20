@@ -28,6 +28,7 @@ namespace ayy
 		bool InitSDL();
 		void CleanupSDL();
 		void HandleSDLEvent();
+		void InitGLContext();
 
 	private:
 		void UpdateFrame();
@@ -41,6 +42,8 @@ namespace ayy
 		SDL_Window*		_window			= nullptr;
 		SDL_Surface*	_screenSurface	= nullptr;
 		SDL_Renderer*	_screenRenderer = nullptr;
+
+		SDL_GLContext	_glContext;
 
 	private:
 		int				_targetFPS;
