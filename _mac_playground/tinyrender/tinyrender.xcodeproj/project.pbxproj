@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2BE1508A259D9A0D00E62AE8 /* tgaimage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BE15088259D9A0D00E62AE8 /* tgaimage.cpp */; };
 		2BE1509E259D9B5A00E62AE8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1509D259D9B5A00E62AE8 /* main.cpp */; };
+		2BE150A2259D9C6900E62AE8 /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BE150A0259D9C6900E62AE8 /* renderer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,8 @@
 		2BE15088259D9A0D00E62AE8 /* tgaimage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tgaimage.cpp; path = source/tgaimage.cpp; sourceTree = "<group>"; };
 		2BE15089259D9A0D00E62AE8 /* tgaimage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tgaimage.h; path = source/tgaimage.h; sourceTree = "<group>"; };
 		2BE1509D259D9B5A00E62AE8 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = source/main.cpp; sourceTree = "<group>"; };
+		2BE150A0259D9C6900E62AE8 /* renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = renderer.cpp; path = source/renderer.cpp; sourceTree = "<group>"; };
+		2BE150A1259D9C6900E62AE8 /* renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = renderer.hpp; path = source/renderer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +66,8 @@
 				2BE1509D259D9B5A00E62AE8 /* main.cpp */,
 				2BE15088259D9A0D00E62AE8 /* tgaimage.cpp */,
 				2BE15089259D9A0D00E62AE8 /* tgaimage.h */,
+				2BE150A0259D9C6900E62AE8 /* renderer.cpp */,
+				2BE150A1259D9C6900E62AE8 /* renderer.hpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -124,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BE1509E259D9B5A00E62AE8 /* main.cpp in Sources */,
+				2BE150A2259D9C6900E62AE8 /* renderer.cpp in Sources */,
 				2BE1508A259D9A0D00E62AE8 /* tgaimage.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
