@@ -7,28 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B5DD28F259255EE00AF838B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B5DD28E259255EE00AF838B /* main.cpp */; };
+		2BE1508A259D9A0D00E62AE8 /* tgaimage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BE15088259D9A0D00E62AE8 /* tgaimage.cpp */; };
+		2BE1509E259D9B5A00E62AE8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1509D259D9B5A00E62AE8 /* main.cpp */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		2BE15092259D9B2F00E62AE8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2BE1508E259D9B2F00E62AE8 /* tinyrender.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2BE1507D259D99A000E62AE8;
-			remoteInfo = tinyrender;
-		};
-		2BE1509A259D9B3100E62AE8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2BE15096259D9B3100E62AE8 /* tinyrender.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2BE1507D259D99A000E62AE8;
-			remoteInfo = tinyrender;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
-		2B5DD289259255EE00AF838B /* CopyFiles */ = {
+		2BE1507B259D99A000E62AE8 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -40,15 +24,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2B5DD28B259255EE00AF838B /* AnyToy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AnyToy; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B5DD28E259255EE00AF838B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		2B5DD297259259CA00AF838B /* Lua524 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Lua524; sourceTree = "<group>"; };
-		2BE1508E259D9B2F00E62AE8 /* tinyrender.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = tinyrender.xcodeproj; path = ../../tinyrender/tinyrender.xcodeproj; sourceTree = "<group>"; };
-		2BE15096259D9B3100E62AE8 /* tinyrender.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = tinyrender.xcodeproj; path = ../../tinyrender/tinyrender.xcodeproj; sourceTree = "<group>"; };
+		2BE1507D259D99A000E62AE8 /* tinyrender */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tinyrender; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BE15088259D9A0D00E62AE8 /* tgaimage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tgaimage.cpp; path = source/tgaimage.cpp; sourceTree = "<group>"; };
+		2BE15089259D9A0D00E62AE8 /* tgaimage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tgaimage.h; path = source/tgaimage.h; sourceTree = "<group>"; };
+		2BE1509D259D9B5A00E62AE8 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = source/main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2B5DD288259255EE00AF838B /* Frameworks */ = {
+		2BE1507A259D99A000E62AE8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -58,83 +41,66 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2B5DD282259255EE00AF838B = {
+		2BE15074259D99A000E62AE8 = {
 			isa = PBXGroup;
 			children = (
-				2BE1508E259D9B2F00E62AE8 /* tinyrender.xcodeproj */,
-				2BE15096259D9B3100E62AE8 /* tinyrender.xcodeproj */,
-				2B5DD297259259CA00AF838B /* Lua524 */,
-				2B5DD28D259255EE00AF838B /* Source */,
-				2B5DD28C259255EE00AF838B /* Products */,
+				2BE1508C259D9A1700E62AE8 /* Source */,
+				2BE1507E259D99A000E62AE8 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		2B5DD28C259255EE00AF838B /* Products */ = {
+		2BE1507E259D99A000E62AE8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2B5DD28B259255EE00AF838B /* AnyToy */,
+				2BE1507D259D99A000E62AE8 /* tinyrender */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2B5DD28D259255EE00AF838B /* Source */ = {
+		2BE1508C259D9A1700E62AE8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				2B5DD28E259255EE00AF838B /* main.cpp */,
+				2BE1509D259D9B5A00E62AE8 /* main.cpp */,
+				2BE15088259D9A0D00E62AE8 /* tgaimage.cpp */,
+				2BE15089259D9A0D00E62AE8 /* tgaimage.h */,
 			);
-			path = Source;
-			sourceTree = "<group>";
-		};
-		2BE1508F259D9B2F00E62AE8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2BE15093259D9B2F00E62AE8 /* tinyrender */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		2BE15097259D9B3100E62AE8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2BE1509B259D9B3100E62AE8 /* tinyrender */,
-			);
-			name = Products;
+			name = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2B5DD28A259255EE00AF838B /* AnyToy */ = {
+		2BE1507C259D99A000E62AE8 /* tinyrender */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2B5DD292259255EE00AF838B /* Build configuration list for PBXNativeTarget "AnyToy" */;
+			buildConfigurationList = 2BE15084259D99A000E62AE8 /* Build configuration list for PBXNativeTarget "tinyrender" */;
 			buildPhases = (
-				2B5DD287259255EE00AF838B /* Sources */,
-				2B5DD288259255EE00AF838B /* Frameworks */,
-				2B5DD289259255EE00AF838B /* CopyFiles */,
+				2BE15079259D99A000E62AE8 /* Sources */,
+				2BE1507A259D99A000E62AE8 /* Frameworks */,
+				2BE1507B259D99A000E62AE8 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = AnyToy;
-			productName = AnyToy;
-			productReference = 2B5DD28B259255EE00AF838B /* AnyToy */;
+			name = tinyrender;
+			productName = tinyrender;
+			productReference = 2BE1507D259D99A000E62AE8 /* tinyrender */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		2B5DD283259255EE00AF838B /* Project object */ = {
+		2BE15075259D99A000E62AE8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
-					2B5DD28A259255EE00AF838B = {
+					2BE1507C259D99A000E62AE8 = {
 						CreatedOnToolsVersion = 12.3;
 					};
 				};
 			};
-			buildConfigurationList = 2B5DD286259255EE00AF838B /* Build configuration list for PBXProject "AnyToy" */;
+			buildConfigurationList = 2BE15078259D99A000E62AE8 /* Build configuration list for PBXProject "tinyrender" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -142,56 +108,30 @@
 				en,
 				Base,
 			);
-			mainGroup = 2B5DD282259255EE00AF838B;
-			productRefGroup = 2B5DD28C259255EE00AF838B /* Products */;
+			mainGroup = 2BE15074259D99A000E62AE8;
+			productRefGroup = 2BE1507E259D99A000E62AE8 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 2BE1508F259D9B2F00E62AE8 /* Products */;
-					ProjectRef = 2BE1508E259D9B2F00E62AE8 /* tinyrender.xcodeproj */;
-				},
-				{
-					ProductGroup = 2BE15097259D9B3100E62AE8 /* Products */;
-					ProjectRef = 2BE15096259D9B3100E62AE8 /* tinyrender.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
-				2B5DD28A259255EE00AF838B /* AnyToy */,
+				2BE1507C259D99A000E62AE8 /* tinyrender */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		2BE15093259D9B2F00E62AE8 /* tinyrender */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = tinyrender;
-			remoteRef = 2BE15092259D9B2F00E62AE8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2BE1509B259D9B3100E62AE8 /* tinyrender */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = tinyrender;
-			remoteRef = 2BE1509A259D9B3100E62AE8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXSourcesBuildPhase section */
-		2B5DD287259255EE00AF838B /* Sources */ = {
+		2BE15079259D99A000E62AE8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B5DD28F259255EE00AF838B /* main.cpp in Sources */,
+				2BE1509E259D9B5A00E62AE8 /* main.cpp in Sources */,
+				2BE1508A259D9A0D00E62AE8 /* tgaimage.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		2B5DD290259255EE00AF838B /* Debug */ = {
+		2BE15082259D99A000E62AE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -250,7 +190,7 @@
 			};
 			name = Debug;
 		};
-		2B5DD291259255EE00AF838B /* Release */ = {
+		2BE15083259D99A000E62AE8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -302,7 +242,7 @@
 			};
 			name = Release;
 		};
-		2B5DD293259255EE00AF838B /* Debug */ = {
+		2BE15085259D99A000E62AE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -312,7 +252,7 @@
 			};
 			name = Debug;
 		};
-		2B5DD294259255EE00AF838B /* Release */ = {
+		2BE15086259D99A000E62AE8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -325,25 +265,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2B5DD286259255EE00AF838B /* Build configuration list for PBXProject "AnyToy" */ = {
+		2BE15078259D99A000E62AE8 /* Build configuration list for PBXProject "tinyrender" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2B5DD290259255EE00AF838B /* Debug */,
-				2B5DD291259255EE00AF838B /* Release */,
+				2BE15082259D99A000E62AE8 /* Debug */,
+				2BE15083259D99A000E62AE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2B5DD292259255EE00AF838B /* Build configuration list for PBXNativeTarget "AnyToy" */ = {
+		2BE15084259D99A000E62AE8 /* Build configuration list for PBXNativeTarget "tinyrender" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2B5DD293259255EE00AF838B /* Debug */,
-				2B5DD294259255EE00AF838B /* Release */,
+				2BE15085259D99A000E62AE8 /* Debug */,
+				2BE15086259D99A000E62AE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 2B5DD283259255EE00AF838B /* Project object */;
+	rootObject = 2BE15075259D99A000E62AE8 /* Project object */;
 }

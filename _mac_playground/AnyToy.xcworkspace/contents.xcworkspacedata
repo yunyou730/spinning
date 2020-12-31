@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:tinyrender/tinyrender.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:AnyToy/AnyToy/AnyToy.xcodeproj">
    </FileRef>
 </Workspace>
