@@ -26,9 +26,9 @@ int main( int argc, char* args[] )
 //        line(renderContext,red,p1,p2);
 //        triangleWithColorSide(renderContext,white,p1,p2,p3);
         
-        triangleWithColorSide(renderContext,white,t0[0], t0[1], t0[2]);
-        triangleWithColorSide(renderContext,red,t1[0], t1[1], t1[2]);
-        triangleWithColorSide(renderContext,blue,t2[0], t2[1], t2[2]);
+        triangleFill(renderContext,white,t0[0], t0[1], t0[2]);
+        triangleFill(renderContext,red,t1[0], t1[1], t1[2]);
+        triangleFill(renderContext,blue,t2[0], t2[1], t2[2]);
     });
     app.MainLoop();
     app.Clean();

@@ -14,7 +14,7 @@ void line(RenderContext* ctx,const Color& color,int x0,int y0,int x1,int y1);
 void line(RenderContext* ctx,const Color& color,const Vec2<int>& p1,const Vec2<int>& p2);
 void triangle(RenderContext* ctx,const Color& color,const Vec2<int>& p1,const Vec2<int>& p2,const Vec2<int>& p3);
 
-void triangleWithColorSide(RenderContext* ctx,
+void triangleFill(RenderContext* ctx,
                            const Color& color,
                            const Vec2<int>& p1,
                            const Vec2<int>& p2,

@@ -58,7 +58,7 @@ void triangle(RenderContext* ctx,const Color& color,const Vec2<int>& p1,const Ve
 }
 
 
-void triangleWithColorSide(RenderContext* ctx,
+void triangleFill(RenderContext* ctx,
                            const Color& color,
                            const Vec2<int>& p1,
                            const Vec2<int>& p2,
