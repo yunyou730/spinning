@@ -8,9 +8,10 @@
 #include "AppFramework.hpp"
 #include <stdexcept>
 
-AppFramework::AppFramework(int width,int height)
+AppFramework::AppFramework(int width,int height,int depth)
     :_width(width)
     ,_height(height)
+    ,_depth(depth)
 {
         
 }
@@ -49,7 +50,7 @@ void AppFramework::Init()
         }
     }
     
-    _context = new SDLRenderContext(_renderer,_width,_height);
+    _context = new SDLRenderContext(_renderer,_width,_height,_depth);
 }
 
 void AppFramework::MainLoop()
@@ -78,7 +79,7 @@ void AppFramework::MainLoop()
         
         if(_drawFunc != nullptr)
         {
-            _drawFunc(_context,_width,_height);
+            _drawFunc(_context);
         }
         SDL_RenderPresent(_renderer);
 

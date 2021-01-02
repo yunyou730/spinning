@@ -48,6 +48,7 @@ template<typename T>
 struct Vec3
 {
     T x,y,z;
+    Vec3(T x,T y):x(x),y(y),z(0) {}
     Vec3(T x,T y,T z):x(x),y(y),z(z) {}
     Vec3():x(0),y(0),z(0) {}
     
@@ -121,6 +122,7 @@ struct Vec3
 typedef Vec2<int> Vec2i;
 typedef Vec2<int> Vec2f;
 typedef Vec3<float> Vec3f;
+typedef Vec3<int> Vec3i;
 
 struct Color
 {

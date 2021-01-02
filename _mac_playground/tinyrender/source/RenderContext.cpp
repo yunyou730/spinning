@@ -7,19 +7,15 @@
 
 #include "RenderContext.hpp"
 
-RenderContext::RenderContext(int w,int h)
-    :_width(w),
-    _height(h)
+RenderContext::RenderContext(int width,int height,int depth)
+    :_width(width)
+    ,_height(height)
+    ,_depth(depth)
 {
     
 }
 
 RenderContext::~RenderContext()
-{
-    
-}
-
-void RenderContext::SetPixel(int x,int y,const Color& color)
 {
     
 }
