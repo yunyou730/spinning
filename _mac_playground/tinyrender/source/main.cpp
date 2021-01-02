@@ -44,27 +44,6 @@ void drawWireModelTest(RenderContext* renderContext)
     }
 }
 
-void drawFlagColorModeModelTest(RenderContext* renderContext)
-{
-    Color colorArray[] = {white,red,green,blue,yellow};
-    int colorLen = sizeof(colorArray) / sizeof(Color);
-    
-    for(int faceIdx = 0;faceIdx < model->nfaces();faceIdx++)
-    {
-        std::vector<int> face = model->face(faceIdx);
-        Vec3i screenCoords[3];
-        for(int i = 0;i < 3;i++)
-        {
-            Vec3f worldCoord = model->vert(face[i]);
-            int sx = (worldCoord.x + 1) * renderContext->width() / 2.;
-            int sy = (worldCoord.y + 1) * renderContext->height() / 2.;
-            int sz = (worldCoord.z + 1) * renderContext->depth() / 2.;
-            screenCoords[i] = Vec3i(sx,sy,sz);
-        }
-        triangleFill(renderContext,colorArray[faceIdx % colorLen],screenCoords[0],screenCoords[1],screenCoords[2]);
-    }
-}
-
 void drawLightModelTest(RenderContext* renderContext,const Vec3f& lightDir)
 {
     for(int faceIdx = 0;faceIdx < model->nfaces();faceIdx++)
@@ -80,6 +59,9 @@ void drawLightModelTest(RenderContext* renderContext,const Vec3f& lightDir)
             int sx = (worldCoord.x + 1) * renderContext->width() / 2.;
             int sy = (worldCoord.y + 1) * renderContext->height() / 2.;
             int sz = (worldCoord.z + 1) * renderContext->depth() / 2.;
+            
+            printf("face:[%d] pt[%d] z: %d\n",faceIdx,i,sz);
+            
             screenCoords[i] = Vec3i(sx,sy,sz);
         }
         
@@ -125,12 +107,12 @@ int main( int argc, char* args[] )
     app.RegisterDrawFunc([&](RenderContext* renderContext){
         
         renderContext->ClearZBuffer();
-        drawTriangleTest(renderContext);
+
 //        drawWireModelTest(renderContext,width,height);
-//        drawFlagColorModeModelTest(renderContext,width,height);
 //        drawLesson3(renderContext,width,height);
         
         drawLightModelTest(renderContext,gLightDir);
+        drawTriangleTest(renderContext);
 
     });
     app.MainLoop();
