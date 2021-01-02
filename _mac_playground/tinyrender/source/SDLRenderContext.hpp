@@ -15,8 +15,8 @@ public:
     virtual void SetZValue(int x,int y,int zValue) override;
     virtual int GetZValue(int x,int y) override;
     
-protected:
-
+    virtual void ClearFrameBuffer() override;
+    virtual void ClearZBuffer() override;
     
 protected:
     SDL_Renderer* _sdlRenderer = nullptr;

@@ -7,6 +7,9 @@ public:
     RenderContext(int width,int height,int depth);
     virtual ~RenderContext();
     
+    virtual void ClearFrameBuffer() = 0;
+    virtual void ClearZBuffer() = 0;
+    
     virtual void SetPixel(int x,int y,const Color& color) = 0;
     virtual bool ZTest(int x,int y,int zValue) = 0;
     virtual void SetZValue(int x,int y,int zValue) = 0;

@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <VariablesViewState
    version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "SDLRenderContext::GetZValue(int, int):SDLRenderContext.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "std::numeric_limits&lt;float&gt;::min()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "main:main.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "drawTriangleModeModelTest(RenderContext*, int, int):main.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "triangleFill(RenderContext*, Color const&amp;, Vec2&lt;int&gt; const&amp;, Vec2&lt;int&gt; const&amp;, Vec2&lt;int&gt; const&amp;):renderer.cpp">
+      </ContextState>
+   </ContextStates>
 </VariablesViewState>

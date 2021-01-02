@@ -14,13 +14,7 @@ SDLRenderContext::SDLRenderContext(SDL_Renderer* sdlRenderer,int width,int heigh
     ,_sdlRenderer(sdlRenderer)
 {
     _zbuffer = new int[width * height];
-    for(int x = 0;x < _width;x++)
-    {
-        for(int y = 0;y < _height;y++)
-        {
-            SetZValue(x,y,std::numeric_limits<float>::min());
-        }
-    }
+    ClearZBuffer();
 }
 
 SDLRenderContext::~SDLRenderContext()
@@ -46,7 +40,7 @@ bool SDLRenderContext::ZTest(int x,int y,int zValue)
     if(y < 0 || y >= _height)
         return false;
     
-    if(GetZValue(x,y) <= zValue)
+    if(GetZValue(x,y) < zValue)
     {
         return true;
     }
@@ -66,4 +60,21 @@ int SDLRenderContext::GetZValue(int x,int y)
         throw std::runtime_error("over bound");
     
     return _zbuffer[x + y * _width];
+}
+
+void SDLRenderContext::ClearFrameBuffer()
+{
+    
+}
+
+void SDLRenderContext::ClearZBuffer()
+{
+    for(int x = 0;x < _width;x++)
+    {
+        for(int y = 0;y < _height;y++)
+        {
+//            SetZValue(x,y,std::numeric_limits<float>::min());
+            SetZValue(x,y,std::numeric_limits<float>::lowest());
+        }
+    }
 }

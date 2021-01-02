@@ -123,6 +123,8 @@ int main( int argc, char* args[] )
     AppFramework app(800,800,255);
     app.Init();
     app.RegisterDrawFunc([&](RenderContext* renderContext){
+        
+        renderContext->ClearZBuffer();
         drawTriangleTest(renderContext);
 //        drawWireModelTest(renderContext,width,height);
 //        drawFlagColorModeModelTest(renderContext,width,height);
