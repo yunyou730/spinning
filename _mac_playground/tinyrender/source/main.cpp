@@ -13,12 +13,12 @@ Vec2<int> p1(60,72);
 Vec2<int> p2(70,85);
 Vec2<int> p3(73,65);
 
-
 Vec2i t0[3] = {Vec2i(10, 70),   Vec2i(50, 160),  Vec2i(70, 80)};
 Vec2i t1[3] = {Vec2i(180, 50),  Vec2i(150, 1),   Vec2i(70, 180)};
 Vec2i t2[3] = {Vec2i(180, 150), Vec2i(120, 160), Vec2i(130, 180)};
 
 std::shared_ptr<Model> model = nullptr;
+Vec3f gLightDir(0,0,-1);
 
 void drawWireModelTest(RenderContext* renderContext,int width,int height)
 {
@@ -44,7 +44,7 @@ void drawWireModelTest(RenderContext* renderContext,int width,int height)
     }
 }
 
-void drawTriangleModeModelTest(RenderContext* renderContext,int width,int height)
+void drawFlagColorModeModelTest(RenderContext* renderContext,int width,int height)
 {
     Color colorArray[] = {white,red,green,blue,yellow};
     int colorLen = sizeof(colorArray) / sizeof(Color);
@@ -61,6 +61,37 @@ void drawTriangleModeModelTest(RenderContext* renderContext,int width,int height
             screenCoords[i] = Vec2i(sx,sy);
         }
         triangleFill(renderContext,colorArray[faceIdx % colorLen],screenCoords[0],screenCoords[1],screenCoords[2]);
+    }
+}
+
+void drawLightModelTest(RenderContext* renderContext,int width,int height,const Vec3f& lightDir)
+{
+    for(int faceIdx = 0;faceIdx < model->nfaces();faceIdx++)
+    {
+        std::vector<int> face = model->face(faceIdx);
+        Vec2i screenCoords[3];
+        Vec3f worldCoords[3];
+        for(int i = 0;i < 3;i++)
+        {
+            Vec3f worldCoord = model->vert(face[i]);
+            worldCoords[i] = worldCoord;
+            
+            int sx = (worldCoord.x + 1) * width / 2;
+            int sy = (worldCoord.y + 1) * height / 2;
+            screenCoords[i] = Vec2i(sx,sy);
+        }
+        
+        Vec3f normalDir = (worldCoords[2] - worldCoords[0]) ^ (worldCoords[1] - worldCoords[0]);
+//        Vec3f normalDir = (worldCoords[1] - worldCoords[0]) ^ (worldCoords[2] - worldCoords[0]);
+        normalDir.Normalize();
+        
+        float intensity = normalDir * lightDir;
+        if(intensity > 0)
+        {
+            Color c(intensity*255, intensity*255, intensity*255, 255);
+            triangleFill(renderContext,c,screenCoords[0],screenCoords[1],screenCoords[2]);
+        }
+
     }
 }
 
@@ -81,7 +112,8 @@ int main( int argc, char* args[] )
     app.RegisterDrawFunc([&](RenderContext* renderContext,int width,int height){
 //        drawTriangleTest(renderContext,width,height);
 //        drawWireModelTest(renderContext,width,height);
-        drawTriangleModeModelTest(renderContext,width,height);
+//        drawFlagColorModeModelTest(renderContext,width,height);
+        drawLightModelTest(renderContext,width,height,gLightDir);
     });
     app.MainLoop();
     app.Clean();
