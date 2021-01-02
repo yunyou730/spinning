@@ -51,27 +51,16 @@ void drawTriangleModeModelTest(RenderContext* renderContext,int width,int height
     
     for(int faceIdx = 0;faceIdx < model->nfaces();faceIdx++)
     {
-//        if(faceIdx >= 0)
-//            continue;
-//        if(faceIdx != 13)
-//            continue;
-        
         std::vector<int> face = model->face(faceIdx);
-        
-        Vec3f p0 = model->vert(face[0]);
-        Vec3f p1 = model->vert(face[1]);
-        Vec3f p2 = model->vert(face[2]);
-        
-        p0.x = (p0.x + 1) * width / 2;
-        p0.y = (p0.y + 1) * height / 2;
-        
-        p1.x = (p1.x + 1) * width / 2;
-        p1.y = (p1.y + 1) * height / 2;
-        
-        p2.x = (p2.x + 1) * width / 2;
-        p2.y = (p2.y + 1) * height / 2;
-        
-        triangleFill(renderContext,colorArray[faceIdx % colorLen],p0,p1,p2);
+        Vec2i screenCoords[3];
+        for(int i = 0;i < 3;i++)
+        {
+            Vec3f worldCoord = model->vert(face[i]);
+            int sx = (worldCoord.x + 1) * width / 2;
+            int sy = (worldCoord.y + 1) * height / 2;
+            screenCoords[i] = Vec2i(sx,sy);
+        }
+        triangleFill(renderContext,colorArray[faceIdx % colorLen],screenCoords[0],screenCoords[1],screenCoords[2]);
     }
 }
 
