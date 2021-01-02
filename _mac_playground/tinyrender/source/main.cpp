@@ -128,7 +128,7 @@ int main( int argc, char* args[] )
 //        drawFlagColorModeModelTest(renderContext,width,height);
 //        drawLesson3(renderContext,width,height);
         
-//        drawLightModelTest(renderContext,gLightDir);
+        drawLightModelTest(renderContext,gLightDir);
 
     });
     app.MainLoop();

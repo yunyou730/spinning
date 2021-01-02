@@ -18,7 +18,7 @@ SDLRenderContext::SDLRenderContext(SDL_Renderer* sdlRenderer,int width,int heigh
     {
         for(int y = 0;y < _height;y++)
         {
-            SetZValue(x,y,std::numeric_limits<float>::max());
+            SetZValue(x,y,std::numeric_limits<float>::min());
         }
     }
 }
@@ -46,7 +46,7 @@ bool SDLRenderContext::ZTest(int x,int y,int zValue)
     if(y < 0 || y >= _height)
         return false;
     
-    if(GetZValue(x,y) > zValue)
+    if(GetZValue(x,y) <= zValue)
     {
         return true;
     }

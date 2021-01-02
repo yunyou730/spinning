@@ -10,12 +10,13 @@ public:
     virtual ~SDLRenderContext();
     
     virtual void SetPixel(int x,int y,const Color& color) override;
+
+    virtual bool ZTest(int x,int y,int zValue) override;
+    virtual void SetZValue(int x,int y,int zValue) override;
+    virtual int GetZValue(int x,int y) override;
     
 protected:
-    virtual bool ZTest(int x,int y,int zValue) override;
-    
-    void SetZValue(int x,int y,int zValue);
-    int GetZValue(int x,int y);
+
     
 protected:
     SDL_Renderer* _sdlRenderer = nullptr;
