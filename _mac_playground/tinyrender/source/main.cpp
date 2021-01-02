@@ -37,17 +37,22 @@ int main( int argc, char* args[] )
         {
             std::vector<int> face = model->face(faceIdx);
             
-            Vec3f p0 = model->vert(face[0]);
-            Vec3f p1 = model->vert(face[1]);
-            Vec3f p2 = model->vert(face[2]);
             
-            p0.x = (p0.x + 1) * width / 2;
-            p0.y = (p0.y + 1) * height / 2;
-            
-            p1.x = (p1.x + 1) * width / 2;
-            p1.y = (p1.y + 1) * height / 2;
-            
-            line(renderContext,white,p0.x,p0.y,p1.x,p1.y);
+            for(int j = 0;j < 3;j++)
+            {
+                Vec3f p0 = model->vert(face[j]);
+                Vec3f p1 = model->vert(face[(j + 1) % 3]);
+//                Vec3f p2 = model->vert(face[2]);
+                
+                p0.x = (p0.x + 1) * width / 2;
+                p0.y = (p0.y + 1) * height / 2;
+                
+                p1.x = (p1.x + 1) * width / 2;
+                p1.y = (p1.y + 1) * height / 2;
+                
+                line(renderContext,white,p0.x,p0.y,p1.x,p1.y);
+            }
+
         }
         
         
