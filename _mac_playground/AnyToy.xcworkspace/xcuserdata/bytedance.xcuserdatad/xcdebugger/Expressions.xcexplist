@@ -6,7 +6,7 @@
          contextName = "SDLRenderContext::GetZValue(int, int):SDLRenderContext.cpp">
          <PersistentStrings>
             <PersistentString
-               value = "std::numeric_limits&lt;float&gt;::min()">
+               value = "_zbuffer[x + y * _width]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

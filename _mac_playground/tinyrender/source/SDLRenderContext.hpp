@@ -11,14 +11,7 @@ public:
     
     virtual void SetPixel(int x,int y,const Color& color) override;
 
-    virtual bool ZTest(int x,int y,int zValue) override;
-    virtual void SetZValue(int x,int y,int zValue) override;
-    virtual int GetZValue(int x,int y) override;
-    
-    virtual void ClearFrameBuffer() override;
-    virtual void ClearZBuffer() override;
     
 protected:
-    SDL_Renderer* _sdlRenderer = nullptr;
-    int*            _zbuffer = nullptr;
+    SDL_Renderer*   _sdlRenderer = nullptr;
 };
