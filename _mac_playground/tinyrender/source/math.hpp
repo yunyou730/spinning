@@ -31,10 +31,46 @@ struct Vec2
         result.y = y * number;
         return result;
     }
+};
+
+template<typename T>
+struct Vec3
+{
+    T x,y,z;
+    Vec3(T x,T y,T z):x(x),y(y),z(z) {}
+    Vec3():x(0),y(0),z(0) {}
     
+    Vec3<T> operator+(const Vec2<T>& other)
+    {
+        Vec3<T> result;
+        result.x = x + other.x;
+        result.y = y + other.y;
+        result.z = z + other.z;
+        return result;
+    }
+    
+    Vec3<T> operator-(const Vec2<T>& other)
+    {
+        Vec3<T> result;
+        result.x = x - other.x;
+        result.y = y - other.y;
+        result.z = z - other.z;
+        return result;
+    }
+    
+    template<typename FT>
+    Vec3<T> operator*(FT number)
+    {
+        Vec3<T> result;
+        result.x = x * number;
+        result.y = y * number;
+        result.z = z * number;
+        return result;
+    }
 };
 
 typedef Vec2<int> Vec2i;
+typedef Vec3<float> Vec3f;
 
 struct Color
 {

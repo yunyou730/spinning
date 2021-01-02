@@ -78,7 +78,7 @@ void AppFramework::MainLoop()
         
         if(_drawFunc != nullptr)
         {
-            _drawFunc(_context);
+            _drawFunc(_context,_width,_height);
         }
         SDL_RenderPresent(_renderer);
 

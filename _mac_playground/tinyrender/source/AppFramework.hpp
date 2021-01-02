@@ -13,7 +13,7 @@ public:
     void MainLoop();
     void Clean();
     
-    void RegisterDrawFunc(std::function<void(RenderContext* renderContext)> func)
+    void RegisterDrawFunc(std::function<void(RenderContext* renderContext,int width,int height)> func)
     {
         _drawFunc = func;
     }
@@ -26,5 +26,5 @@ private:
     const int _width    = 0;
     const int _height   = 0;
     
-    std::function<void(RenderContext*)>   _drawFunc = nullptr;
+    std::function<void(RenderContext*,int width,int height)>   _drawFunc = nullptr;
 };

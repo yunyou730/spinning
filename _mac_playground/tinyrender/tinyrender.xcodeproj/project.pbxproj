@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2BC2924E259ED705009C89EC /* AppFramework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BC2924C259ED705009C89EC /* AppFramework.cpp */; };
+		2BD76F4B25A01E29009F1754 /* model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BD76F4A25A01E29009F1754 /* model.cpp */; };
+		2BD76F5025A02211009F1754 /* res in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2BD76F4F25A02211009F1754 /* res */; };
 		2BE1508A259D9A0D00E62AE8 /* tgaimage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BE15088259D9A0D00E62AE8 /* tgaimage.cpp */; };
 		2BE1509E259D9B5A00E62AE8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1509D259D9B5A00E62AE8 /* main.cpp */; };
 		2BE150A2259D9C6900E62AE8 /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BE150A0259D9C6900E62AE8 /* renderer.cpp */; };
@@ -20,18 +22,22 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		2BE1507B259D99A000E62AE8 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
 			files = (
+				2BD76F5025A02211009F1754 /* res in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2BC2924C259ED705009C89EC /* AppFramework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppFramework.cpp; path = source/AppFramework.cpp; sourceTree = "<group>"; };
 		2BC2924D259ED705009C89EC /* AppFramework.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = AppFramework.hpp; path = source/AppFramework.hpp; sourceTree = "<group>"; };
+		2BD76F4925A01E29009F1754 /* model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = model.h; path = source/model.h; sourceTree = "<group>"; };
+		2BD76F4A25A01E29009F1754 /* model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = model.cpp; path = source/model.cpp; sourceTree = "<group>"; };
+		2BD76F4F25A02211009F1754 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
 		2BE1507D259D99A000E62AE8 /* tinyrender */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tinyrender; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE15088259D9A0D00E62AE8 /* tgaimage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tgaimage.cpp; path = source/tgaimage.cpp; sourceTree = "<group>"; };
 		2BE15089259D9A0D00E62AE8 /* tgaimage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tgaimage.h; path = source/tgaimage.h; sourceTree = "<group>"; };
@@ -62,6 +68,7 @@
 		2BE15074259D99A000E62AE8 = {
 			isa = PBXGroup;
 			children = (
+				2BD76F4F25A02211009F1754 /* res */,
 				2BE150AA259E5CEA00E62AE8 /* SDL2.framework */,
 				2BE1508C259D9A1700E62AE8 /* Source */,
 				2BE1507E259D99A000E62AE8 /* Products */,
@@ -79,6 +86,8 @@
 		2BE1508C259D9A1700E62AE8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				2BD76F4A25A01E29009F1754 /* model.cpp */,
+				2BD76F4925A01E29009F1754 /* model.h */,
 				2BE1509D259D9B5A00E62AE8 /* main.cpp */,
 				2BE15088259D9A0D00E62AE8 /* tgaimage.cpp */,
 				2BE15089259D9A0D00E62AE8 /* tgaimage.h */,
@@ -155,6 +164,7 @@
 				2BE1509E259D9B5A00E62AE8 /* main.cpp in Sources */,
 				2BE150A2259D9C6900E62AE8 /* renderer.cpp in Sources */,
 				2BC2924E259ED705009C89EC /* AppFramework.cpp in Sources */,
+				2BD76F4B25A01E29009F1754 /* model.cpp in Sources */,
 				2BE1508A259D9A0D00E62AE8 /* tgaimage.cpp in Sources */,
 				2BE150B3259E602100E62AE8 /* SDLRenderContext.cpp in Sources */,
 				2BE150AF259E5ED200E62AE8 /* RenderContext.cpp in Sources */,
