@@ -13,9 +13,9 @@ Vec2<int> p1(60,72);
 Vec2<int> p2(70,85);
 Vec2<int> p3(73,65);
 
-Vec3i t0[3] = {Vec3i(10, 70),   Vec3i(50, 160),  Vec3i(70, 80)};
+Vec3i t0[3] = {Vec3i(10, 70),   Vec3i(200, 160),  Vec3i(70, 80)};
 Vec3i t1[3] = {Vec3i(180, 50),  Vec3i(150, 1),   Vec3i(70, 180)};
-Vec3i t2[3] = {Vec3i(180, 150), Vec3i(120, 160), Vec3i(130, 180)};
+Vec3i t2[3] = {Vec3i(180, 50,5), Vec3i(120, 160,1), Vec3i(130, 180,3)};
 
 std::shared_ptr<Model> model = nullptr;
 Vec3f gLightDir(0,0,-1);
@@ -85,19 +85,6 @@ void drawTriangleTest(RenderContext* renderContext)
     triangleFill(renderContext,blue,t2[0], t2[1], t2[2]);
 }
 
-
-void drawLesson3(RenderContext* renderContext)
-{
-    // scene "2d mesh"
-    line(renderContext,red,Vec2i(20, 34),   Vec2i(744, 400));
-    line(renderContext,green,Vec2i(120, 434), Vec2i(444, 400));
-    line(renderContext,blue,Vec2i(330, 463), Vec2i(594, 200));
-    
-    // screen line
-    line(renderContext,white,Vec2i(10, 10), Vec2i(790, 10));
-
-}
-
 int main( int argc, char* args[] )
 {
     model = std::make_shared<Model>("./res/obj/african_head.obj");
@@ -109,7 +96,6 @@ int main( int argc, char* args[] )
         renderContext->ClearZBuffer();
 
 //        drawWireModelTest(renderContext,width,height);
-//        drawLesson3(renderContext,width,height);
         
         drawLightModelTest(renderContext,gLightDir);
         drawTriangleTest(renderContext);

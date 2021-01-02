@@ -13,8 +13,7 @@ SDLRenderContext::SDLRenderContext(SDL_Renderer* sdlRenderer,int width,int heigh
     :RenderContext(width,height,depth)
     ,_sdlRenderer(sdlRenderer)
 {
-    _zbuffer = new float[width * height];
-    ClearZBuffer();
+
 }
 
 SDLRenderContext::~SDLRenderContext()

@@ -13,7 +13,8 @@ RenderContext::RenderContext(int width,int height,int depth)
     ,_height(height)
     ,_depth(depth)
 {
-    
+    _zbuffer = new float[width * height];
+    ClearZBuffer();
 }
 
 RenderContext::~RenderContext()
@@ -24,7 +25,6 @@ RenderContext::~RenderContext()
         _zbuffer = nullptr;
     }
 }
-
 
 bool RenderContext::ZTest(int x,int y,float zValue)
 {
