@@ -71,6 +71,14 @@ void triangleFill(RenderContext* ctx,
     
     // triangle lower part
     int totalHeight = arr[2].y - arr[0].y;
+
+    // prevent div 0 error
+    if(totalHeight <= 0)
+    {
+//        throw std::runtime_error("total height is 0!");
+        return;
+    }
+    
     for(int y = arr[0].y;y <= arr[1].y;y++)
     {
         int segmentHeight = arr[1].y - arr[0].y + 1;    // avoid div 0

@@ -1,4 +1,6 @@
 #pragma once
+template<typename T>
+struct Vec3;
 
 template<typename T>
 struct Vec2
@@ -6,6 +8,13 @@ struct Vec2
     T x,y;
     Vec2():x(0),y(0) {}
     Vec2(T x,T y):x(x),y(y){}
+    
+    template<typename TOther>
+    Vec2(const Vec3<TOther>& other)
+    {
+        x = (T)other.x;
+        y = (T)other.y;
+    }
     
     Vec2<T> operator+(const Vec2<T>& other)
     {
@@ -70,6 +79,7 @@ struct Vec3
 };
 
 typedef Vec2<int> Vec2i;
+typedef Vec2<int> Vec2f;
 typedef Vec3<float> Vec3f;
 
 struct Color

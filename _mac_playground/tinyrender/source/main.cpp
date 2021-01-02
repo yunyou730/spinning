@@ -41,7 +41,37 @@ void drawWireModelTest(RenderContext* renderContext,int width,int height)
             
             line(renderContext,white,p0.x,p0.y,p1.x,p1.y);
         }
+    }
+}
 
+void drawTriangleModeModelTest(RenderContext* renderContext,int width,int height)
+{
+    Color colorArray[] = {white,red,green,blue,yellow};
+    int colorLen = sizeof(colorArray) / sizeof(Color);
+    
+    for(int faceIdx = 0;faceIdx < model->nfaces();faceIdx++)
+    {
+//        if(faceIdx >= 0)
+//            continue;
+//        if(faceIdx != 13)
+//            continue;
+        
+        std::vector<int> face = model->face(faceIdx);
+        
+        Vec3f p0 = model->vert(face[0]);
+        Vec3f p1 = model->vert(face[1]);
+        Vec3f p2 = model->vert(face[2]);
+        
+        p0.x = (p0.x + 1) * width / 2;
+        p0.y = (p0.y + 1) * height / 2;
+        
+        p1.x = (p1.x + 1) * width / 2;
+        p1.y = (p1.y + 1) * height / 2;
+        
+        p2.x = (p2.x + 1) * width / 2;
+        p2.y = (p2.y + 1) * height / 2;
+        
+        triangleFill(renderContext,colorArray[faceIdx % colorLen],p0,p1,p2);
     }
 }
 
@@ -60,10 +90,9 @@ int main( int argc, char* args[] )
     AppFramework app(600,600);
     app.Init();
     app.RegisterDrawFunc([&](RenderContext* renderContext,int width,int height){
-        drawTriangleTest(renderContext,width,height);
-        drawWireModelTest(renderContext,width,height);
-        
-        
+//        drawTriangleTest(renderContext,width,height);
+//        drawWireModelTest(renderContext,width,height);
+        drawTriangleModeModelTest(renderContext,width,height);
     });
     app.MainLoop();
     app.Clean();
