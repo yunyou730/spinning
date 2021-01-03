@@ -159,12 +159,17 @@ struct Vec4
     Vec4() { x = y = z = w = 0;}
     Vec4(float x,float y,float z,float w):x(x),y(y),z(z),w(w) {}
     Vec4(const std::vector<float>& vec) {
-        if(vec.size() != 4)
+        if(vec.size() > 4)
             throw std::runtime_error("count error");
-        data[0] = vec[0];
-        data[1] = vec[1];
-        data[2] = vec[2];
-        data[3] = vec[3];
+        
+        for(int i = 0;i < 4;i++)
+        {
+            data[i] = i < vec.size() ? vec[i] : 0.0f;
+        }
+//        data[0] = vec[0];
+//        data[1] = vec[1];
+//        data[2] = vec[2];
+//        data[3] = vec[3];
     }
     
     float operator[](int index)
@@ -228,7 +233,7 @@ struct Matrix
     
     void Fill(const std::vector<float>& values)
     {
-        if(values.size() != n * n)
+        if(values.size() > n * n)
             throw std::runtime_error("invalid element count");
         
         int idx = 0;
@@ -236,7 +241,7 @@ struct Matrix
         {
             for(int c = 0;c < n;c++)
             {
-                data[r][c] = values[idx++];
+                data[r][c] = idx < n * n ? values[idx++] : 0.0f;
             }
         }
     }
