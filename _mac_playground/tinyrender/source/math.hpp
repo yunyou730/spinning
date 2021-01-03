@@ -55,6 +55,12 @@ struct Vec3
     Vec3(T x,T y,T z):x(x),y(y),z(z) {}
     Vec3():x(0),y(0),z(0) {}
     
+    Vec3(const Vec3<T>& other) {
+        x = other.x;
+        y = other.y;
+        z = other.z;
+    }
+    
     void operator=(const Vec3<T>& other)
     {
         x = other.x;
@@ -127,6 +133,15 @@ typedef Vec2<int> Vec2f;
 typedef Vec3<float> Vec3f;
 typedef Vec3<int> Vec3i;
 
+//
+//float Distance(const Vec3f& v1,const Vec3f& v2)
+//{
+//////    float dis = (v1 - v2).Length();
+////    float dis = 0;
+////    return dis;
+//    return 0;
+//}
+
 struct Color
 {
     Color(){}
@@ -170,6 +185,14 @@ struct Vec4
 //        data[1] = vec[1];
 //        data[2] = vec[2];
 //        data[3] = vec[3];
+    }
+    
+    Vec4(const Vec3<float>& v3,float w)
+    {
+        x = v3.x;
+        y = v3.y;
+        z = v3.z;
+        w = w;
     }
     
     float operator[](int index)

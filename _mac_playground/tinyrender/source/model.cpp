@@ -63,3 +63,9 @@ Vec3f Model::vert(int i) {
     return verts_[i];
 }
 
+//Vec3f Model::vert(int iface,int nthvert)
+//{
+////    return verts_[faces_[iface][nthvert][0]];
+//    face(iface)[nthvert][0];
+//    return Vec3f();
+//}

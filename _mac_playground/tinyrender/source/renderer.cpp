@@ -93,7 +93,7 @@ void triangleFill(RenderContext* ctx,
         for(int x = A.x;x <= B.x;x++)
         {
             float phi = (B.x == A.x) ? 1.f : (float)(x - A.x) / (float)(B.x - A.x);
-            Vec3i p = A + (B - A) * phi;    // calc for z
+            Vec3i p = A + (B - A) * phi;    // calc for z test
             if(ctx->ZTest(x,y,p.z))
             {
                 ctx->SetZValue(x,y,p.z);
@@ -114,7 +114,7 @@ void triangleFill(RenderContext* ctx,
         for(int x = A.x;x <= B.x;x++)
         {
             float phi = (B.x == A.x) ? 1.f : (float)(x - A.x) / (float)(B.x - A.x);
-            Vec3i p = A + (B - A) * phi;    // calc for z
+            Vec3i p = A + (B - A) * phi;    // calc for z test
             if(ctx->ZTest(x,y,p.z))
             {
                 ctx->SetZValue(x,y,p.z);

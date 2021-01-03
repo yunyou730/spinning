@@ -15,6 +15,7 @@ public:
 	int nverts();
 	int nfaces();
 	Vec3f vert(int i);
+    Vec3f vert(int iface,int nthvert);
 	std::vector<int> face(int idx);
 };
 

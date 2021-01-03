@@ -45,8 +45,35 @@ void drawWireModelTest(RenderContext* renderContext)
     }
 }
 
+//void ShaderVS(Model* model,int iFace,int nthVert)
+//{
+//    model->vert(iFace);
+//}
+
+
+
+float gViewportWidth = 800;
+float gViewportHeight = 800;
+
+Vec3f gEye(1,1,3);
+Vec3f gCenter(0,0,0);
+Vec3f gUp(0,1,0);
+
+float gTestFactor = 1./8;
+float gTestFactor2 = 3./4;
+
+
 void drawLightModelTest(RenderContext* renderContext,const Vec3f& lightDir)
 {
+    // test
+    MyGL my(gEye,gCenter,gUp,
+            gViewportWidth * gTestFactor,
+            gViewportHeight * gTestFactor,
+            gViewportWidth * gTestFactor2,
+            gViewportHeight * gTestFactor2);
+    my.CalcMatrics();
+    
+    // draw
     for(int faceIdx = 0;faceIdx < model->nfaces();faceIdx++)
     {
         std::vector<int> face = model->face(faceIdx);
@@ -57,13 +84,15 @@ void drawLightModelTest(RenderContext* renderContext,const Vec3f& lightDir)
             Vec3f worldCoord = model->vert(face[i]);
             worldCoords[i] = worldCoord;
             
-            int sx = (worldCoord.x + 1) * renderContext->width() / 2.;
-            int sy = (worldCoord.y + 1) * renderContext->height() / 2.;
-            int sz = (worldCoord.z + 1) * renderContext->depth() / 2.;
+//            int sx = (worldCoord.x + 1) * renderContext->width() / 2.;
+//            int sy = (worldCoord.y + 1) * renderContext->height() / 2.;
+//            int sz = (worldCoord.z + 1) * renderContext->depth() / 2.;
+//            screenCoords[i] = Vec3i(sx,sy,sz);
             
-//            printf("face:[%d] pt[%d] z: %d\n",faceIdx,i,sz);
-            
-            screenCoords[i] = Vec3i(sx,sy,sz);
+            Vec4 pos = my.Viewport() * my.Projection() * my.ModelView() * Vec4(worldCoord,1);
+            screenCoords[i].x = pos.x ;
+            screenCoords[i].y = pos.y ;
+            screenCoords[i].z = pos.z ;
         }
         
         Vec3f normalDir = (worldCoords[2] - worldCoords[0]) ^ (worldCoords[1] - worldCoords[0]);
@@ -85,6 +114,7 @@ void drawTriangleTest(RenderContext* renderContext)
     triangleFill(renderContext,red,t1[0], t1[1], t1[2]);
     triangleFill(renderContext,blue,t2[0], t2[1], t2[2]);
 }
+
 
 void TestMatrix()
 {
@@ -111,7 +141,7 @@ void TestMatrix()
     v.dump();
     v = mat * v;
     v.dump();
-    
+        
     
 //    Vec4 v;
 //    v.w = 0.5f;
@@ -120,26 +150,24 @@ void TestMatrix()
 
 int main( int argc, char* args[] )
 {
-    TestMatrix();
+//    TestMatrix();
     
-    /*
     model = std::make_shared<Model>("./res/obj/african_head.obj");
     
-    AppFramework app(800,800,255);
+    AppFramework app(gViewportWidth,gViewportHeight,255);
     app.Init();
     app.RegisterDrawFunc([&](RenderContext* renderContext){
         
         renderContext->ClearZBuffer();
 
-//        drawWireModelTest(renderContext,width,height);
-        
+//        drawWireModelTest(renderContext);
+//        drawTriangleTest(renderContext);
         drawLightModelTest(renderContext,gLightDir);
-        drawTriangleTest(renderContext);
+
 
     });
     app.MainLoop();
     app.Clean();
-     */
     
     return 0;
 }
