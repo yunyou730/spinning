@@ -8,6 +8,7 @@
 #include <functional>
 #include "../source/model.h"
 #include <memory>
+#include "../source/MyGL.h"
 
 Vec2<int> p1(60,72);
 Vec2<int> p2(70,85);
@@ -60,7 +61,7 @@ void drawLightModelTest(RenderContext* renderContext,const Vec3f& lightDir)
             int sy = (worldCoord.y + 1) * renderContext->height() / 2.;
             int sz = (worldCoord.z + 1) * renderContext->depth() / 2.;
             
-            printf("face:[%d] pt[%d] z: %d\n",faceIdx,i,sz);
+//            printf("face:[%d] pt[%d] z: %d\n",faceIdx,i,sz);
             
             screenCoords[i] = Vec3i(sx,sy,sz);
         }
@@ -85,8 +86,36 @@ void drawTriangleTest(RenderContext* renderContext)
     triangleFill(renderContext,blue,t2[0], t2[1], t2[2]);
 }
 
+void TestMatrix()
+{
+    Matrix<4> matrix;
+    matrix.dump();
+    
+    matrix.Identity();
+    matrix.dump();
+    
+    matrix * 5;
+    matrix.dump();
+    
+    
+    Matrix<3> m1(std::vector<float>{1,-5,3,0,-2,6,7,2,-4});
+    m1.dump();
+    Matrix<3> m2(std::vector<float>{-8,6,1,7,0,-3,2,4,5});
+    m2.dump();
+    
+    Matrix<3> r = m1 * m2;
+    r.dump();
+    
+//    Vec4 v;
+//    v.w = 0.5f;
+//    printf("x");
+}
+
 int main( int argc, char* args[] )
 {
+    TestMatrix();
+    
+    /*
     model = std::make_shared<Model>("./res/obj/african_head.obj");
     
     AppFramework app(800,800,255);
@@ -103,7 +132,7 @@ int main( int argc, char* args[] )
     });
     app.MainLoop();
     app.Clean();
-    
+     */
     
     return 0;
 }

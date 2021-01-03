@@ -1,5 +1,8 @@
 #pragma once
 #include <cmath>
+#include <cstdio>
+#include <stdexcept>
+#include <vector>
 
 //template<typename T>
 //struct Vec3;
@@ -141,3 +144,189 @@ const Color red      = Color(255,0,0,255);
 const Color green    = Color(0,255,0,255);
 const Color blue     = Color(0,0,255,255);
 const Color yellow   = Color(255,255,0,255);
+
+
+struct Vec4
+{
+    union
+    {
+        struct{
+            float x,y,z,w;
+        };
+        float data[4];
+    };
+    
+    Vec4() { x = y = z = w = 0;}
+    Vec4(float x,float y,float z,float w):x(x),y(y),z(z),w(w) {}
+    
+    float operator[](int index)
+    {
+        return data[index];
+    }
+};
+
+template<int n>
+struct Vector
+{
+    float raw[n];
+    
+    Vector()
+    {
+        for(int i = 0;i < n;i++)
+        {
+            raw[i] = 0;
+        }
+    }
+    
+    float x() const {
+        if(n < 1)
+            throw std::runtime_error("dimension error");
+        return raw[0];
+    };
+    
+    void x(float val) {
+        
+    }
+    
+};
+
+
+// matrix
+template<int n>
+struct Matrix
+{
+    float data[n][n];
+    
+    Matrix()
+    {
+        for(int r = 0;r < n;r++)
+        {
+            for(int c = 0;c < n;c++)
+            {
+                data[r][c] = 0;
+            }
+        }
+    }
+    
+    Matrix(const std::vector<float>& values)
+    {
+        Fill(values);
+    }
+    
+    void Fill(const std::vector<float>& values)
+    {
+        if(values.size() != n * n)
+            throw std::runtime_error("invalid element count");
+        
+        int idx = 0;
+        for(int r = 0;r < n;r++)
+        {
+            for(int c = 0;c < n;c++)
+            {
+                data[r][c] = values[idx++];
+            }
+        }
+    }
+    
+    float Get(int row,int col)
+    {
+        if(row < 0 || row >= n || col < 0 || col >= n)
+            throw std::runtime_error("matrix over bound");
+        return data[row][col];
+    }
+    
+    void Set(int row,int col,float value)
+    {
+        if(row < 0 || row >= n || col < 0 || col >= n)
+            throw std::runtime_error("matrix over bound");
+        data[row][col] = value;
+    }
+    
+    void Identity()
+    {
+        for(int r = 0;r < n;r++)
+        {
+            for(int c = 0;c < n;c++)
+            {
+                data[r][c] = (r == c) ? 1 : 0;
+            }
+        }
+    }
+    
+    // @miao @todo
+    Vec4 operator*(const Vec4& vec)
+    {
+        if(n != 4)
+            throw std::runtime_error("dimension not match!");
+        
+        Vec4 result;
+        
+        Get();
+        
+        return result;
+    }
+    
+    Matrix<n> operator*(float number)
+    {
+        Matrix<n> result;
+        for(int r = 0;r < n;r++)
+        {
+            for(int c = 0;c < n;c++)
+            {
+                result.Set(r,c,Get(r,c) * number);
+            }
+        }
+        return result;
+    }
+    
+    void operator*=(float number)
+    {
+        Matrix<n> result;
+        for(int r = 0;r < n;r++)
+        {
+            for(int c = 0;c < n;c++)
+            {
+                Set(r,c,Get(r,c) * number);
+            }
+        }
+        return *this;
+    }
+    
+    Matrix<n> operator*(const Matrix<n>& other)
+    {
+        Matrix<n> result;
+        for(int row = 0;row < n;row++)
+        {
+            for(int col = 0;col < n;col++)
+            {
+                int counter = 0;
+                for(int k = 0;k < n;k++)
+                {
+                    counter += data[row][k] * other.data[k][col];
+                }
+                result.data[row][col] = counter;
+            }
+        }
+        return result;
+    }
+    
+    void operator*=(const Matrix<n>& other)
+    {
+        
+    }
+
+    
+    void dump()
+    {
+        printf("----\n");
+        for(int r = 0;r < n;r++)
+        {
+            for(int c = 0;c < n;c++)
+            {
+                printf("%.3f\t",data[r][c]);
+            }
+            printf("\n");
+        }
+        printf("----\n");
+    }
+};
