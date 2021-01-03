@@ -89,7 +89,9 @@ void drawLightModelTest(RenderContext* renderContext,const Vec3f& lightDir)
 //            int sz = (worldCoord.z + 1) * renderContext->depth() / 2.;
 //            screenCoords[i] = Vec3i(sx,sy,sz);
             
-            Vec4 pos = my.Viewport() * my.Projection() * my.ModelView() * Vec4(worldCoord,1);
+            Matrix<4>   mat = my.Viewport() * my.Projection() * my.ModelView();
+            Vec4 glPos = Vec4(worldCoord,1);
+            Vec4 pos = mat * glPos;
             screenCoords[i].x = pos.x ;
             screenCoords[i].y = pos.y ;
             screenCoords[i].z = pos.z ;

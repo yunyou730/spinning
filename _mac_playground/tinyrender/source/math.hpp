@@ -188,11 +188,12 @@ struct Vec4
     }
     
     Vec4(const Vec3<float>& v3,float w)
+        :x(v3.x)
+        ,y(v3.y)
+        ,z(v3.z)
+        ,w(w)
     {
-        x = v3.x;
-        y = v3.y;
-        z = v3.z;
-        w = w;
+
     }
     
     float operator[](int index)
