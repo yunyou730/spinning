@@ -158,37 +158,50 @@ struct Vec4
     
     Vec4() { x = y = z = w = 0;}
     Vec4(float x,float y,float z,float w):x(x),y(y),z(z),w(w) {}
+    Vec4(const std::vector<float>& vec) {
+        if(vec.size() != 4)
+            throw std::runtime_error("count error");
+        data[0] = vec[0];
+        data[1] = vec[1];
+        data[2] = vec[2];
+        data[3] = vec[3];
+    }
     
     float operator[](int index)
     {
         return data[index];
     }
-};
-
-template<int n>
-struct Vector
-{
-    float raw[n];
     
-    Vector()
+    void dump()
     {
-        for(int i = 0;i < n;i++)
-        {
-            raw[i] = 0;
-        }
+        printf("----\n[%.3f,%.3f,%.3f,%.3f]\n",x,y,z,w);
     }
-    
-    float x() const {
-        if(n < 1)
-            throw std::runtime_error("dimension error");
-        return raw[0];
-    };
-    
-    void x(float val) {
-        
-    }
-    
 };
+//
+//template<int n>
+//struct Vector
+//{
+//    float raw[n];
+//
+//    Vector()
+//    {
+//        for(int i = 0;i < n;i++)
+//        {
+//            raw[i] = 0;
+//        }
+//    }
+//
+//    float x() const {
+//        if(n < 1)
+//            throw std::runtime_error("dimension error");
+//        return raw[0];
+//    };
+//
+//    void x(float val) {
+//
+//    }
+//
+//};
 
 
 // matrix
@@ -228,7 +241,7 @@ struct Matrix
         }
     }
     
-    float Get(int row,int col)
+    inline float Get(int row,int col) const
     {
         if(row < 0 || row >= n || col < 0 || col >= n)
             throw std::runtime_error("matrix over bound");
@@ -254,6 +267,7 @@ struct Matrix
     }
     
     // @miao @todo
+    // testing...
     Vec4 operator*(const Vec4& vec)
     {
         if(n != 4)
@@ -261,11 +275,19 @@ struct Matrix
         
         Vec4 result;
         
-        Get();
+        for(int r = 0;r < 4;r++)
+        {
+            result.data[r] = data[r][0] * vec.x + data[r][1] * vec.y + data[r][2] * vec.z + data[r][3] * vec.w;
+        }
+//        result.x = data[0][0] * vec.x + data[0][1] * vec.y + data[0][2] * vec.z + data[0][3] * vec.w;
+//        result.y = data[1][0] * vec.x + data[1][1] * vec.y + data[1][2] * vec.z + data[1][3] * vec.w;
+//        result.z = data[2][0] * vec.x + data[2][1] * vec.y + data[2][2] * vec.z + data[2][3] * vec.w;
+//        result.w = data[3][0] * vec.x + data[3][1] * vec.y + data[3][2] * vec.z + data[3][3] * vec.w;
         
         return result;
     }
     
+    // test done
     Matrix<n> operator*(float number)
     {
         Matrix<n> result;
@@ -279,6 +301,7 @@ struct Matrix
         return result;
     }
     
+    // test done
     void operator*=(float number)
     {
         Matrix<n> result;
@@ -292,6 +315,7 @@ struct Matrix
         return *this;
     }
     
+    // test done
     Matrix<n> operator*(const Matrix<n>& other)
     {
         Matrix<n> result;
@@ -309,12 +333,6 @@ struct Matrix
         }
         return result;
     }
-    
-    void operator*=(const Matrix<n>& other)
-    {
-        
-    }
-
     
     void dump()
     {

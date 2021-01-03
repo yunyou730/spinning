@@ -97,14 +97,21 @@ void TestMatrix()
     matrix * 5;
     matrix.dump();
     
-    
     Matrix<3> m1(std::vector<float>{1,-5,3,0,-2,6,7,2,-4});
     m1.dump();
     Matrix<3> m2(std::vector<float>{-8,6,1,7,0,-3,2,4,5});
     m2.dump();
     
-    Matrix<3> r = m1 * m2;
-    r.dump();
+    m1.Identity();
+    m1.dump();
+    
+    Matrix<4> mat(std::vector<float>{1,0,0,1,0,1,0,1,0,0,1,3,0,0,0,1});
+//    mat.Identity();
+    Vec4 v(std::vector<float>{1,2,3,1});
+    v.dump();
+    v = mat * v;
+    v.dump();
+    
     
 //    Vec4 v;
 //    v.w = 0.5f;
