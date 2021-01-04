@@ -117,22 +117,31 @@ int main( int argc, char* args[] )
     
     app.RegisterUpdateFunc([&](float deltaTime) {
         
-        printf("fps:%d\n",(int)(1./deltaTime));
+        float moveSpeed = 3.0f;
+//        printf("fps:%d\n",(int)(1./deltaTime));
         if(app.QueryKeyState(SDL_KeyCode::SDLK_a))
         {
-            printf("aaa\n");
+            gEye.x += deltaTime * moveSpeed;
         }
         else if(app.QueryKeyState(SDLK_d))
         {
-            printf("dd\n");
+            gEye.x -= deltaTime * moveSpeed;
         }
         else if(app.QueryKeyState(SDLK_w))
         {
-            printf("ww\n");
+            gEye.z -= deltaTime * moveSpeed;
         }
         else if(app.QueryKeyState(SDLK_s))
         {
-            printf("s\n");
+            gEye.z += deltaTime * moveSpeed;
+        }
+        else if(app.QueryKeyState(SDLK_q))
+        {
+            gEye.y += deltaTime * moveSpeed;
+        }
+        else if(app.QueryKeyState(SDLK_e))
+        {
+            gEye.y -= deltaTime * moveSpeed;
         }
     });
     
