@@ -4,7 +4,7 @@
 #include <memory>
 #include "renderer.hpp"
 #include "../source/math.hpp"
-#include "AppFramework.hpp"
+#include "AppFramework.h"
 #include <functional>
 #include "../source/model.h"
 #include <memory>
@@ -13,8 +13,10 @@
 std::shared_ptr<Model> model = nullptr;
 //Vec3f gLightDir(0,0,-1);
 
-float gViewportWidth = 800;
-float gViewportHeight = 800;
+//float gViewportWidth = 800;
+//float gViewportHeight = 800;
+float gViewportWidth = 400;
+float gViewportHeight = 400;
 
 //Vec3f gEye(1,1,3);
 Vec3f gEye(1,1,3);
@@ -108,9 +110,32 @@ int main( int argc, char* args[] )
 //    TestMatrix();
     
     model = std::make_shared<Model>("./res/obj/african_head.obj");
+//    model = std::make_shared<Model>("./res/Pikachu_OBJ/Pikachu.obj");
     
     AppFramework app(gViewportWidth,gViewportHeight,255);
     app.Init();
+    
+    app.RegisterUpdateFunc([&](float deltaTime) {
+        
+        printf("fps:%d\n",(int)(1./deltaTime));
+        if(app.QueryKeyState(SDL_KeyCode::SDLK_a))
+        {
+            printf("aaa\n");
+        }
+        else if(app.QueryKeyState(SDLK_d))
+        {
+            printf("dd\n");
+        }
+        else if(app.QueryKeyState(SDLK_w))
+        {
+            printf("ww\n");
+        }
+        else if(app.QueryKeyState(SDLK_s))
+        {
+            printf("s\n");
+        }
+    });
+    
     app.RegisterDrawFunc([&](RenderContext* renderContext){
         renderContext->ClearZBuffer();
         //drawLightModelTest(renderContext,gLightDir);

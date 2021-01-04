@@ -35,7 +35,7 @@
 
 /* Begin PBXFileReference section */
 		2BC2924C259ED705009C89EC /* AppFramework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppFramework.cpp; path = source/AppFramework.cpp; sourceTree = "<group>"; };
-		2BC2924D259ED705009C89EC /* AppFramework.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = AppFramework.hpp; path = source/AppFramework.hpp; sourceTree = "<group>"; };
+		2BC2924D259ED705009C89EC /* AppFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppFramework.h; path = source/AppFramework.h; sourceTree = "<group>"; };
 		2BD76F4925A01E29009F1754 /* model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = model.h; path = source/model.h; sourceTree = "<group>"; };
 		2BD76F4A25A01E29009F1754 /* model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = model.cpp; path = source/model.cpp; sourceTree = "<group>"; };
 		2BD76F4F25A02211009F1754 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 				2BE150B1259E602100E62AE8 /* SDLRenderContext.cpp */,
 				2BE150B2259E602100E62AE8 /* SDLRenderContext.hpp */,
 				2BC2924C259ED705009C89EC /* AppFramework.cpp */,
-				2BC2924D259ED705009C89EC /* AppFramework.hpp */,
+				2BC2924D259ED705009C89EC /* AppFramework.h */,
 			);
 			name = Source;
 			sourceTree = "<group>";
