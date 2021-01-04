@@ -76,12 +76,26 @@ void triangleFill(RenderContext* ctx,
         return;
     }
     
+    auto scanLine = [&](int y,Vec3i& A,Vec3i& B)
+    {
+        if(A.x > B.x) std::swap(A,B);
+        for(int x = A.x;x <= B.x;x++)
+        {
+            float phi = (B.x == A.x) ? 1.f : (float)(x - A.x) / (float)(B.x - A.x);
+            Vec3i p = A + (B - A) * phi;    // calc for z test
+            
+            if(ctx->ZTest(x,y,p.z))
+            {
+                ctx->SetZValue(x,y,p.z);
+                ctx->SetPixel(x,y,color);
+            }
+        }
+    };
+    
     // triangle lower part
     for(int y = arr[0].y;y <= arr[1].y;y++)
     {
         int segmentHeight = arr[1].y - arr[0].y + 1;    // avoid div 0
-//        if(segmentHeight == 0)
-//            throw std::runtime_error("div 0!");
         
         float alpha = (float)(y - arr[0].y) / totalHeight;
         float beta = (float)(y - arr[0].y) / segmentHeight;
@@ -89,38 +103,21 @@ void triangleFill(RenderContext* ctx,
         Vec3i A = arr[0] + (arr[2] - arr[0]) * alpha;
         Vec3i B = arr[0] + (arr[1] - arr[0]) * beta;
         
-        if(A.x > B.x) std::swap(A,B);
-        for(int x = A.x;x <= B.x;x++)
-        {
-            float phi = (B.x == A.x) ? 1.f : (float)(x - A.x) / (float)(B.x - A.x);
-            Vec3i p = A + (B - A) * phi;    // calc for z test
-            if(ctx->ZTest(x,y,p.z))
-            {
-                ctx->SetZValue(x,y,p.z);
-                ctx->SetPixel(x,y,color);
-            }
-        }
+        scanLine(y,A,B);
     }
     
     // triangle upper part
     for(int y = arr[1].y;y <= arr[2].y;y++)
     {
         int segmentHeight = arr[2].y - arr[1].y + 1;    // +1 avoid div 0
+        
         float alpha = (float)(y - arr[0].y) / totalHeight;
         float beta = (float)(y - arr[1].y) / segmentHeight;
+        
         Vec3i A = arr[0] + (arr[2] - arr[0]) * alpha;
         Vec3i B = arr[1] + (arr[2] - arr[1]) * beta;
-        if(A.x > B.x) std::swap(A,B);
-        for(int x = A.x;x <= B.x;x++)
-        {
-            float phi = (B.x == A.x) ? 1.f : (float)(x - A.x) / (float)(B.x - A.x);
-            Vec3i p = A + (B - A) * phi;    // calc for z test
-            if(ctx->ZTest(x,y,p.z))
-            {
-                ctx->SetZValue(x,y,p.z);
-                ctx->SetPixel(x,y,color);
-            }
-        }
+        
+        scanLine(y,A,B);
     }
     
 }
