@@ -3,6 +3,13 @@
 #include <cstdio>
 #include <stdexcept>
 #include <vector>
+#include <iostream>
+
+extern const float PI;
+
+extern float deg2Rad(float deg);
+
+extern float rad2Deg(float rad);
 
 //template<typename T>
 //struct Vec3;
@@ -77,6 +84,13 @@ struct Vec3
         return result;
     }
     
+    void operator += (const Vec3<T>& other)
+    {
+        x += other.x;
+        y += other.y;
+        z += other.z;
+    }
+    
     Vec3<T> operator-(const Vec3<T>& other)
     {
         Vec3<T> result;
@@ -125,6 +139,11 @@ struct Vec3
         y *= factor;
         z *= factor;
         return *this;
+    }
+    
+    void Dump()
+    {
+        std::cout << "[" << x << "," << y << "," << z << "]" << std::endl;
     }
 };
 
