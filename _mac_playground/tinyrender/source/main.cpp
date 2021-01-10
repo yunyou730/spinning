@@ -18,20 +18,24 @@ float gViewportHeight = 800;
 //float gViewportWidth = 400;
 //float gViewportHeight = 400;
 
-//Vec3f gEye(1,1,3);
-Vec3f gEye(0,0,3);
-Vec3f gCenter(0,0,0);
+Vec3f gEye(0.5,0.5,3);
+//Vec3f gEye(3,0,0);
+//Vec3f gEye(0,0,3);
+Vec3f gCenter(0,0,-1);
 Vec3f gUp(0,1,0);
+
+Vec3f gLookDir = gCenter - gEye;
 
 //float gTestFactor = 1./8;
 //float gTestFactor2 = 3./4;
 
-float gTestFactor = 1./8;
-float gTestFactor2 = 3./4;
+float gTestFactor = 0;
+float gTestFactor2 = 1;
 
 
 void drawLightModelTest(RenderContext* renderContext)
 {
+//    gCenter = Vec3f(0,0,0) - gEye;
     // test
     MyGL my(gEye,gCenter,gUp,
             gViewportWidth * gTestFactor,
@@ -117,7 +121,7 @@ void TestMatrix()
 void MoveEye(const Vec3f& delta)
 {
     gEye += delta;
-    gEye.Dump();
+//    gEye.Dump();
 }
 
 int main( int argc, char* args[] )
@@ -132,7 +136,7 @@ int main( int argc, char* args[] )
     
     app.RegisterUpdateFunc([&](float deltaTime) {
         
-        float moveSpeed = 3.0f;
+        float moveSpeed = 0.5f;
         float deltaDis = deltaTime * moveSpeed;
 //        printf("fps:%d\n",(int)(1./deltaTime));
         if(app.QueryKeyState(SDL_KeyCode::SDLK_a))
@@ -145,11 +149,14 @@ int main( int argc, char* args[] )
         }
         else if(app.QueryKeyState(SDLK_w))
         {
-            MoveEye(Vec3f(0,0,-deltaDis));
+//            MoveEye(Vec3f(0,0,-deltaDis));
+            MoveEye(gLookDir * deltaDis);
         }
         else if(app.QueryKeyState(SDLK_s))
         {
-            MoveEye(Vec3f(0,0,deltaDis));
+//            MoveEye(Vec3f(0,0,deltaDis));
+            Vec3f moveDir = gLookDir * -1;
+            MoveEye(moveDir * deltaDis);
         }
         else if(app.QueryKeyState(SDLK_q))
         {

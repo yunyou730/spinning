@@ -11,16 +11,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2BE15092259D9B2F00E62AE8 /* PBXContainerItemProxy */ = {
+		2BD9670625AB4600007B5E71 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2BE1508E259D9B2F00E62AE8 /* tinyrender.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2BE1507D259D99A000E62AE8;
-			remoteInfo = tinyrender;
-		};
-		2BE1509A259D9B3100E62AE8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2BE15096259D9B3100E62AE8 /* tinyrender.xcodeproj */;
+			containerPortal = 2BD9670225AB4600007B5E71 /* ayyrender.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 2BE1507D259D99A000E62AE8;
 			remoteInfo = tinyrender;
@@ -43,8 +36,7 @@
 		2B5DD28B259255EE00AF838B /* AnyToy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AnyToy; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B5DD28E259255EE00AF838B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		2B5DD297259259CA00AF838B /* Lua524 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Lua524; sourceTree = "<group>"; };
-		2BE1508E259D9B2F00E62AE8 /* tinyrender.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = tinyrender.xcodeproj; path = ../../tinyrender/tinyrender.xcodeproj; sourceTree = "<group>"; };
-		2BE15096259D9B3100E62AE8 /* tinyrender.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = tinyrender.xcodeproj; path = ../../tinyrender/tinyrender.xcodeproj; sourceTree = "<group>"; };
+		2BD9670225AB4600007B5E71 /* ayyrender.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ayyrender.xcodeproj; path = ../../ayyrender/ayyrender.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +53,7 @@
 		2B5DD282259255EE00AF838B = {
 			isa = PBXGroup;
 			children = (
-				2BE1508E259D9B2F00E62AE8 /* tinyrender.xcodeproj */,
-				2BE15096259D9B3100E62AE8 /* tinyrender.xcodeproj */,
+				2BD9670225AB4600007B5E71 /* ayyrender.xcodeproj */,
 				2B5DD297259259CA00AF838B /* Lua524 */,
 				2B5DD28D259255EE00AF838B /* Source */,
 				2B5DD28C259255EE00AF838B /* Products */,
@@ -85,18 +76,10 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
-		2BE1508F259D9B2F00E62AE8 /* Products */ = {
+		2BD9670325AB4600007B5E71 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2BE15093259D9B2F00E62AE8 /* tinyrender */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		2BE15097259D9B3100E62AE8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2BE1509B259D9B3100E62AE8 /* tinyrender */,
+				2BD9670725AB4600007B5E71 /* tinyrender */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -147,12 +130,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 2BE1508F259D9B2F00E62AE8 /* Products */;
-					ProjectRef = 2BE1508E259D9B2F00E62AE8 /* tinyrender.xcodeproj */;
-				},
-				{
-					ProductGroup = 2BE15097259D9B3100E62AE8 /* Products */;
-					ProjectRef = 2BE15096259D9B3100E62AE8 /* tinyrender.xcodeproj */;
+					ProductGroup = 2BD9670325AB4600007B5E71 /* Products */;
+					ProjectRef = 2BD9670225AB4600007B5E71 /* ayyrender.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -163,18 +142,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		2BE15093259D9B2F00E62AE8 /* tinyrender */ = {
+		2BD9670725AB4600007B5E71 /* tinyrender */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = tinyrender;
-			remoteRef = 2BE15092259D9B2F00E62AE8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2BE1509B259D9B3100E62AE8 /* tinyrender */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = tinyrender;
-			remoteRef = 2BE1509A259D9B3100E62AE8 /* PBXContainerItemProxy */;
+			remoteRef = 2BD9670625AB4600007B5E71 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

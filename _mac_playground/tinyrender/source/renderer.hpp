@@ -10,6 +10,6 @@ void triangle(RenderContext* ctx,const Color& color,const Vec2<int>& p1,const Ve
 
 void triangleFill(RenderContext* ctx,
                            const Color& color,
-                           const Vec3i& p1,
-                           const Vec3i& p2,
-                           const Vec3i& p3);
+                           const Vec2i& p1,
+                           const Vec2i& p2,
+                           const Vec2i& p3);
