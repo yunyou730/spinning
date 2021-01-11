@@ -200,10 +200,10 @@ struct Vec4
         {
             data[i] = i < vec.size() ? vec[i] : 0.0f;
         }
-//        data[0] = vec[0];
-//        data[1] = vec[1];
-//        data[2] = vec[2];
-//        data[3] = vec[3];
+    }
+    Vec4(const Vec3f& v3,float w)
+    {
+        x = v3.x;y = v3.y;z = v3.z;this->w = w;
     }
     
     Vec4(const Vec3<float>& v3,float w)
@@ -219,37 +219,37 @@ struct Vec4
     {
         return data[index];
     }
+
+    Vec4 operator+(const Vec4& other)
+    {
+        Vec4 result(x + other.x,y + other.y,z + other.z,w + other.w);
+        return result;
+    }
+    
+    Vec4 operator-(const Vec4& other)
+    {
+        Vec4 result(x - other.x,y - other.y,z - other.z,w - other.w);
+        return result;
+    }
+    
+    
+    float Length()
+    {
+        return sqrt(x * x + y * y + z * z + w * w);
+    }
     
     void dump()
     {
         printf("----\n[%.3f,%.3f,%.3f,%.3f]\n",x,y,z,w);
     }
 };
-//
-//template<int n>
-//struct Vector
+
+
+//Vec4 operator + (const Vec4& lhs,const Vec4& rhs)
 //{
-//    float raw[n];
-//
-//    Vector()
-//    {
-//        for(int i = 0;i < n;i++)
-//        {
-//            raw[i] = 0;
-//        }
-//    }
-//
-//    float x() const {
-//        if(n < 1)
-//            throw std::runtime_error("dimension error");
-//        return raw[0];
-//    };
-//
-//    void x(float val) {
-//
-//    }
-//
-//};
+//    Vec4 result(lhs.x + rhs.x,lhx.y + rhs.y,lhs.z + rhs.z,lhs.w + rhs.w)
+//    return result;
+//}
 
 
 // matrix

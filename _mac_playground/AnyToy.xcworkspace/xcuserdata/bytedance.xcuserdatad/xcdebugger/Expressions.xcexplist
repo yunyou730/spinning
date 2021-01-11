@@ -3,6 +3,22 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "SDLRenderContext::GetZValue(int, int):SDLRenderContext.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "_zbuffer[x + y * _width]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "main::$_1::operator()(RenderContext*) const:main.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "transformedVertices">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "triangleFill(RenderContext*, Color const&amp;, Vec3&lt;int&gt; const&amp;, Vec3&lt;int&gt; const&amp;, Vec3&lt;int&gt; const&amp;)::$_1::operator()(int, Vec3&lt;int&gt;&amp;, Vec3&lt;int&gt;&amp;) const:renderer.cpp">
          <PersistentStrings>
             <PersistentString
@@ -18,14 +34,6 @@
             </PersistentString>
             <PersistentString
                value = "arr[0].y">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "SDLRenderContext::GetZValue(int, int):SDLRenderContext.cpp">
-         <PersistentStrings>
-            <PersistentString
-               value = "_zbuffer[x + y * _width]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

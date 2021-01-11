@@ -2,6 +2,7 @@
 #include "AppFramework.h"
 #include "renderer.hpp"
 #include <vector>
+#include "math.hpp"
 
 class Testcase
 {
@@ -11,7 +12,7 @@ public:
         InitIndice();
         InitUVN();
         InitViewport();
-        _viewDistance = 3.0f;
+        _viewDistance = 1.0f;
     }
     
     std::vector<Vec4>*  GetVertices()
@@ -98,15 +99,39 @@ public:
     
     Matrix<4>  ModelViewMatrix()
     {
+        Vec3f n = (_target - _eye).Normalize(); // camera z
+        Vec3f u = (n ^ _up).Normalize();    // camera x
+        Vec3f v = (u ^ n).Normalize();      // camera y
+        
+        
         Matrix<4>   mat;
         mat.Identity();
+        
+        mat.Set(0,0,u.x);
+        mat.Set(0,1,u.y);
+        mat.Set(0,2,u.z);
+
+        mat.Set(1,0,v.x);
+        mat.Set(1,1,v.y);
+        mat.Set(1,2,v.z);
+        
+        mat.Set(2,0,n.x);
+        mat.Set(2,1,n.y);
+        mat.Set(2,2,n.z);
+        
+        mat.Set(0,3,-_eye.x);
+        mat.Set(1,3,-_eye.y);
+        mat.Set(2,3,-_eye.z);
+        
         return mat;
     }
     
     Matrix<4>   ProjectionMatrix()
     {
+        // @miao @todo
         Matrix<4>   mat;
         mat.Identity();
+        mat.Set(3,2,-1.f/_viewDistance);
         return mat;
     }
     
@@ -114,15 +139,22 @@ public:
     {
         Matrix<4>   mat;
         mat.Identity();
+        
+        float alpha = 0.5 * _viewportWidth - 0.5f;
+        float beta = 0.5 * _viewportHeight - 0.5f;
+        mat.Set(0,0,alpha);
+        mat.Set(1,1,-beta);
+        mat.Set(0,3,alpha);
+        mat.Set(1,3,beta);
         return mat;
     }
     
     
 public:
     // uvn base data
-    Vec4    _eye;
-    Vec4    _target;
-    Vec4    _up;
+    Vec3f    _eye;
+    Vec3f    _target;
+    Vec3f    _up;
     
     // vertice data
     std::vector<Vec4>  _vertices;
@@ -153,26 +185,23 @@ int main( int argc, char* args[] )
         
         std::vector<Vec2i> transformedVertices;
         
+        Matrix<4> matrix = testcase.ViewportMatrix()
+                            * testcase.ProjectionMatrix()
+                            * testcase.ModelViewMatrix()
+                            * testcase.WorldMatrix();
+        
         std::vector<Vec4>* vertices = testcase.GetVertices();
         for(int vertexIndex = 0;vertexIndex < vertices->size();vertexIndex++)
         {
             Vec4 point = (*vertices)[vertexIndex];
-            point = testcase.WorldMatrix() * point;
-            point = testcase.ModelViewMatrix() * point;
-            point = testcase.ProjectionMatrix() * point;
-            point = testcase.ModelViewMatrix() * point;
+            point = matrix * point;
             
-            transformedVertices.push_back(Vec2i(point.x,point.y));
+            point.x /= point.w;
+            point.y /= point.w;
+            point.z /= point.w;
+            point.w /= point.w;
+            transformedVertices.push_back(Vec2i(point.x / point.w,point.y / point.w));
         }
-        
-//        transformedVertices[0].x = 0;
-//        transformedVertices[0].y = 0;
-//
-//        transformedVertices[1].x = 200;
-//        transformedVertices[1].y = 300;
-//
-//        transformedVertices[2].x = 300;
-//        transformedVertices[2].y = 50;
         
         Color col(255,0,0,255);
         for(int triangleIndex = 0;triangleIndex < testcase.TriangleCount();triangleIndex++)
@@ -188,4 +217,3 @@ int main( int argc, char* args[] )
     
     return 0;
 }
-

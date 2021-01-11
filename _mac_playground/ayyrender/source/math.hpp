@@ -220,36 +220,41 @@ struct Vec4
         return data[index];
     }
     
+    Vec4 operator+(const Vec4& other)
+    {
+        Vec4 result(x + other.x,y + other.y,z + other.z,w + other.w);
+        return result;
+    }
+    
+    Vec4 operator-(const Vec4& other)
+    {
+        Vec4 result(x - other.x,y - other.y,z - other.z,w - other.w);
+        return result;
+    }
+    
+    float Length()
+    {
+        return sqrt(x * x + y * y + z * z + w * w);
+    }
+    
+    
+    void Normalize()
+    {
+        float len = Length();
+        if(len == 0)
+            throw new std::runtime_error("normalize 0 length vector!");
+        
+        x = x / len;
+        y = y / len;
+        z = z / len;
+        w = w / len;
+    }
+    
     void dump()
     {
         printf("----\n[%.3f,%.3f,%.3f,%.3f]\n",x,y,z,w);
     }
 };
-//
-//template<int n>
-//struct Vector
-//{
-//    float raw[n];
-//
-//    Vector()
-//    {
-//        for(int i = 0;i < n;i++)
-//        {
-//            raw[i] = 0;
-//        }
-//    }
-//
-//    float x() const {
-//        if(n < 1)
-//            throw std::runtime_error("dimension error");
-//        return raw[0];
-//    };
-//
-//    void x(float val) {
-//
-//    }
-//
-//};
 
 
 // matrix
