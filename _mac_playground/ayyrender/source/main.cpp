@@ -94,6 +94,9 @@ public:
     {
         Matrix<4>   mat;
         mat.Identity();
+        mat.Set(0,3,_pos.x);
+        mat.Set(1,3,_pos.y);
+        mat.Set(2,3,_pos.z);
         return mat;
     }
     
@@ -165,6 +168,8 @@ public:
     
     // 视距 用于 projection matrix
     float   _viewDistance;
+    
+    Vec3f   _pos;
 };
 
 int main( int argc, char* args[] )
@@ -175,7 +180,31 @@ int main( int argc, char* args[] )
     AppFramework app(800,800,255);
     app.Init();
     app.RegisterUpdateFunc([&](float deltaTime) {
-        
+        float dis = 0.5f * deltaTime;
+        if(app.QueryKeyState(SDL_KeyCode::SDLK_a))
+        {
+            testcase._pos.x -= dis;
+        }
+        else if(app.QueryKeyState(SDLK_d))
+        {
+            testcase._pos.x += dis;
+        }
+        else if(app.QueryKeyState(SDLK_w))
+        {
+            testcase._pos.y += dis;
+        }
+        else if(app.QueryKeyState(SDLK_s))
+        {
+            testcase._pos.y -= dis;
+        }
+        else if(app.QueryKeyState(SDLK_q))
+        {
+            
+        }
+        else if(app.QueryKeyState(SDLK_e))
+        {
+            
+        }
     });
     
     app.RegisterDrawFunc([&](RenderContext* ctx){
@@ -200,6 +229,9 @@ int main( int argc, char* args[] )
             point.y /= point.w;
             point.z /= point.w;
             point.w /= point.w;
+            
+            point.y = testcase._viewportHeight - point.y;
+            
             transformedVertices.push_back(Vec2i(point.x / point.w,point.y / point.w));
         }
         
