@@ -3,6 +3,25 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "triangleFill(RenderContext*, Color const&amp;, Vec3&lt;int&gt; const&amp;, Vec3&lt;int&gt; const&amp;, Vec3&lt;int&gt; const&amp;)::$_1::operator()(int, Vec3&lt;int&gt;&amp;, Vec3&lt;int&gt;&amp;) const:renderer.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "ctx">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "triangleFill(RenderContext*, Color const&amp;, Vec3&lt;int&gt; const&amp;, Vec3&lt;int&gt; const&amp;, Vec3&lt;int&gt; const&amp;):renderer.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "arr[2].y">
+            </PersistentString>
+            <PersistentString
+               value = "arr[0].y">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "SDLRenderContext::GetZValue(int, int):SDLRenderContext.cpp">
          <PersistentStrings>
             <PersistentString
