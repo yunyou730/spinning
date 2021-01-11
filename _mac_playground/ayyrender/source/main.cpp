@@ -28,17 +28,18 @@ public:
     
     void InitIndice()
     {
+        float size = 1.0f;
         // front vertices
-        Vec4 a(-0.5,-0.5, 0.5,1.);
-        Vec4 b( 0.5,-0.5, 0.5,1.);
-        Vec4 c(-0.5, 0.5, 0.5,1.);
-        Vec4 d( 0.5, 0.5, 0.5,1.);
+        Vec4 a(-size,-size, size,1.);
+        Vec4 b( size,-size, size,1.);
+        Vec4 c(-size, size, size,1.);
+        Vec4 d( size, size, size,1.);
         
         // back vertices
-        Vec4 e(-0.5,-0.5,-0.5,1.);
-        Vec4 f( 0.5,-0.5,-0.5,1.);
-        Vec4 g(-0.5, 0.5,-0.5,1.);
-        Vec4 h( 0.5, 0.5,-0.5,1.);
+        Vec4 e(-size,-size,-size,1.);
+        Vec4 f( size,-size,-size,1.);
+        Vec4 g(-size, size,-size,1.);
+        Vec4 h( size, size,-size,1.);
         
         // front
         _vertices.push_back(a);
@@ -97,6 +98,9 @@ public:
         mat.Set(0,3,_pos.x);
         mat.Set(1,3,_pos.y);
         mat.Set(2,3,_pos.z);
+        
+        
+        
         return mat;
     }
     
@@ -125,6 +129,10 @@ public:
         mat.Set(0,3,-_eye.x);
         mat.Set(1,3,-_eye.y);
         mat.Set(2,3,-_eye.z);
+  
+//        mat.Set(0,3,-_target.x);
+//        mat.Set(1,3,-_target.y);
+//        mat.Set(2,3,-_target.z);
         
         return mat;
     }
@@ -135,6 +143,7 @@ public:
         Matrix<4>   mat;
         mat.Identity();
         mat.Set(3,2,-1.f/_viewDistance);
+        mat.Set(3,3,0.0f);
         return mat;
     }
     
@@ -170,6 +179,7 @@ public:
     float   _viewDistance;
     
     Vec3f   _pos;
+    float   _rotateByLocalY = 0.0f;
 };
 
 int main( int argc, char* args[] )
@@ -199,11 +209,11 @@ int main( int argc, char* args[] )
         }
         else if(app.QueryKeyState(SDLK_q))
         {
-            
+            testcase._pos.z -= dis;
         }
         else if(app.QueryKeyState(SDLK_e))
         {
-            
+            testcase._pos.z += dis;
         }
     });
     

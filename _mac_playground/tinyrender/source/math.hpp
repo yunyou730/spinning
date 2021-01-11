@@ -206,15 +206,6 @@ struct Vec4
         x = v3.x;y = v3.y;z = v3.z;this->w = w;
     }
     
-    Vec4(const Vec3<float>& v3,float w)
-        :x(v3.x)
-        ,y(v3.y)
-        ,z(v3.z)
-        ,w(w)
-    {
-
-    }
-    
     float operator[](int index)
     {
         return data[index];

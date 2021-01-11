@@ -40,6 +40,7 @@ void MyGL::Projection(float ceoff)
 {
     _projection.Identity();
     _projection.Set(3,2,ceoff);
+    _projection.Set(3,3,0);
 }
 
 void MyGL::LookAt(Vec3f& eye,Vec3f& center,Vec3f& up)

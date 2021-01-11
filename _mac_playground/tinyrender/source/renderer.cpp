@@ -59,9 +59,9 @@ void triangle(RenderContext* ctx,const Color& color,const Vec2<int>& p1,const Ve
 
 void triangleFill(RenderContext* ctx,
                            const Color& color,
-                           const Vec2i& p1,
-                           const Vec2i& p2,
-                           const Vec2i& p3)
+                           const Vec3i& p1,
+                           const Vec3i& p2,
+                           const Vec3i& p3)
 {
     std::vector<Vec3i> arr = {p1,p2,p3};
     std::sort(arr.begin(),arr.end(),[](const Vec3i& lh,const Vec3i rh)->bool{
