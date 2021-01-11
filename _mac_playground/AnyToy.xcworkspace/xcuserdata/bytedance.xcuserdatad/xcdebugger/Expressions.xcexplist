@@ -14,7 +14,7 @@
          contextName = "main::$_1::operator()(RenderContext*) const:main.cpp">
          <PersistentStrings>
             <PersistentString
-               value = "transformedVertices">
+               value = "testcase">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

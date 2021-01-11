@@ -78,7 +78,7 @@ public:
     void InitUVN()
     {
         // eye
-        _eye.x = 0;_eye.y = 0;  _eye.z = 4;
+        _eye.x = 5;_eye.y = 0;  _eye.z = 10;
         // look target
         _target.x = 0;  _target.y = 0;  _target.z = 0;
         // up
