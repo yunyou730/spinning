@@ -57,7 +57,6 @@ public:
         _vertices.push_back(h);
         _vertices.push_back(g);
         
-        
         // right
         _vertices.push_back(b);
         _vertices.push_back(f);
@@ -78,7 +77,7 @@ public:
     void InitUVN()
     {
         // eye
-        _eye.x = 5;_eye.y = 0;  _eye.z = 10;
+        _eye.x = 0;_eye.y = 0;  _eye.z = 4;
         // look target
         _target.x = 0;  _target.y = 0;  _target.z = 0;
         // up
@@ -129,10 +128,6 @@ public:
         mat.Set(0,3,-_eye.x);
         mat.Set(1,3,-_eye.y);
         mat.Set(2,3,-_eye.z);
-  
-//        mat.Set(0,3,-_target.x);
-//        mat.Set(1,3,-_target.y);
-//        mat.Set(2,3,-_target.z);
         
         return mat;
     }
