@@ -187,30 +187,59 @@ int main( int argc, char* args[] )
     app.Init();
     app.RegisterUpdateFunc([&](float deltaTime) {
         float dis = 0.5f * deltaTime;
+        
+        // move object
         if(app.QueryKeyState(SDL_KeyCode::SDLK_a))
         {
             testcase._pos.x -= dis;
         }
-        else if(app.QueryKeyState(SDLK_d))
+        else if(app.QueryKeyState(SDL_KeyCode::SDLK_d))
         {
             testcase._pos.x += dis;
         }
-        else if(app.QueryKeyState(SDLK_w))
+        else if(app.QueryKeyState(SDL_KeyCode::SDLK_w))
         {
             testcase._pos.y += dis;
         }
-        else if(app.QueryKeyState(SDLK_s))
+        else if(app.QueryKeyState(SDL_KeyCode::SDLK_s))
         {
             testcase._pos.y -= dis;
         }
-        else if(app.QueryKeyState(SDLK_q))
+        else if(app.QueryKeyState(SDL_KeyCode::SDLK_q))
         {
             testcase._pos.z -= dis;
         }
-        else if(app.QueryKeyState(SDLK_e))
+        else if(app.QueryKeyState(SDL_KeyCode::SDLK_e))
         {
             testcase._pos.z += dis;
         }
+        
+        // move camera
+        if(app.QueryKeyState(SDL_KeyCode::SDLK_UP))
+        {
+            testcase._eye.y += dis;
+        }
+        else if(app.QueryKeyState(SDL_KeyCode::SDLK_DOWN))
+        {
+            testcase._eye.y -= dis;
+        }
+        else if(app.QueryKeyState(SDL_KeyCode::SDLK_LEFT))
+        {
+            testcase._eye.x -= dis;
+        }
+        else if(app.QueryKeyState(SDL_KeyCode::SDLK_RIGHT))
+        {
+            testcase._eye.x += dis;
+        }
+        else if(app.QueryKeyState(SDL_KeyCode::SDLK_SLASH))
+        {
+            testcase._eye.z += dis;
+        }
+        else if(app.QueryKeyState(SDL_KeyCode::SDLK_BACKSLASH))
+        {
+            testcase._eye.z -= dis;
+        }
+        
     });
     
     app.RegisterDrawFunc([&](RenderContext* ctx){

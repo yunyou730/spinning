@@ -68,6 +68,13 @@ void AppFramework::InitKeyState()
     _keyStateMap.insert(std::make_pair(SDL_KeyCode::SDLK_d,false));
     _keyStateMap.insert(std::make_pair(SDL_KeyCode::SDLK_q,false));
     _keyStateMap.insert(std::make_pair(SDL_KeyCode::SDLK_e,false));
+    
+    _keyStateMap.insert(std::make_pair(SDL_KeyCode::SDLK_UP,false));
+    _keyStateMap.insert(std::make_pair(SDL_KeyCode::SDLK_DOWN,false));
+    _keyStateMap.insert(std::make_pair(SDL_KeyCode::SDLK_LEFT,false));
+    _keyStateMap.insert(std::make_pair(SDL_KeyCode::SDLK_RIGHT,false));
+    _keyStateMap.insert(std::make_pair(SDL_KeyCode::SDLK_SLASH,false));
+    _keyStateMap.insert(std::make_pair(SDL_KeyCode::SDLK_BACKSLASH,false));
 }
 
 void AppFramework::MainLoop()
