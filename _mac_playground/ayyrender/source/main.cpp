@@ -105,10 +105,11 @@ public:
     
     Matrix<4>  ModelViewMatrix()
     {
-        Vec3f n = (_target - _eye).Normalize(); // camera z
-        Vec3f u = (n ^ _up).Normalize();    // camera x
-        Vec3f v = (u ^ n).Normalize();      // camera y
-        
+        // 注意 ！ 这里必须也是 右手坐标系， 也就是说 n 向量 对应的 z 向量 ，要是 eye - target !!而不是 target - eye !!!
+        // 并且 ！ 向量叉乘 的 方向， 符合 右手 原则 ！！
+        Vec3f n = (_eye - _target).Normalize(); // camera z
+        Vec3f u = (_up ^ n).Normalize();    // camera x
+        Vec3f v = (n ^ u).Normalize();      // camera y
         
         Matrix<4>   mat;
         mat.Identity();
@@ -223,17 +224,33 @@ int main( int argc, char* args[] )
                             * testcase.ProjectionMatrix()
                             * testcase.ModelViewMatrix()
                             * testcase.WorldMatrix();
+    
         
         std::vector<Vec4>* vertices = testcase.GetVertices();
         for(int vertexIndex = 0;vertexIndex < vertices->size();vertexIndex++)
         {
             Vec4 point = (*vertices)[vertexIndex];
-            point = matrix * point;
+            point.dump();
+            
+            point = testcase.WorldMatrix() * point;
+            point.dump();
+            
+            point = testcase.ModelViewMatrix() * point;
+            point.dump();
+            
+            point = testcase.ProjectionMatrix() * point;
+            point.dump();
+
+            point = testcase.ViewportMatrix() * point;
+            point.dump();
+
+//            point = matrix * point;
             
             point.x /= point.w;
             point.y /= point.w;
             point.z /= point.w;
             point.w /= point.w;
+            point.dump();
             
             point.y = testcase._viewportHeight - point.y;
             
