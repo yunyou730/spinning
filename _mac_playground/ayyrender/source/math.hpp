@@ -265,6 +265,16 @@ struct Vec4
         w = w / len;
     }
     
+    bool operator==(const Vec4& other)
+    {
+        return x == other.x && y == other.y && z == other.z && w == other.w;
+    }
+    
+    bool operator!=(const Vec4& other)
+    {
+        return x != other.x || y != other.y || z != other.z || w != other.w;
+    }
+    
     void dump()
     {
         printf("----\n[%.3f,%.3f,%.3f,%.3f]\n",x,y,z,w);
@@ -400,6 +410,17 @@ struct Matrix
             }
         }
         return result;
+    }
+    
+    void operator=(const Matrix<n>& other)
+    {
+        for(int r = 0;r < n;r++)
+        {
+            for(int c = 0;c < n;c++)
+            {
+                data[r][c] = other.data[r][c];
+            }
+        }
     }
     
     void dump()
