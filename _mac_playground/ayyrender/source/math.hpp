@@ -215,6 +215,11 @@ struct Vec4
 
     }
     
+    void operator=(const Vec4& other)
+    {
+        x = other.x; y = other.y; z = other.z; w = other.w;
+    }
+    
     float operator[](int index)
     {
         return data[index];
@@ -231,7 +236,17 @@ struct Vec4
         Vec4 result(x - other.x,y - other.y,z - other.z,w - other.w);
         return result;
     }
-    
+
+    Vec4 operator*(float value)
+    {
+        Vec4 result = *this;
+        result.x *= value;
+        result.y *= value;
+        result.z *= value;
+        result.w *= value;
+        return result;
+    }
+
     float Length()
     {
         return sqrt(x * x + y * y + z * z + w * w);
