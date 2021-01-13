@@ -401,7 +401,7 @@ struct Matrix
         {
             for(int col = 0;col < n;col++)
             {
-                int counter = 0;
+                float counter = 0;
                 for(int k = 0;k < n;k++)
                 {
                     counter += data[row][k] * other.data[k][col];

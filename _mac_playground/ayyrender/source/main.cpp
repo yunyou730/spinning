@@ -178,11 +178,54 @@ public:
     float   _rotateByLocalY = 0.0f;
 };
 
+
+void Test()
+{
+    Matrix<4>   mat1(std::vector<float>{
+            1,2,3,4,
+            5,6,7,8,
+            9,10,11,12,
+            13,14,15,16
+    });
+    mat1.dump();
+    
+    Matrix<4>   mat2(std::vector<float>{
+        0,1,2,3,
+        4,5,6,7,
+        8,9,10,11,
+        12,13,14,15,
+    });
+    mat2.dump();
+    
+    Matrix<4> mat3 = mat1 * mat2;
+    mat3.dump();
+}
+
 int main( int argc, char* args[] )
 {
     Testcase testcase;
     
+    Vec4 p1(-3,6.55,-12,1);
+    Vec4 p2 = p1;
+    p1.dump();
+    p1 = testcase.WorldMatrix() * p1;
+    p1 = testcase.ModelViewMatrix() * p1;
+    p1 = testcase.ProjectionMatrix() * p1;
+    p1.dump();
     
+    p2.dump();
+    Matrix<4> mat =
+    testcase.ProjectionMatrix() *
+    testcase.ModelViewMatrix() *
+    testcase.WorldMatrix();
+    p2 = mat * p2;
+    p2.dump();
+
+//    if(true)
+//    {
+//        return 0;
+//    }
+
     AppFramework app(800,800,255);
     app.Init();
     app.RegisterUpdateFunc([&](float deltaTime) {
@@ -248,39 +291,16 @@ int main( int argc, char* args[] )
 //        triangle(ctx,Color(255,0,0,255),Vec2i(0,0),Vec2i(400,800),Vec2i(800,0));
         
         std::vector<Vec2i> transformedVertices;
-        
-        Matrix<4> matrix = testcase.ViewportMatrix()
-                            * testcase.ProjectionMatrix()
-                            * testcase.ModelViewMatrix()
-                            * testcase.WorldMatrix();
-    
+        Matrix<4> mv  = testcase.ModelViewMatrix() * testcase.WorldMatrix();
+        Matrix<4> mvp = testcase.ProjectionMatrix() * mv;
         
         std::vector<Vec4>* vertices = testcase.GetVertices();
         for(int vertexIndex = 0;vertexIndex < vertices->size();vertexIndex++)
         {
             Vec4 point = (*vertices)[vertexIndex];
-            point.dump();
-            
-            point = testcase.WorldMatrix() * point;
-            point.dump();
-            
-            point = testcase.ModelViewMatrix() * point;
-            point.dump();
-            
-            point = testcase.ProjectionMatrix() * point;
-            point.dump();
-
+            point = mvp * point;
             point = testcase.ViewportMatrix() * point;
-            point.dump();
-
-//            point = matrix * point;
-            
-            point.x /= point.w;
-            point.y /= point.w;
-            point.z /= point.w;
-            point.w /= point.w;
-            point.dump();
-            
+            point = point * (1.f/point.w);
             point.y = testcase._viewportHeight - point.y;
             
             transformedVertices.push_back(Vec2i(point.x / point.w,point.y / point.w));
