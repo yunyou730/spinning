@@ -98,9 +98,10 @@ public:
         mat.Set(1,3,_pos.y);
         mat.Set(2,3,_pos.z);
         
-        
-        
-        return mat;
+        Matrix<4> matPitch = RotateByAxisX(_pitch);
+        Matrix<4> matYaw = RotateByAxisY(_yaw);
+        Matrix<4> matRoll = RotateByAxisZ(_roll);
+        return mat * matRoll * matYaw * matPitch;
     }
     
     Matrix<4>  ModelViewMatrix()
@@ -175,62 +176,34 @@ public:
     float   _viewDistance;
     
     Vec3f   _pos;
-    float   _rotateByLocalY = 0.0f;
+    
+    float   _pitch  = 0.0f;     // rotate by local x
+    float   _yaw    = 0.0f;     // rotate by local y
+    float   _roll   = 0.0;      // rotate by local z
+    
 };
-
-
-void Test()
-{
-    Matrix<4>   mat1(std::vector<float>{
-            1,2,3,4,
-            5,6,7,8,
-            9,10,11,12,
-            13,14,15,16
-    });
-    mat1.dump();
-    
-    Matrix<4>   mat2(std::vector<float>{
-        0,1,2,3,
-        4,5,6,7,
-        8,9,10,11,
-        12,13,14,15,
-    });
-    mat2.dump();
-    
-    Matrix<4> mat3 = mat1 * mat2;
-    mat3.dump();
-}
 
 int main( int argc, char* args[] )
 {
     Testcase testcase;
     
-    Vec4 p1(-3,6.55,-12,1);
-    Vec4 p2 = p1;
-    p1.dump();
-    p1 = testcase.WorldMatrix() * p1;
-    p1 = testcase.ModelViewMatrix() * p1;
-    p1 = testcase.ProjectionMatrix() * p1;
-    p1.dump();
-    
-    p2.dump();
-    Matrix<4> mat =
-    testcase.ProjectionMatrix() *
-    testcase.ModelViewMatrix() *
-    testcase.WorldMatrix();
-    p2 = mat * p2;
-    p2.dump();
-
-//    if(true)
-//    {
-//        return 0;
-//    }
-
     AppFramework app(800,800,255);
     app.Init();
     app.RegisterUpdateFunc([&](float deltaTime) {
-        float dis = 0.5f * deltaTime;
         
+        // roll
+        float deltaRoll = 180 * deltaTime;
+        testcase._roll += deltaRoll;
+        
+        // yaw
+        float deltaYaw = 60 * deltaTime;
+//        testcase._yaw += deltaYaw;
+        
+        // pitch
+        float deltaPitch = 30 * deltaTime;
+//        testcase._pitch += deltaPitch;
+        
+        float dis = 0.5f * deltaTime;
         // move object
         if(app.QueryKeyState(SDL_KeyCode::SDLK_a))
         {

@@ -437,3 +437,8 @@ struct Matrix
         printf("----\n");
     }
 };
+
+extern Matrix<4> RotateByAxisX(float deg);
+extern Matrix<4> RotateByAxisY(float deg);
+extern Matrix<4> RotateByAxisZ(float deg);
+
