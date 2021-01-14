@@ -11,8 +11,7 @@ extern float deg2Rad(float deg);
 
 extern float rad2Deg(float rad);
 
-//template<typename T>
-//struct Vec3;
+struct Vec4;
 
 template<typename T>
 struct Vec2
@@ -21,12 +20,12 @@ struct Vec2
     Vec2():x(0),y(0) {}
     Vec2(T x,T y):x(x),y(y){}
     
-//    template<typename TOther>
-//    Vec2(const Vec3<TOther>& other)
-//    {
-//        x = (T)other.x;
-//        y = (T)other.y;
-//    }
+    template<typename TOther>
+    Vec2(const TOther& other)
+    {
+        x = other.x;
+        y = other.y;
+    }
     
     Vec2<T> operator+(const Vec2<T>& other)
     {
@@ -251,7 +250,6 @@ struct Vec4
     {
         return sqrt(x * x + y * y + z * z + w * w);
     }
-    
     
     void Normalize()
     {

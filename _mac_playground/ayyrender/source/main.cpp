@@ -9,70 +9,12 @@ class Testcase
 public:
     Testcase()
     {
-        InitIndice();
         InitUVN();
         InitViewport();
         _viewDistance = 1.0f;
     }
-    
-    std::vector<Vec4>*  GetVertices()
-    {
-        return &_vertices;
-    }
-    
-    
-    int TriangleCount()
-    {
-        return _vertices.size() / 3;
-    }
-    
-    void InitIndice()
-    {
-        float size = 1.0f;
-        // front vertices
-        Vec4 a(-size,-size, size,1.);
-        Vec4 b( size,-size, size,1.);
-        Vec4 c(-size, size, size,1.);
-        Vec4 d( size, size, size,1.);
-        
-        // back vertices
-        Vec4 e(-size,-size,-size,1.);
-        Vec4 f( size,-size,-size,1.);
-        Vec4 g(-size, size,-size,1.);
-        Vec4 h( size, size,-size,1.);
-        
-        // front
-        _vertices.push_back(a);
-        _vertices.push_back(b);
-        _vertices.push_back(c);
-        _vertices.push_back(b);
-        _vertices.push_back(d);
-        _vertices.push_back(c);
-        
-        // back
-        _vertices.push_back(e);
-        _vertices.push_back(f);
-        _vertices.push_back(g);
-        _vertices.push_back(f);
-        _vertices.push_back(h);
-        _vertices.push_back(g);
-        
-        // right
-        _vertices.push_back(b);
-        _vertices.push_back(f);
-        _vertices.push_back(d);
-        _vertices.push_back(f);
-        _vertices.push_back(h);
-        _vertices.push_back(d);
-        
-        // left
-        _vertices.push_back(e);
-        _vertices.push_back(a);
-        _vertices.push_back(g);
-        _vertices.push_back(a);
-        _vertices.push_back(g);
-        _vertices.push_back(c);
-    }
+
+private:
     
     void InitUVN()
     {
@@ -90,21 +32,9 @@ public:
         _viewportHeight = 800;
     }
     
-    Matrix<4>   WorldMatrix()
-    {
-        Matrix<4>   mat;
-        mat.Identity();
-        mat.Set(0,3,_pos.x);
-        mat.Set(1,3,_pos.y);
-        mat.Set(2,3,_pos.z);
-        
-        Matrix<4> matPitch = RotateByAxisX(_pitch);
-        Matrix<4> matYaw = RotateByAxisY(_yaw);
-        Matrix<4> matRoll = RotateByAxisZ(_roll);
-        return mat * matRoll * matYaw * matPitch;
-    }
-    
-    Matrix<4>  ModelViewMatrix()
+public:
+
+    Matrix<4>  ViewMatrix()
     {
         // 注意 ！ 这里必须也是 右手坐标系， 也就是说 n 向量 对应的 z 向量 ，要是 eye - target !!而不是 target - eye !!!
         // 并且 ！ 向量叉乘 的 方向， 符合 右手 原则 ！！
@@ -165,8 +95,6 @@ public:
     Vec3f    _target;
     Vec3f    _up;
     
-    // vertice data
-    std::vector<Vec4>  _vertices;
     
     // viewport size
     int     _viewportWidth;
@@ -174,60 +102,163 @@ public:
     
     // 视距 用于 projection matrix
     float   _viewDistance;
+
     
+};
+
+
+class Actor
+{
+public:
+    Actor()
+    {
+        InitVertices();
+    }
+
+private:
+    void InitVertices()
+    {
+        float size = 1.0f;
+        // front vertices
+        Vec4 a(-size,-size, size,1.);
+        Vec4 b( size,-size, size,1.);
+        Vec4 c(-size, size, size,1.);
+        Vec4 d( size, size, size,1.);
+        
+        // back vertices
+        Vec4 e(-size,-size,-size,1.);
+        Vec4 f( size,-size,-size,1.);
+        Vec4 g(-size, size,-size,1.);
+        Vec4 h( size, size,-size,1.);
+        
+        // front
+        _vertices.push_back(a);
+        _vertices.push_back(b);
+        _vertices.push_back(c);
+        _vertices.push_back(b);
+        _vertices.push_back(d);
+        _vertices.push_back(c);
+        
+        // back
+        _vertices.push_back(e);
+        _vertices.push_back(f);
+        _vertices.push_back(g);
+        _vertices.push_back(f);
+        _vertices.push_back(h);
+        _vertices.push_back(g);
+        
+        // right
+        _vertices.push_back(b);
+        _vertices.push_back(f);
+        _vertices.push_back(d);
+        _vertices.push_back(f);
+        _vertices.push_back(h);
+        _vertices.push_back(d);
+        
+        // left
+        _vertices.push_back(e);
+        _vertices.push_back(a);
+        _vertices.push_back(g);
+        _vertices.push_back(a);
+        _vertices.push_back(g);
+        _vertices.push_back(c);
+    }
+    
+public:
+    std::vector<Vec4>*  GetVertices()
+    {
+        return &_vertices;
+    }
+    
+    int FaceCount()
+    {
+        return static_cast<int>(_vertices.size()) / 3;
+    }
+    
+    std::vector<Vec4> GetFaceAtIndex(int index)
+    {
+        if(index >= FaceCount())
+        {
+            throw std::runtime_error("invalid face index");
+        }
+        std::vector<Vec4> vertice;
+        index = index * 3;
+        vertice.push_back(_vertices[index]);
+        vertice.push_back(_vertices[index + 1]);
+        vertice.push_back(_vertices[index + 2]);
+        return vertice;
+    }
+    
+    Matrix<4>   WorldMatrix()
+    {
+        Matrix<4>   mat;
+        mat.Identity();
+        mat.Set(0,3,_pos.x);
+        mat.Set(1,3,_pos.y);
+        mat.Set(2,3,_pos.z);
+        
+        Matrix<4> matPitch = RotateByAxisX(_pitch);
+        Matrix<4> matYaw = RotateByAxisY(_yaw);
+        Matrix<4> matRoll = RotateByAxisZ(_roll);
+        return mat * matRoll * matYaw * matPitch;
+    }
+public:
+    // vertice
+    std::vector<Vec4>  _vertices;
+    
+    // pos
     Vec3f   _pos;
     
+    // rotation
     float   _pitch  = 0.0f;     // rotate by local x
     float   _yaw    = 0.0f;     // rotate by local y
     float   _roll   = 0.0;      // rotate by local z
-    
 };
+
+
+void ShaderProgram()
+{
+    
+}
 
 int main( int argc, char* args[] )
 {
     Testcase testcase;
+    Actor actor;
     
     AppFramework app(800,800,255);
     app.Init();
     app.RegisterUpdateFunc([&](float deltaTime) {
-        
-        // roll
-        float deltaRoll = 180 * deltaTime;
-        testcase._roll += deltaRoll;
-        
         // yaw
         float deltaYaw = 60 * deltaTime;
-//        testcase._yaw += deltaYaw;
+        actor._yaw += deltaYaw;
         
-        // pitch
-        float deltaPitch = 30 * deltaTime;
-//        testcase._pitch += deltaPitch;
         
         float dis = 0.5f * deltaTime;
         // move object
         if(app.QueryKeyState(SDL_KeyCode::SDLK_a))
         {
-            testcase._pos.x -= dis;
+            actor._pos.x -= dis;
         }
         else if(app.QueryKeyState(SDL_KeyCode::SDLK_d))
         {
-            testcase._pos.x += dis;
+            actor._pos.x += dis;
         }
         else if(app.QueryKeyState(SDL_KeyCode::SDLK_w))
         {
-            testcase._pos.y += dis;
+            actor._pos.y += dis;
         }
         else if(app.QueryKeyState(SDL_KeyCode::SDLK_s))
         {
-            testcase._pos.y -= dis;
+            actor._pos.y -= dis;
         }
         else if(app.QueryKeyState(SDL_KeyCode::SDLK_q))
         {
-            testcase._pos.z -= dis;
+            actor._pos.z -= dis;
         }
         else if(app.QueryKeyState(SDL_KeyCode::SDLK_e))
         {
-            testcase._pos.z += dis;
+            actor._pos.z += dis;
         }
         
         // move camera
@@ -255,37 +286,24 @@ int main( int argc, char* args[] )
         {
             testcase._eye.z -= dis;
         }
-        
     });
     
     app.RegisterDrawFunc([&](RenderContext* ctx){
-        // 闪烁了一下 是因为 ztest 没通过...
-//        triangleFill(ctx,Color(255,255,0,255),Vec3i(0,0),Vec3i(400,800),Vec3i(800,0));
-//        triangle(ctx,Color(255,0,0,255),Vec2i(0,0),Vec2i(400,800),Vec2i(800,0));
-        
-        std::vector<Vec2i> transformedVertices;
-        Matrix<4> mv  = testcase.ModelViewMatrix() * testcase.WorldMatrix();
-        Matrix<4> mvp = testcase.ProjectionMatrix() * mv;
-        
-        std::vector<Vec4>* vertices = testcase.GetVertices();
-        for(int vertexIndex = 0;vertexIndex < vertices->size();vertexIndex++)
-        {
-            Vec4 point = (*vertices)[vertexIndex];
-            point = mvp * point;
-            point = testcase.ViewportMatrix() * point;
-            point = point * (1.f/point.w);
-            point.y = testcase._viewportHeight - point.y;
-            
-            transformedVertices.push_back(Vec2i(point.x / point.w,point.y / point.w));
-        }
-        
         Color col(255,0,0,255);
-        for(int triangleIndex = 0;triangleIndex < testcase.TriangleCount();triangleIndex++)
+        
+        Matrix<4> mvp = testcase.ProjectionMatrix() * testcase.ViewMatrix() * actor.WorldMatrix();
+        Matrix<4> mvpViewport = testcase.ViewportMatrix() * mvp;
+        
+        for(int faceIndex = 0;faceIndex < actor.FaceCount();faceIndex++)
         {
-            int vIndex = triangleIndex * 3;
-            triangle(ctx,col,transformedVertices[vIndex],
-                                transformedVertices[vIndex + 1],
-                                transformedVertices[vIndex + 2]);
+            std::vector<Vec4> vertice = actor.GetFaceAtIndex(faceIndex);
+            for(int i = 0;i < vertice.size();i++)
+            {
+                Vec4& vertex = vertice[i];
+                vertex = mvpViewport * vertex;
+                vertex = vertex * (1/vertex.w);
+            }
+            triangle(ctx,col,vertice[0],vertice[1],vertice[2]);
         }
     });
     app.MainLoop();
