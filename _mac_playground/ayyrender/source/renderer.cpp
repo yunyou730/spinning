@@ -61,7 +61,6 @@ void triangle(RenderContext* ctx,const Color& color,const Vec2<int>& p1,const Ve
     line(ctx,color,p3,p1);
 }
 
-
 void triangleFill(RenderContext* ctx,
                            const Color& color,
                            const Vec3i& p1,
@@ -86,8 +85,8 @@ void triangleFill(RenderContext* ctx,
         if(A.x > B.x) std::swap(A,B);
         for(int x = A.x;x <= B.x;x++)
         {
-            float phi = (B.x == A.x) ? 1.f : (float)(x - A.x) / (float)(B.x - A.x);
-            Vec3i p = A + (B - A) * phi;    // calc for z test
+//            float phi = (B.x == A.x) ? 1.f : (float)(x - A.x) / (float)(B.x - A.x);
+//            Vec3i p = A + (B - A) * phi;    // calc for z test
             
 //            if(ctx->ZTest(x,y,p.z))
 //            {

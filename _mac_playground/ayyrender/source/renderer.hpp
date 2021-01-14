@@ -4,6 +4,15 @@
 #include "math.hpp"
 #include "RenderContext.hpp"
 
+
+struct Vertex
+{
+    Vec4    pos;
+    Color   color;
+    
+    Vertex(const Vec4& pos,const Color& color):pos(pos),color(color){}
+};
+
 void drawPoint(RenderContext* ctx,const Color& color,int x,int y);
 void line(RenderContext* ctx,const Color& color,int x0,int y0,int x1,int y1);
 void line(RenderContext* ctx,const Color& color,const Vec2<int>& p1,const Vec2<int>& p2);
