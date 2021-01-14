@@ -145,31 +145,31 @@ private:
         _vertices.push_back(c);
 
         // back
+        _vertices.push_back(f);
         _vertices.push_back(e);
-        _vertices.push_back(f);
-        _vertices.push_back(g);
-
-        _vertices.push_back(f);
         _vertices.push_back(h);
-        _vertices.push_back(g);
 
-        // right
-        _vertices.push_back(b);
-        _vertices.push_back(f);
-        _vertices.push_back(d);
-
-        _vertices.push_back(f);
-        _vertices.push_back(h);
-        _vertices.push_back(d);
-
-        // left
         _vertices.push_back(e);
-        _vertices.push_back(a);
         _vertices.push_back(g);
-
-        _vertices.push_back(a);
-        _vertices.push_back(g);
-        _vertices.push_back(c);
+        _vertices.push_back(h);
+//
+//        // right
+//        _vertices.push_back(b);
+//        _vertices.push_back(f);
+//        _vertices.push_back(d);
+//
+//        _vertices.push_back(f);
+//        _vertices.push_back(h);
+//        _vertices.push_back(d);
+//
+//        // left
+//        _vertices.push_back(e);
+//        _vertices.push_back(a);
+//        _vertices.push_back(g);
+//
+//        _vertices.push_back(a);
+//        _vertices.push_back(g);
+//        _vertices.push_back(c);
     }
     
 public:
@@ -239,7 +239,7 @@ int main( int argc, char* args[] )
     app.RegisterUpdateFunc([&](float deltaTime) {
         // yaw
         float deltaYaw = 60 * deltaTime;
-//        actor._yaw += deltaYaw;
+        actor._yaw += deltaYaw;
         
         
         float dis = 0.5f * deltaTime;
@@ -298,10 +298,6 @@ int main( int argc, char* args[] )
     
     app.RegisterDrawFunc([&](RenderContext* ctx){
         Color col(255,0,0,255);
-        
-//        drawPoint(ctx,Color(255,255,0,255),100,40);
-//        drawPoint(ctx,Color(255,0,0,255),100,41);
-//        drawPoint(ctx,Color(0,0,255,255),100,42);
         
         Matrix<4> mvp = testcase.ProjectionMatrix() * testcase.ViewMatrix() * actor.WorldMatrix();
         Matrix<4> mvpViewport = testcase.ViewportMatrix() * mvp;
