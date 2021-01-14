@@ -61,11 +61,19 @@ struct Vec3
     Vec3(T x,T y,T z):x(x),y(y),z(z) {}
     Vec3():x(0),y(0),z(0) {}
     
-    Vec3(const Vec3<T>& other) {
-        x = other.x;
-        y = other.y;
-        z = other.z;
+    template<typename TOther>
+    Vec3(const TOther& other)
+    {
+        x = (T)other.x;
+        y = (T)other.y;
+        z = (T)other.z;
     }
+    
+//    Vec3(const Vec3<T>& other) {
+//        x = other.x;
+//        y = other.y;
+//        z = other.z;
+//    }
     
     void operator=(const Vec3<T>& other)
     {
@@ -117,7 +125,7 @@ struct Vec3
     }
     
     // Cross Product
-    Vec3<T> operator^(const Vec3<T>& other)
+    Vec3<T> operator ^(const Vec3<T>& other)
     {
         Vec3<T> result;
         result.x = y * other.z - other.y * z;
@@ -138,6 +146,13 @@ struct Vec3
         y *= factor;
         z *= factor;
         return *this;
+    }
+    
+    Vec3<T> GetNormalize()
+    {
+        float factor = 1.0f/Length();
+        Vec3<T> result(x * factor,y * factor,z * factor);
+        return result;
     }
     
     void Dump()
