@@ -110,6 +110,16 @@ public:
     float   _viewDistance;
 };
 
+
+struct Vertex
+{
+    Vec4    pos;
+    Color   color;
+    
+    Vertex(const Vec4& pos,const Color& color):pos(pos),color(color){}
+    
+};
+
 class Actor
 {
 public:
@@ -122,17 +132,16 @@ private:
     void InitVertices()
     {
         float size = 1.0f;
-        // front vertices
-        Vec4 a(-size,-size, size,1.);
-        Vec4 b( size,-size, size,1.);
-        Vec4 c(-size, size, size,1.);
-        Vec4 d( size, size, size,1.);
         
-        // back vertices
-        Vec4 e(-size,-size,-size,1.);
-        Vec4 f( size,-size,-size,1.);
-        Vec4 g(-size, size,-size,1.);
-        Vec4 h( size, size,-size,1.);
+        Vertex a(Vec4(-size,-size, size,1.),red);
+        Vertex b(Vec4( size,-size, size,1.),red);
+        Vertex c(Vec4(-size, size, size,1.),red);
+        Vertex d(Vec4( size, size, size,1.),red);
+        
+        Vertex e(Vec4(-size,-size, -size,1.),red);
+        Vertex f(Vec4( size,-size, -size,1.),red);
+        Vertex g(Vec4(-size, size, -size,1.),red);
+        Vertex h(Vec4( size, size, -size,1.),red);
         
         // front
         _vertices.push_back(a);
@@ -190,7 +199,7 @@ private:
     }
     
 public:
-    std::vector<Vec4>*  GetVertices()
+    std::vector<Vertex>*  GetVertices()
     {
         return &_vertices;
     }
@@ -200,13 +209,13 @@ public:
         return static_cast<int>(_vertices.size()) / 3;
     }
     
-    std::vector<Vec4> GetFaceAtIndex(int index)
+    std::vector<Vertex> GetFaceAtIndex(int index)
     {
         if(index >= FaceCount())
         {
             throw std::runtime_error("invalid face index");
         }
-        std::vector<Vec4> vertice;
+        std::vector<Vertex> vertice;
         index = index * 3;
         vertice.push_back(_vertices[index]);
         vertice.push_back(_vertices[index + 1]);
@@ -230,7 +239,7 @@ public:
         
 public:
     // vertice
-    std::vector<Vec4>  _vertices;
+    std::vector<Vertex> _vertices;
     
     // pos
     Vec3f   _pos;
@@ -240,11 +249,6 @@ public:
     float   _yaw    = 0.0f;     // rotate by local y
     float   _roll   = 0.0;      // rotate by local z
 };
-
-void ShaderProgram()
-{
-    
-}
 
 int main( int argc, char* args[] )
 {
@@ -323,32 +327,22 @@ int main( int argc, char* args[] )
         
         for(int faceIndex = 0;faceIndex < actor.FaceCount();faceIndex++)
         {
-            std::vector<Vec4> vertice = actor.GetFaceAtIndex(faceIndex);
-            
-            vertice[0].dump();
-            vertice[1].dump();
-            vertice[2].dump();
+            std::vector<Vertex> vertice = actor.GetFaceAtIndex(faceIndex);
             
             for(int i = 0;i < vertice.size();i++)
             {
-                Vec4& vertex = vertice[i];
-                vertex = mvpViewport * vertex;
-                vertex = vertex * (1/vertex.w);
+                Vertex& vertex = vertice[i];
+                vertex.pos = mvpViewport * vertex.pos;
+                vertex.pos = vertex.pos * (1/vertex.pos.w);
             }
             
-            vertice[0].dump();
-            vertice[1].dump();
-            vertice[2].dump();
-            
-            Vec3f v1 = vertice[1] - vertice[0];
-            Vec3f v2 = vertice[2] - vertice[1];
+            Vec3f v1 = vertice[1].pos - vertice[0].pos;
+            Vec3f v2 = vertice[2].pos - vertice[1].pos;
             Vec3f normalDir = (v1 ^ v2).Normalize();
             if(testcase.CheckFaceNormalDir(normalDir))
             {
-                triangle(ctx,col,vertice[0],vertice[1],vertice[2]);
+                triangle(ctx,col,vertice[0].pos,vertice[1].pos,vertice[2].pos);
             }
-            
-            
         }
     });
     app.MainLoop();
