@@ -258,6 +258,9 @@ int main( int argc, char* args[] )
         float deltaYaw = 60 * deltaTime;
         actor._yaw += deltaYaw;
         
+        float deltaPitch = 45 * deltaTime;
+        actor._pitch += deltaPitch;
+        
         float dis = 0.5f * deltaTime;
         // move object
         if(app.QueryKeyState(SDL_KeyCode::SDLK_a))
