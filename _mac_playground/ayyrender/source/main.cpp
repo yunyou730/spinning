@@ -169,6 +169,24 @@ private:
         _vertices.push_back(a);
         _vertices.push_back(c);
         _vertices.push_back(g);
+        
+        // top
+        _vertices.push_back(c);
+        _vertices.push_back(d);
+        _vertices.push_back(g);
+        
+        _vertices.push_back(d);
+        _vertices.push_back(h);
+        _vertices.push_back(g);
+        
+        // down
+        _vertices.push_back(e);
+        _vertices.push_back(f);
+        _vertices.push_back(a);
+        
+        _vertices.push_back(f);
+        _vertices.push_back(b);
+        _vertices.push_back(a);
     }
     
 public:
