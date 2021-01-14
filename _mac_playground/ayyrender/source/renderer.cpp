@@ -5,6 +5,11 @@
 #include <vector>
 #include <algorithm>
 
+void drawPoint(RenderContext* ctx,const Color& color,int x,int y)
+{
+    ctx->SetPixel(x,y,color);
+}
+
 void line(RenderContext* ctx,const Color& color,int x0,int y0,int x1,int y1)
 {
     int dx = std::abs(x1 - x0);

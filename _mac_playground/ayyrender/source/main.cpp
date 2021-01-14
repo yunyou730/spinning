@@ -66,11 +66,10 @@ public:
     
     Matrix<4>   ProjectionMatrix()
     {
-        // @miao @todo
         Matrix<4>   mat;
         mat.Identity();
         mat.Set(3,2,-1.f/_viewDistance);
-        mat.Set(3,3,0.0f);
+//        mat.Set(3,3,0.0f);
         return mat;
     }
     
@@ -82,12 +81,19 @@ public:
         float alpha = 0.5 * _viewportWidth - 0.5f;
         float beta = 0.5 * _viewportHeight - 0.5f;
         mat.Set(0,0,alpha);
-        mat.Set(1,1,-beta);
+        mat.Set(1,1,beta);
         mat.Set(0,3,alpha);
         mat.Set(1,3,beta);
         return mat;
     }
     
+public:
+    bool CheckFaceNormalDir(const Vec3f& normalDir)
+    {
+        Vec3f lookDir = (_target - _eye).Normalize();
+        float dot = (lookDir * normalDir);
+        return dot < 0;
+    }
     
 public:
     // uvn base data
@@ -102,8 +108,6 @@ public:
     
     // 视距 用于 projection matrix
     float   _viewDistance;
-
-    
 };
 
 
@@ -135,30 +139,34 @@ private:
         _vertices.push_back(a);
         _vertices.push_back(b);
         _vertices.push_back(c);
+        
         _vertices.push_back(b);
         _vertices.push_back(d);
         _vertices.push_back(c);
-        
+
         // back
         _vertices.push_back(e);
         _vertices.push_back(f);
         _vertices.push_back(g);
+
         _vertices.push_back(f);
         _vertices.push_back(h);
         _vertices.push_back(g);
-        
+
         // right
         _vertices.push_back(b);
         _vertices.push_back(f);
         _vertices.push_back(d);
+
         _vertices.push_back(f);
         _vertices.push_back(h);
         _vertices.push_back(d);
-        
+
         // left
         _vertices.push_back(e);
         _vertices.push_back(a);
         _vertices.push_back(g);
+
         _vertices.push_back(a);
         _vertices.push_back(g);
         _vertices.push_back(c);
@@ -202,6 +210,7 @@ public:
         Matrix<4> matRoll = RotateByAxisZ(_roll);
         return mat * matRoll * matYaw * matPitch;
     }
+        
 public:
     // vertice
     std::vector<Vec4>  _vertices;
@@ -214,7 +223,6 @@ public:
     float   _yaw    = 0.0f;     // rotate by local y
     float   _roll   = 0.0;      // rotate by local z
 };
-
 
 void ShaderProgram()
 {
@@ -231,7 +239,7 @@ int main( int argc, char* args[] )
     app.RegisterUpdateFunc([&](float deltaTime) {
         // yaw
         float deltaYaw = 60 * deltaTime;
-        actor._yaw += deltaYaw;
+//        actor._yaw += deltaYaw;
         
         
         float dis = 0.5f * deltaTime;
@@ -291,19 +299,41 @@ int main( int argc, char* args[] )
     app.RegisterDrawFunc([&](RenderContext* ctx){
         Color col(255,0,0,255);
         
+//        drawPoint(ctx,Color(255,255,0,255),100,40);
+//        drawPoint(ctx,Color(255,0,0,255),100,41);
+//        drawPoint(ctx,Color(0,0,255,255),100,42);
+        
         Matrix<4> mvp = testcase.ProjectionMatrix() * testcase.ViewMatrix() * actor.WorldMatrix();
         Matrix<4> mvpViewport = testcase.ViewportMatrix() * mvp;
         
         for(int faceIndex = 0;faceIndex < actor.FaceCount();faceIndex++)
         {
             std::vector<Vec4> vertice = actor.GetFaceAtIndex(faceIndex);
+            
+            vertice[0].dump();
+            vertice[1].dump();
+            vertice[2].dump();
+            
             for(int i = 0;i < vertice.size();i++)
             {
                 Vec4& vertex = vertice[i];
                 vertex = mvpViewport * vertex;
                 vertex = vertex * (1/vertex.w);
             }
-            triangle(ctx,col,vertice[0],vertice[1],vertice[2]);
+            
+            vertice[0].dump();
+            vertice[1].dump();
+            vertice[2].dump();
+            
+            Vec3f v1 = vertice[1] - vertice[0];
+            Vec3f v2 = vertice[2] - vertice[1];
+            Vec3f normalDir = (v1 ^ v2).Normalize();
+            if(testcase.CheckFaceNormalDir(normalDir))
+            {
+                triangle(ctx,col,vertice[0],vertice[1],vertice[2]);
+            }
+            
+            
         }
     });
     app.MainLoop();
