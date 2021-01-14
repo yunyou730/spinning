@@ -110,7 +110,6 @@ public:
     float   _viewDistance;
 };
 
-
 class Actor
 {
 public:
@@ -152,24 +151,24 @@ private:
         _vertices.push_back(e);
         _vertices.push_back(g);
         _vertices.push_back(h);
-//
-//        // right
-//        _vertices.push_back(b);
-//        _vertices.push_back(f);
-//        _vertices.push_back(d);
-//
-//        _vertices.push_back(f);
-//        _vertices.push_back(h);
-//        _vertices.push_back(d);
-//
-//        // left
-//        _vertices.push_back(e);
-//        _vertices.push_back(a);
-//        _vertices.push_back(g);
-//
-//        _vertices.push_back(a);
-//        _vertices.push_back(g);
-//        _vertices.push_back(c);
+
+        // right
+        _vertices.push_back(b);
+        _vertices.push_back(f);
+        _vertices.push_back(d);
+
+        _vertices.push_back(f);
+        _vertices.push_back(h);
+        _vertices.push_back(d);
+
+        // left
+        _vertices.push_back(e);
+        _vertices.push_back(a);
+        _vertices.push_back(g);
+
+        _vertices.push_back(a);
+        _vertices.push_back(c);
+        _vertices.push_back(g);
     }
     
 public:
@@ -240,7 +239,6 @@ int main( int argc, char* args[] )
         // yaw
         float deltaYaw = 60 * deltaTime;
         actor._yaw += deltaYaw;
-        
         
         float dis = 0.5f * deltaTime;
         // move object
