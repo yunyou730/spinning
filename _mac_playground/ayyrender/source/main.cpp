@@ -147,10 +147,12 @@ struct Shader
 
 int main( int argc, char* args[] )
 {
-    Camera testcase;
+    const int viewportWidth     = 800;
+    const int viewportHeight    = 800;
+    Camera testcase(viewportWidth,viewportHeight);
     Actor actor;
     
-    AppFramework app(800,800,255);
+    AppFramework app(viewportWidth,viewportHeight,255);
     app.Init();
     app.RegisterUpdateFunc([&](float deltaTime) {
         // yaw
@@ -227,16 +229,17 @@ int main( int argc, char* args[] )
             for(int i = 0;i < vertice.size();i++)
             {
                 Vertex& vertex = vertice[i];
-                vertex.pos = mvpViewport * vertex.pos;
-                vertex.pos = vertex.pos * (1/vertex.pos.w);
+                vertex.transformedPos = mvpViewport * vertex.pos;
+                vertex.transformedPos = vertex.transformedPos * (1/vertex.transformedPos.w);
             }
             
-            Vec3f v1 = vertice[1].pos - vertice[0].pos;
-            Vec3f v2 = vertice[2].pos - vertice[1].pos;
+            Vec3f v1 = vertice[1].transformedPos - vertice[0].transformedPos;
+            Vec3f v2 = vertice[2].transformedPos - vertice[1].transformedPos;
             Vec3f normalDir = (v1 ^ v2).Normalize();
-            if(testcase.CheckFaceNormalDir(normalDir))
+            if(testcase.CheckBackFace(normalDir))
             {
-                triangle(ctx,col,vertice[0].pos,vertice[1].pos,vertice[2].pos);
+                triangle(ctx,col,vertice[0].transformedPos,vertice[1].transformedPos,vertice[2].transformedPos);
+                triangleFill(ctx,vertice[0],vertice[1],vertice[2]);
             }
         }
     });

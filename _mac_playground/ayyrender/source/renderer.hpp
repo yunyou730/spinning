@@ -11,6 +11,8 @@ struct Vertex
     Color   color;
     
     Vertex(const Vec4& pos,const Color& color):pos(pos),color(color){}
+    
+    Vec4    transformedPos;
 };
 
 void drawPoint(RenderContext* ctx,const Color& color,int x,int y);
@@ -23,3 +25,5 @@ void triangleFill(RenderContext* ctx,
                            const Vec3i& p1,
                            const Vec3i& p2,
                            const Vec3i& p3);
+
+void triangleFill(RenderContext* ctx,const Vertex& v1,const Vertex& v2,const Vertex& v3);

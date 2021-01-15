@@ -15,8 +15,6 @@ std::shared_ptr<Model> model = nullptr;
 
 float gViewportWidth = 800;
 float gViewportHeight = 800;
-//float gViewportWidth = 400;
-//float gViewportHeight = 400;
 
 Vec3f gEye(0.5,0.5,3);
 //Vec3f gEye(3,0,0);

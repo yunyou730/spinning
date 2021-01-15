@@ -1,9 +1,10 @@
 #include "Camera.h"
 
-Camera::Camera()
+Camera::Camera(int viewportWidth,int viewportHeight)
+    :_viewportWidth(viewportWidth)
+    ,_viewportHeight(viewportHeight)
 {
     InitUVN();
-    InitViewport();
     _viewDistance = 1.0f;
 }
 
@@ -16,13 +17,6 @@ void Camera::InitUVN()
     // up
     _up.x = 0;  _up.y = 1;  _up.z = 0;
 }
-
-void Camera::InitViewport()
-{
-    _viewportWidth = 800;
-    _viewportHeight = 800;
-}
-
 
 Matrix<4>  Camera::ViewMatrix()
 {
@@ -77,10 +71,9 @@ Matrix<4>   Camera::ViewportMatrix()
     return mat;
 }
 
-bool Camera::CheckFaceNormalDir(const Vec3f& normalDir)
+bool Camera::CheckBackFace(const Vec3f& normalDir)
 {
     Vec3f lookDir = (_target - _eye).Normalize();
     float dot = (lookDir * normalDir);
     return dot < 0;
 }
- 

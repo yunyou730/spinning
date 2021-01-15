@@ -261,6 +261,18 @@ struct Vec4
         return result;
     }
 
+    Vec4 operator/(float value)
+    {
+        if(value == 0)
+            throw std::runtime_error("div zero!");
+        Vec4 result = *this;
+        result.x /= value;
+        result.y /= value;
+        result.z /= value;
+        result.w /= value;
+        return result;
+    }
+    
     float Length()
     {
         return sqrt(x * x + y * y + z * z + w * w);
@@ -455,3 +467,4 @@ extern Matrix<4> RotateByAxisX(float deg);
 extern Matrix<4> RotateByAxisY(float deg);
 extern Matrix<4> RotateByAxisZ(float deg);
 
+extern float Lerp(float a,float b,float pct);

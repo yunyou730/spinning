@@ -68,7 +68,7 @@ void triangleFill(RenderContext* ctx,
                            const Vec3i& p3)
 {
     std::vector<Vec3i> arr = {p1,p2,p3};
-    std::sort(arr.begin(),arr.end(),[](const Vec3i& lh,const Vec3i rh)->bool{
+    std::sort(arr.begin(),arr.end(),[](const Vec3i& lh,const Vec3i& rh)->bool{
         return lh.y < rh.y;
     });
     
@@ -123,5 +123,28 @@ void triangleFill(RenderContext* ctx,
         
         scanLine(y,A,B);
     }
+}
+
+
+static Color LerpColor(const Color& a,const Color& b,float pct)
+{
+    Color result(Lerp(a.r,b.r,pct),Lerp(a.g,b.g,pct),Lerp(a.b,b.b,pct),Lerp(a.a,b.a,pct));
+    return result;
+}
+
+void triangleFill(RenderContext* ctx,const Vertex& v1,const Vertex& v2,const Vertex& v3)
+{
+    std::vector<Vertex> arr = {v1,v2,v3};
+    std::sort(arr.begin(),arr.end(),[](const Vertex& lh,const Vertex& rh)->bool{
+        return lh.pos.y < rh.pos.y;
+    });
+    int totalHeight = arr[2].pos.y - arr[0].pos.y;
+    if(totalHeight <= 0)
+    {
+        return;
+    }
+    
+    // @miao @todo
+    
     
 }

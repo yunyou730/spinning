@@ -4,12 +4,9 @@
 class Camera
 {
 public:
-    Camera();
+    Camera(int viewPortWidth,int viewportHeight);
 private:
-    
     void InitUVN();
-    void InitViewport();
-    
 public:
 
     Matrix<4>  ViewMatrix();
@@ -17,7 +14,7 @@ public:
     Matrix<4>   ViewportMatrix();
     
 public:
-    bool CheckFaceNormalDir(const Vec3f& normalDir);
+    bool CheckBackFace(const Vec3f& normalDir);
     
 public:
     // uvn base data

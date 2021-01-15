@@ -60,4 +60,9 @@ Matrix<4> RotateByAxisZ(float deg)
     return mat;
 }
 
+float Lerp(float a,float b,float pct)
+{
+    if(a > b) std::swap(a,b);
+    return a + (b - a) * pct;
+}
 
