@@ -24,7 +24,6 @@ public:
         _updateFunc = func;
     }
     
-    
     bool QueryKeyState(SDL_KeyCode keyCode);
     
 protected:

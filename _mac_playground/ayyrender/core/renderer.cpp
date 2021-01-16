@@ -136,15 +136,27 @@ void triangleFill(RenderContext* ctx,const Vertex& v1,const Vertex& v2,const Ver
 {
     std::vector<Vertex> arr = {v1,v2,v3};
     std::sort(arr.begin(),arr.end(),[](const Vertex& lh,const Vertex& rh)->bool{
-        return lh.pos.y < rh.pos.y;
+        return lh.transformedPos.y < rh.transformedPos.y;
     });
-    int totalHeight = arr[2].pos.y - arr[0].pos.y;
+    int totalHeight = arr[2].transformedPos.y - arr[0].transformedPos.y;
     if(totalHeight <= 0)
     {
         return;
     }
     
-    // @miao @todo
     
+    // triangle lower part
+    for(int y = arr[0].transformedPos.y;y <= arr[1].transformedPos.y;y++)
+    {
+        int segmentHeight = arr[1].transformedPos.y - arr[0].transformedPos.y + 1;    // avoid div 0
+        
+        float alpha = (float)(y - arr[0].transformedPos.y) / totalHeight;
+        float beta = (float)(y - arr[0].transformedPos.y) / segmentHeight;
+        
+//        Vec3i A = arr[0] + (arr[2] - arr[0]) * alpha;
+//        Vec3i B = arr[0] + (arr[1] - arr[0]) * beta;
+//        
+//        scanLine(y,A,B);
+    }
     
 }

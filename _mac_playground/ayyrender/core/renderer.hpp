@@ -1,19 +1,10 @@
 #pragma once
 
-//#include "tgaimage.h"
 #include "math.hpp"
 #include "RenderContext.hpp"
+#include "Pipeline.h"
 
-
-struct Vertex
-{
-    Vec4    pos;
-    Color   color;
-    
-    Vertex(const Vec4& pos,const Color& color):pos(pos),color(color){}
-    
-    Vec4    transformedPos;
-};
+using namespace ayy;
 
 void drawPoint(RenderContext* ctx,const Color& color,int x,int y);
 void line(RenderContext* ctx,const Color& color,int x0,int y0,int x1,int y1);

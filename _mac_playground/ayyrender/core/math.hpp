@@ -468,3 +468,11 @@ extern Matrix<4> RotateByAxisY(float deg);
 extern Matrix<4> RotateByAxisZ(float deg);
 
 extern float Lerp(float a,float b,float pct);
+
+/*
+    a,b,c is 3 points of one triangle
+    p is we are calculating point
+ 
+    return shall be a barycentric coordinate,3 values be saved in Vec3f's each part
+ */
+extern Vec3f TriangleBarycentricCoordinate(const Vec2f& a,const Vec2f& b,const Vec2f& c,const Vec2f& p);

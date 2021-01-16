@@ -53,7 +53,7 @@ Matrix<4>   Camera::ProjectionMatrix()
     Matrix<4>   mat;
     mat.Identity();
     mat.Set(3,2,-1.f/_viewDistance);
-//        mat.Set(3,3,0.0f);
+    mat.Set(3,3,0.0f);
     return mat;
 }
 

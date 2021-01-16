@@ -137,7 +137,6 @@ void AppFramework::MainLoop()
             _drawFunc(_context);
         }
         SDL_RenderPresent(_renderer);
-
     }
 }
 
