@@ -8,26 +8,20 @@
 #include "AppFramework.h"
 #include <stdexcept>
 
-AppFramework::AppFramework(int width,int height,int depth)
-    :_width(width)
-    ,_height(height)
-    ,_depth(depth)
+AYY_NS_BEGIN
+AppFramework::AppFramework(int width,int height)
 {
-        
+    _pipeline = new Pipeline(width,height);
+    InitSDL(width,height);
+    InitKeyState();
 }
 
 AppFramework::~AppFramework()
 {
-    
+    delete _pipeline;
 }
 
-void AppFramework::Init()
-{
-    InitSDL();
-    InitKeyState();
-}
-
-void AppFramework::InitSDL()
+void AppFramework::InitSDL(int width,int height)
 {
     if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
     {
@@ -40,8 +34,8 @@ void AppFramework::InitSDL()
         _window = SDL_CreateWindow( "SDL Tutorial",
                                    SDL_WINDOWPOS_UNDEFINED,
                                    SDL_WINDOWPOS_UNDEFINED,
-                                   _width,
-                                   _height,
+                                   width,
+                                   height,
                                    windowFlag);
         
         if( _window == NULL )
@@ -56,7 +50,7 @@ void AppFramework::InitSDL()
         }
     }
     
-    _context = new SDLRenderContext(_renderer,_width,_height,_depth);
+//    _context = new SDLRenderContext(_renderer,_width,_height,_depth);
 }
 
 void AppFramework::InitKeyState()
@@ -68,13 +62,6 @@ void AppFramework::InitKeyState()
     _keyStateMap.insert(std::make_pair(SDL_KeyCode::SDLK_d,false));
     _keyStateMap.insert(std::make_pair(SDL_KeyCode::SDLK_q,false));
     _keyStateMap.insert(std::make_pair(SDL_KeyCode::SDLK_e,false));
-    
-    _keyStateMap.insert(std::make_pair(SDL_KeyCode::SDLK_UP,false));
-    _keyStateMap.insert(std::make_pair(SDL_KeyCode::SDLK_DOWN,false));
-    _keyStateMap.insert(std::make_pair(SDL_KeyCode::SDLK_LEFT,false));
-    _keyStateMap.insert(std::make_pair(SDL_KeyCode::SDLK_RIGHT,false));
-    _keyStateMap.insert(std::make_pair(SDL_KeyCode::SDLK_SLASH,false));
-    _keyStateMap.insert(std::make_pair(SDL_KeyCode::SDLK_BACKSLASH,false));
 }
 
 void AppFramework::MainLoop()
@@ -118,35 +105,59 @@ void AppFramework::MainLoop()
             }
         }
         
-        SDL_SetRenderDrawColor(_renderer, 0x00, 0x00, 0x00, 0xff);
-        SDL_RenderClear(_renderer);
-//        SDL_Rect fillRect = { 0,0, SCREEN_WIDTH, SCREEN_HEIGHT};
-//        SDL_RenderFillRect(_renderer, &fillRect);
+
         
         Uint32 nextTick = SDL_GetTicks();
         float deltaTime = (nextTick - sTicks) / 1000.f;
         sTicks = nextTick;
         
+        // logic
         if(_updateFunc != nullptr)
         {
-            _updateFunc(deltaTime);
+            _updateFunc(this,deltaTime);
         }
         
+        // draw
+        ClearBuffer();
         if(_drawFunc != nullptr)
         {
-            _drawFunc(_context);
+            _drawFunc(_pipeline);
         }
+        PresentFramebuffer();
+        
         SDL_RenderPresent(_renderer);
+        
+    }
+}
+
+void AppFramework::ClearBuffer()
+{
+    SDL_SetRenderDrawColor(_renderer, 0x00, 0x00, 0x00, 0xff);
+    SDL_RenderClear(_renderer);
+    _pipeline->ClearBuffer();
+}
+
+void AppFramework::PresentFramebuffer()
+{
+    int width,height;
+    _pipeline->GetSize(width,height);
+    
+    auto frameBuffer = _pipeline->GetFrameBuffer();
+    for(int y = 0;y < height;y++)
+    {
+        for(int x = 0;x < width;x++)
+        {
+            const Color& color = frameBuffer->Get(x,y);
+            SDL_SetRenderDrawColor(_renderer, color.r, color.g, color.b, color.a);
+            y = (height - 1) - y;
+            SDL_RenderDrawPoint(_renderer, x,y);
+        }
     }
 }
 
 void AppFramework::Clean()
 {
     _drawFunc = nullptr;
-    
-    if(_context != nullptr)
-        delete _context;
-    _context = nullptr;
     
     SDL_DestroyRenderer(_renderer);
     _renderer = nullptr;
@@ -166,3 +177,5 @@ bool AppFramework::QueryKeyState(SDL_KeyCode keyCode)
     }
     return false;
 }
+
+AYY_NS_END

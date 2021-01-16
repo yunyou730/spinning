@@ -11,14 +11,15 @@ AYY_NS_BEGIN
 
 struct Vertex
 {
-    Vec4    pos;
+    Vec4    pos;            // local model pos
     Color   color;
     
     Vertex(const Vec4& pos,const Color& color):pos(pos),color(color){}
     
-    Vec4    transformedPos;
+    Vec4    transformedPos; // pos producted by MVP
+    Vec4    ndcPos;         // pos transformedPos * 1/w
+    Vec2i   screenPos;      // pos which ndcPos -> screen
 };
-
 
 template<typename T>
 struct FrameBuffer;
@@ -29,10 +30,28 @@ public:
     Pipeline(int viewportWidth,int viewportHeight);
     ~Pipeline();
     
+    Camera* GetCamera() { return _camera;}
+    
+    void WriteColor(int x,int y,const Color& color);
+    void WriteZ(int x,int y,float value);
+    
+    FrameBuffer<Color>*     GetFrameBuffer() const { return _frameBuffer;}
+    FrameBuffer<float>*     GetZBuffer() const { return _zBuffer;}
+    
+    Color& GetClearColor() { return _clearColor;}
+    void SetClearColor(const Color& color) {_clearColor = color;}
+    
+    void ClearBuffer();
+    
+    void GetSize(int& width,int &height) const { width = _width;height = _height;}
+    
 protected:
     Camera*                 _camera         = nullptr;
-    FrameBuffer<int>*       _frameBuffer    = nullptr;
+    FrameBuffer<Color>*     _frameBuffer    = nullptr;
     FrameBuffer<float>*     _zBuffer        = nullptr;
+    Color                   _clearColor;
+    
+    const int _width,_height;
 };
 
 template<typename T>
@@ -42,9 +61,10 @@ struct FrameBuffer
         :rowCnt(height)
         ,colCnt(width)
     {
+        data = new T*[height];
         for(int row = 0;row < height;row++)
         {
-            data = new T[row];
+            data[row] = new T[width];
             for(int col = 0;col < height;col++)
             {
                 data[row][col] = defaultValue;
@@ -58,20 +78,21 @@ struct FrameBuffer
         {
             delete[] data[row];
         }
+        delete[] data;
     }
     
-    T& Get(int row,int col) const
+    T& Get(int x,int y) const
     {
-        if(row < 0 || row >= rowCnt || col < 0 || col >= colCnt)
+        if(y < 0 || y >= rowCnt || x < 0 || x >= colCnt)
             throw new std::runtime_error("over data bound");
-        return data[row][col];
+        return data[y][x];
     }
     
-    void Set(int row,int col,const T& value)
+    void Set(int x,int y,const T& value)
     {
-        if(row < 0 || row >= rowCnt || col < 0 || col >= colCnt)
+        if(y < 0 || y >= rowCnt || x < 0 || x >= colCnt)
             throw new std::runtime_error("over data bound");
-        data[row][col] = value;
+        data[y][x] = value;
     }
     
 public:

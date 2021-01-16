@@ -15,11 +15,10 @@
 		2BEC826C25B2B98A00648B5A /* math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC825B25B2B98A00648B5A /* math.cpp */; };
 		2BEC826D25B2B98A00648B5A /* Pipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC825D25B2B98A00648B5A /* Pipeline.cpp */; };
 		2BEC826E25B2B98A00648B5A /* AppFramework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC825F25B2B98A00648B5A /* AppFramework.cpp */; };
-		2BEC826F25B2B98A00648B5A /* RenderContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC826025B2B98A00648B5A /* RenderContext.cpp */; };
-		2BEC827025B2B98A00648B5A /* SDLRenderContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC826325B2B98A00648B5A /* SDLRenderContext.cpp */; };
 		2BEC827125B2B98A00648B5A /* model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC826525B2B98A00648B5A /* model.cpp */; };
 		2BEC827225B2B98A00648B5A /* tgaimage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC826925B2B98A00648B5A /* tgaimage.cpp */; };
 		2BEC827325B2B98A00648B5A /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC826A25B2B98A00648B5A /* renderer.cpp */; };
+		2BEC827825B2C89000648B5A /* Testcase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC827625B2C89000648B5A /* Testcase.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,19 +46,17 @@
 		2BEC825B25B2B98A00648B5A /* math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math.cpp; sourceTree = "<group>"; };
 		2BEC825C25B2B98A00648B5A /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		2BEC825D25B2B98A00648B5A /* Pipeline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pipeline.cpp; sourceTree = "<group>"; };
-		2BEC825E25B2B98A00648B5A /* SDLRenderContext.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SDLRenderContext.hpp; sourceTree = "<group>"; };
 		2BEC825F25B2B98A00648B5A /* AppFramework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppFramework.cpp; sourceTree = "<group>"; };
-		2BEC826025B2B98A00648B5A /* RenderContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderContext.cpp; sourceTree = "<group>"; };
 		2BEC826125B2B98A00648B5A /* math.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = math.hpp; sourceTree = "<group>"; };
 		2BEC826225B2B98A00648B5A /* AppFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppFramework.h; sourceTree = "<group>"; };
-		2BEC826325B2B98A00648B5A /* SDLRenderContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDLRenderContext.cpp; sourceTree = "<group>"; };
 		2BEC826425B2B98A00648B5A /* model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = model.h; sourceTree = "<group>"; };
 		2BEC826525B2B98A00648B5A /* model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = model.cpp; sourceTree = "<group>"; };
-		2BEC826625B2B98A00648B5A /* RenderContext.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RenderContext.hpp; sourceTree = "<group>"; };
 		2BEC826725B2B98A00648B5A /* Pipeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pipeline.h; sourceTree = "<group>"; };
 		2BEC826825B2B98A00648B5A /* tgaimage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tgaimage.h; sourceTree = "<group>"; };
 		2BEC826925B2B98A00648B5A /* tgaimage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tgaimage.cpp; sourceTree = "<group>"; };
 		2BEC826A25B2B98A00648B5A /* renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
+		2BEC827625B2C89000648B5A /* Testcase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Testcase.cpp; path = source/Testcase.cpp; sourceTree = "<group>"; };
+		2BEC827725B2C89000648B5A /* Testcase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Testcase.h; path = source/Testcase.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +96,8 @@
 				2BEC825025B2B3C500648B5A /* Actor.cpp */,
 				2BEC824F25B2B3C500648B5A /* Actor.h */,
 				2BE1509D259D9B5A00E62AE8 /* main.cpp */,
+				2BEC827625B2C89000648B5A /* Testcase.cpp */,
+				2BEC827725B2C89000648B5A /* Testcase.h */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -111,15 +110,11 @@
 				2BEC825B25B2B98A00648B5A /* math.cpp */,
 				2BEC825C25B2B98A00648B5A /* Camera.h */,
 				2BEC825D25B2B98A00648B5A /* Pipeline.cpp */,
-				2BEC825E25B2B98A00648B5A /* SDLRenderContext.hpp */,
 				2BEC825F25B2B98A00648B5A /* AppFramework.cpp */,
-				2BEC826025B2B98A00648B5A /* RenderContext.cpp */,
 				2BEC826125B2B98A00648B5A /* math.hpp */,
 				2BEC826225B2B98A00648B5A /* AppFramework.h */,
-				2BEC826325B2B98A00648B5A /* SDLRenderContext.cpp */,
 				2BEC826425B2B98A00648B5A /* model.h */,
 				2BEC826525B2B98A00648B5A /* model.cpp */,
-				2BEC826625B2B98A00648B5A /* RenderContext.hpp */,
 				2BEC826725B2B98A00648B5A /* Pipeline.h */,
 				2BEC826825B2B98A00648B5A /* tgaimage.h */,
 				2BEC826925B2B98A00648B5A /* tgaimage.cpp */,
@@ -185,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BE1509E259D9B5A00E62AE8 /* main.cpp in Sources */,
+				2BEC827825B2C89000648B5A /* Testcase.cpp in Sources */,
 				2BEC826B25B2B98A00648B5A /* Camera.cpp in Sources */,
 				2BEC827125B2B98A00648B5A /* model.cpp in Sources */,
 				2BEC827325B2B98A00648B5A /* renderer.cpp in Sources */,
@@ -192,9 +188,7 @@
 				2BEC825125B2B3C500648B5A /* Actor.cpp in Sources */,
 				2BEC826E25B2B98A00648B5A /* AppFramework.cpp in Sources */,
 				2BEC827225B2B98A00648B5A /* tgaimage.cpp in Sources */,
-				2BEC827025B2B98A00648B5A /* SDLRenderContext.cpp in Sources */,
 				2BEC826C25B2B98A00648B5A /* math.cpp in Sources */,
-				2BEC826F25B2B98A00648B5A /* RenderContext.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

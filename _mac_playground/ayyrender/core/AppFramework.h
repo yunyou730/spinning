@@ -1,25 +1,27 @@
 #pragma once
 #include <SDL2/SDL.h>
-#include "SDLRenderContext.hpp"
 #include <functional>
 #include <map>
+#include "Pipeline.h"
 
+AYY_NS_BEGIN
+
+class Pipeline;
 class AppFramework
 {
 public:
-    AppFramework(int width,int height,int depth);
+    AppFramework(int width,int height);
     ~AppFramework();
     
-    void Init();
     void MainLoop();
     void Clean();
     
-    void RegisterDrawFunc(std::function<void(RenderContext*)> func)
+    void RegisterDrawFunc(std::function<void(Pipeline*)> func)
     {
         _drawFunc = func;
     }
     
-    void RegisterUpdateFunc(std::function<void(float)> func)
+    void RegisterUpdateFunc(std::function<void(AppFramework* app,float)> func)
     {
         _updateFunc = func;
     }
@@ -28,22 +30,20 @@ public:
     
 protected:
     
-    void InitSDL();
+    void InitSDL(int width,int height);
     void InitKeyState();
     
-    
+    void ClearBuffer();
+    void PresentFramebuffer();
     
 private:
-    SDL_Window*     _window         = nullptr;
-    SDL_Renderer*   _renderer       = nullptr;
-    RenderContext*  _context        = nullptr;
+    SDL_Window*     _window     = nullptr;
+    SDL_Renderer*   _renderer   = nullptr;
+    Pipeline*       _pipeline   = nullptr;
     
-    const int _width    = 0;
-    const int _height   = 0;
-    const int _depth    = 0;
-    
-    std::function<void(float deltaTime)>    _updateFunc = nullptr;
-    std::function<void(RenderContext*)>     _drawFunc = nullptr;
+    std::function<void(AppFramework* app,float deltaTime)>    _updateFunc = nullptr;
+    std::function<void(Pipeline*)>          _drawFunc = nullptr;
     
     std::map<SDL_KeyCode,bool>  _keyStateMap;
 };
+AYY_NS_END
