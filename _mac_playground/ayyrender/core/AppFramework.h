@@ -16,7 +16,7 @@ public:
     void MainLoop();
     void Clean();
     
-    void RegisterDrawFunc(std::function<void(Pipeline*)> func)
+    void RegisterDrawFunc(std::function<void(AppFramework*)> func)
     {
         _drawFunc = func;
     }
@@ -27,6 +27,12 @@ public:
     }
     
     bool QueryKeyState(SDL_KeyCode keyCode);
+    
+    
+    Pipeline* GetPipeline() { return _pipeline;}
+    
+    void Draw(int x,int y,const Color& color);
+    void WriteZ(int x,int y,float value);
     
 protected:
     
@@ -42,8 +48,11 @@ private:
     Pipeline*       _pipeline   = nullptr;
     
     std::function<void(AppFramework* app,float deltaTime)>    _updateFunc = nullptr;
-    std::function<void(Pipeline*)>          _drawFunc = nullptr;
+    std::function<void(AppFramework* app)>          _drawFunc = nullptr;
     
     std::map<SDL_KeyCode,bool>  _keyStateMap;
+    
+    
+    int     _width,_height;
 };
 AYY_NS_END

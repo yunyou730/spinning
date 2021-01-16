@@ -13,7 +13,7 @@ using namespace ayy;
 int main( int argc, char* args[] )
 {
     Testcase testcase;
-    AppFramework app(200,200);
+    AppFramework app(800,800);
     app.RegisterUpdateFunc(std::bind(&Testcase::Update,&testcase,std::placeholders::_1,std::placeholders::_2));
     app.RegisterDrawFunc(std::bind(&Testcase::Draw,&testcase,std::placeholders::_1));
     app.MainLoop();

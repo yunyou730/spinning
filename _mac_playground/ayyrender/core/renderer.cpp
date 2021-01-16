@@ -4,13 +4,12 @@
 #include <vector>
 #include <algorithm>
 
-
-void drawPoint(Pipeline* pipeline,const Color& color,int x,int y)
+void drawPoint(AppFramework* ctx,const Color& color,int x,int y)
 {
-    pipeline->WriteColor(x,y,color);
+    ctx->Draw(x,y,color);
 }
 
-void line(Pipeline* pipeline,const Color& color,int x0,int y0,int x1,int y1)
+void line(AppFramework* ctx,const Color& color,int x0,int y0,int x1,int y1)
 {
     int dx = std::abs(x1 - x0);
     int dy = std::abs(y1 - y0);
@@ -29,7 +28,7 @@ void line(Pipeline* pipeline,const Color& color,int x0,int y0,int x1,int y1)
         {
             float t = (x - x0) / dis;
             int y = y0 + (y1 - y0) * t;
-            pipeline->WriteColor(x,y,color);
+            ctx->Draw(x,y,color);
         }
     }
     else
@@ -44,24 +43,24 @@ void line(Pipeline* pipeline,const Color& color,int x0,int y0,int x1,int y1)
         {
             float t = (y - y0) / dis;
             int x = x0 + (x1 - x0) * t;
-            pipeline->WriteColor(x,y,color);
+            ctx->Draw(x,y,color);
         }
     }
 }
 
-void line(Pipeline* pipeline,const Color& color,const Vec2<int>& p1,const Vec2<int>& p2)
+void line(AppFramework* ctx,const Color& color,const Vec2<int>& p1,const Vec2<int>& p2)
 {
-    line(pipeline,color,p1.x,p1.y,p2.x,p2.y);
+    line(ctx,color,p1.x,p1.y,p2.x,p2.y);
 }
 
-void triangle(Pipeline* pipeline,const Color& color,const Vec2<int>& p1,const Vec2<int>& p2,const Vec2<int>& p3)
+void triangle(AppFramework* ctx,const Color& color,const Vec2<int>& p1,const Vec2<int>& p2,const Vec2<int>& p3)
 {
-    line(pipeline,color,p1,p2);
-    line(pipeline,color,p2,p3);
-    line(pipeline,color,p3,p1);
+    line(ctx,color,p1,p2);
+    line(ctx,color,p2,p3);
+    line(ctx,color,p3,p1);
 }
 
-void triangleFill(Pipeline* pipeline,
+void triangleFill(AppFramework* ctx,
                            const Color& color,
                            const Vec3i& p1,
                            const Vec3i& p2,
@@ -85,7 +84,7 @@ void triangleFill(Pipeline* pipeline,
         if(A.x > B.x) std::swap(A,B);
         for(int x = A.x;x <= B.x;x++)
         {
-            pipeline->WriteColor(x,y,color);
+            ctx->Draw(x,y,color);
         }
     };
     
@@ -125,7 +124,7 @@ static Color LerpColor(const Color& a,const Color& b,float pct)
     return result;
 }
 
-void triangleFill(Pipeline* pipeline,const Vertex& v1,const Vertex& v2,const Vertex& v3)
+void triangleFill(AppFramework* app,const Vertex& v1,const Vertex& v2,const Vertex& v3)
 {
     std::vector<Vertex> arr = {v1,v2,v3};
     std::sort(arr.begin(),arr.end(),[](const Vertex& lh,const Vertex& rh)->bool{

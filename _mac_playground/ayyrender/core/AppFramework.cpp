@@ -10,8 +10,11 @@
 
 AYY_NS_BEGIN
 AppFramework::AppFramework(int width,int height)
+    :_width(width)
+    ,_height(height)
 {
     _pipeline = new Pipeline(width,height);
+    //InitSDL(width * pixelRatio,height * pixelRatio);
     InitSDL(width,height);
     InitKeyState();
 }
@@ -29,8 +32,11 @@ void AppFramework::InitSDL(int width,int height)
     }
     else
     {
-        Uint32 windowFlag = SDL_WINDOW_SHOWN;// | SDL_WINDOW_FULLSCREEN;
+//        Uint32 windowFlag = SDL_WINDOW_SHOWN;// | SDL_WINDOW_FULLSCREEN;
 //        windowFlag |= SDL_WINDOW_MAXIMIZED;
+        
+        Uint32 windowFlag = SDL_WINDOW_SHOWN;// | SDL_WINDOW_RESIZABLE;// | SDL_WINDOW_FULLSCREEN | SDL_WINDOW_MAXIMIZED;
+        
         _window = SDL_CreateWindow( "SDL Tutorial",
                                    SDL_WINDOWPOS_UNDEFINED,
                                    SDL_WINDOWPOS_UNDEFINED,
@@ -121,7 +127,7 @@ void AppFramework::MainLoop()
         ClearBuffer();
         if(_drawFunc != nullptr)
         {
-            _drawFunc(_pipeline);
+            _drawFunc(this);
         }
         PresentFramebuffer();
         
@@ -132,13 +138,15 @@ void AppFramework::MainLoop()
 
 void AppFramework::ClearBuffer()
 {
-    SDL_SetRenderDrawColor(_renderer, 0x00, 0x00, 0x00, 0xff);
+    Color color = _pipeline->GetClearColor();
+    SDL_SetRenderDrawColor(_renderer, color.r, color.g, color.b, color.a);
     SDL_RenderClear(_renderer);
     _pipeline->ClearBuffer();
 }
 
 void AppFramework::PresentFramebuffer()
 {
+    /*
     int width,height;
     _pipeline->GetSize(width,height);
     
@@ -146,13 +154,14 @@ void AppFramework::PresentFramebuffer()
     for(int y = 0;y < height;y++)
     {
         for(int x = 0;x < width;x++)
-        {
+        {   
             const Color& color = frameBuffer->Get(x,y);
             SDL_SetRenderDrawColor(_renderer, color.r, color.g, color.b, color.a);
             y = (height - 1) - y;
             SDL_RenderDrawPoint(_renderer, x,y);
         }
     }
+     */
 }
 
 void AppFramework::Clean()
@@ -176,6 +185,21 @@ bool AppFramework::QueryKeyState(SDL_KeyCode keyCode)
         return it->second;
     }
     return false;
+}
+
+void AppFramework::Draw(int x,int y,const Color& color)
+{
+    SDL_SetRenderDrawColor(_renderer, color.r, color.g, color.b, color.a);
+    y = (_height - 1) - y;
+    SDL_RenderDrawPoint(_renderer, x,y);
+    
+    auto frameBuffer = _pipeline->GetFrameBuffer();
+    frameBuffer->Set(x,y,color);
+}
+
+void AppFramework::WriteZ(int x,int y,float value)
+{
+    
 }
 
 AYY_NS_END

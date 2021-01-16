@@ -79,14 +79,14 @@ void Testcase::Update(AppFramework* app,float deltaTime)
      */
 }
 
-void Testcase::Draw(Pipeline* pipeline)
+void Testcase::Draw(AppFramework* ctx)
 {
     Color col(255,0,0,255);
     
-    Matrix<4> mvp = pipeline->GetCamera()->ProjectionMatrix()
-                        * pipeline->GetCamera()->ViewMatrix()
+    Matrix<4> mvp = ctx->GetPipeline()->GetCamera()->ProjectionMatrix()
+                        * ctx->GetPipeline()->GetCamera()->ViewMatrix()
                         * _actor.WorldMatrix();
-    Matrix<4> mvpViewport = pipeline->GetCamera()->ViewportMatrix() * mvp;
+    Matrix<4> mvpViewport = ctx->GetPipeline()->GetCamera()->ViewportMatrix() * mvp;
     
     for(int faceIndex = 0;faceIndex < _actor.FaceCount();faceIndex++)
     {
@@ -102,9 +102,9 @@ void Testcase::Draw(Pipeline* pipeline)
         Vec3f v1 = vertice[1].transformedPos - vertice[0].transformedPos;
         Vec3f v2 = vertice[2].transformedPos - vertice[1].transformedPos;
         Vec3f normalDir = (v1 ^ v2).Normalize();
-        if(pipeline->GetCamera()->CheckBackFace(normalDir))
+        if(ctx->GetPipeline()->GetCamera()->CheckBackFace(normalDir))
         {
-            triangle(pipeline,col,vertice[0].transformedPos,vertice[1].transformedPos,vertice[2].transformedPos);
+            triangle(ctx,col,vertice[0].transformedPos,vertice[1].transformedPos,vertice[2].transformedPos);
 //            triangleFill(ctx,vertice[0],vertice[1],vertice[2]);
         }
     }

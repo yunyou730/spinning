@@ -16,7 +16,7 @@ public:
     ~Testcase();
     
     void Update(AppFramework* app,float deltaTime);
-    void Draw(Pipeline* pipeline);
+    void Draw(AppFramework* ctx);
     
 private:
     Actor _actor;
