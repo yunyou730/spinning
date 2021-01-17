@@ -20,9 +20,6 @@ Testcase::~Testcase()
 
 void Testcase::Update(AppFramework* app,float deltaTime)
 {
-    float deltaYaw = 60 * deltaTime;
-//    _actor._yaw += deltaYaw;
-    
     // move object
     float dis = 1.f * deltaTime;
     if(app->QueryKeyState(SDL_KeyCode::SDLK_a))
@@ -50,33 +47,32 @@ void Testcase::Update(AppFramework* app,float deltaTime)
         _actor._pos.z += dis;
     }
     
-    // move camera
-    /*
-    if(app.QueryKeyState(SDL_KeyCode::SDLK_UP))
+    float rotateSpeed = 60 * deltaTime;
+//    _actor._yaw += deltaYaw;
+    if(app->QueryKeyState(SDL_KeyCode::SDLK_UP))
     {
-        testcase._eye.y += dis;
+        _actor._pitch += rotateSpeed;
     }
-    else if(app.QueryKeyState(SDL_KeyCode::SDLK_DOWN))
+    else if(app->QueryKeyState(SDL_KeyCode::SDLK_DOWN))
     {
-        testcase._eye.y -= dis;
+        _actor._pitch -= rotateSpeed;
     }
-    else if(app.QueryKeyState(SDL_KeyCode::SDLK_LEFT))
+    else if(app->QueryKeyState(SDL_KeyCode::SDLK_LEFT))
     {
-        testcase._eye.x -= dis;
+        _actor._roll += rotateSpeed;
     }
-    else if(app.QueryKeyState(SDL_KeyCode::SDLK_RIGHT))
+    else if(app->QueryKeyState(SDL_KeyCode::SDLK_RIGHT))
     {
-        testcase._eye.x += dis;
+        _actor._roll -= rotateSpeed;
     }
-    else if(app.QueryKeyState(SDL_KeyCode::SDLK_SLASH))
+    else if(app->QueryKeyState(SDL_KeyCode::SDLK_SLASH))
     {
-        testcase._eye.z += dis;
+        _actor._yaw += rotateSpeed;
     }
-    else if(app.QueryKeyState(SDL_KeyCode::SDLK_BACKSLASH))
+    else if(app->QueryKeyState(SDL_KeyCode::SDLK_BACKSLASH))
     {
-        testcase._eye.z -= dis;
+        _actor._yaw -= rotateSpeed;
     }
-     */
 }
 
 void Testcase::Draw(AppFramework* ctx)
@@ -96,8 +92,6 @@ void Testcase::Draw(AppFramework* ctx)
         for(int i = 0;i < vertice.size();i++)
         {
             Vertex& vertex = vertice[i];
-            
-//            vertex.worldPos = _actor.WorldMatrix() * vertex.pos;
             vertex.transformedPos = mvp * vertex.pos;
             vertex.ndcPos = vertex.transformedPos * (1/vertex.transformedPos.w);
             vertex.screenPos = viewportMatrix * vertex.ndcPos;
@@ -108,8 +102,14 @@ void Testcase::Draw(AppFramework* ctx)
         Vec3f normalDir = (v1 ^ v2).Normalize();
         if(ctx->GetPipeline()->GetCamera()->CheckBackFace(normalDir))
         {
-            triangle(ctx,col,vertice[0].screenPos,vertice[1].screenPos,vertice[2].screenPos);
-//            triangleFill(ctx,vertice[0],vertice[1],vertice[2]);
+//            triangle(ctx,col,vertice[0].screenPos,vertice[1].screenPos,vertice[2].screenPos);
+            /*
+            printf("start dump surface =====\n");
+            vertice[0].screenPos.Dump();
+            vertice[1].screenPos.Dump();
+            vertice[2].screenPos.Dump();
+            */
+            triangleFill(ctx,vertice[0],vertice[1],vertice[2]);
         }
     }
 }

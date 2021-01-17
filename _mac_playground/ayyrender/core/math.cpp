@@ -60,12 +60,6 @@ Matrix<4> RotateByAxisZ(float deg)
     return mat;
 }
 
-float Lerp(float a,float b,float pct)
-{
-    if(a > b) std::swap(a,b);
-    return a + (b - a) * pct;
-}
-
 extern Vec3f TriangleBarycentricCoordinate(const Vec2f& a,const Vec2f& b,const Vec2f& c,const Vec2f& p)
 {
     float ra =

@@ -387,3 +387,13 @@ struct Matrix
         printf("----\n");
     }
 };
+
+
+
+template<typename T>
+T Lerp(T v1,T v2,float t)
+{
+    T r;
+    r = v1 + (v2 - v1) * t;
+    return r;
+}

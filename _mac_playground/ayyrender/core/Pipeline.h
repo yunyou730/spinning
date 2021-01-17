@@ -14,6 +14,7 @@ struct Vertex
     Vec4    pos;            // local model pos
     Color   color;
     
+    Vertex() {}
     Vertex(const Vec4& pos,const Color& color):pos(pos),color(color){}
     
 //    Vec4    worldPos;       // local pos crossed by WorldMatrix

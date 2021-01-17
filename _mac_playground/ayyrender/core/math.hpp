@@ -467,8 +467,6 @@ extern Matrix<4> RotateByAxisX(float deg);
 extern Matrix<4> RotateByAxisY(float deg);
 extern Matrix<4> RotateByAxisZ(float deg);
 
-extern float Lerp(float a,float b,float pct);
-
 /*
     a,b,c is 3 points of one triangle
     p is we are calculating point
@@ -476,3 +474,16 @@ extern float Lerp(float a,float b,float pct);
     return shall be a barycentric coordinate,3 values be saved in Vec3f's each part
  */
 extern Vec3f TriangleBarycentricCoordinate(const Vec2f& a,const Vec2f& b,const Vec2f& c,const Vec2f& p);
+
+template<typename T>
+T Lerp(T v1,T v2,float t)
+{
+    if(v1 == v2)
+    {
+        return v1;
+    }
+    T r;
+    r = v1 + (v2 - v1) * t;
+    return r;
+}
+
