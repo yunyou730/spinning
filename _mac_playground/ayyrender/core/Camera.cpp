@@ -73,7 +73,9 @@ Matrix<4>   Camera::ViewportMatrix()
 
 bool Camera::CheckBackFace(const Vec3f& normalDir)
 {
-    Vec3f lookDir = (_target - _eye).Normalize();
+//    Vec3f lookDir = (_target - _eye).Normalize();
+    Vec3f lookDir = Vec3f(0,0,-1);
     float dot = (lookDir * normalDir);
-    return dot < 0;
+    
+    return dot <= 0;
 }

@@ -16,9 +16,10 @@ struct Vertex
     
     Vertex(const Vec4& pos,const Color& color):pos(pos),color(color){}
     
+//    Vec4    worldPos;       // local pos crossed by WorldMatrix
     Vec4    transformedPos; // pos producted by MVP
     Vec4    ndcPos;         // pos transformedPos * 1/w
-    Vec2i   screenPos;      // pos which ndcPos -> screen
+    Vec3f   screenPos;      // pos which ndcPos -> screen
 };
 
 template<typename T>
@@ -91,7 +92,9 @@ struct FrameBuffer
     void Set(int x,int y,const T& value)
     {
         if(y < 0 || y >= rowCnt || x < 0 || x >= colCnt)
-            throw new std::runtime_error("over data bound");
+        {
+            return;
+        }
         data[y][x] = value;
     }
     

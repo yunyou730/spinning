@@ -123,32 +123,3 @@ static Color LerpColor(const Color& a,const Color& b,float pct)
     Color result(Lerp(a.r,b.r,pct),Lerp(a.g,b.g,pct),Lerp(a.b,b.b,pct),Lerp(a.a,b.a,pct));
     return result;
 }
-
-void triangleFill(AppFramework* app,const Vertex& v1,const Vertex& v2,const Vertex& v3)
-{
-    std::vector<Vertex> arr = {v1,v2,v3};
-    std::sort(arr.begin(),arr.end(),[](const Vertex& lh,const Vertex& rh)->bool{
-        return lh.transformedPos.y < rh.transformedPos.y;
-    });
-    int totalHeight = arr[2].transformedPos.y - arr[0].transformedPos.y;
-    if(totalHeight <= 0)
-    {
-        return;
-    }
-    
-    
-    // triangle lower part
-    for(int y = arr[0].transformedPos.y;y <= arr[1].transformedPos.y;y++)
-    {
-        int segmentHeight = arr[1].transformedPos.y - arr[0].transformedPos.y + 1;    // avoid div 0
-        
-        float alpha = (float)(y - arr[0].transformedPos.y) / totalHeight;
-        float beta = (float)(y - arr[0].transformedPos.y) / segmentHeight;
-        
-//        Vec3i A = arr[0] + (arr[2] - arr[0]) * alpha;
-//        Vec3i B = arr[0] + (arr[1] - arr[0]) * beta;
-//        
-//        scanLine(y,A,B);
-    }
-    
-}
