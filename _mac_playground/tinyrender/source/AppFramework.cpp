@@ -49,11 +49,14 @@ void AppFramework::InitSDL()
             throw std::runtime_error(SDL_GetError());
         }
         
+        /*
         _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
         if (_renderer == nullptr)
         {
             throw std::runtime_error(SDL_GetError());
         }
+        */
+        _surface
     }
     
     _context = new SDLRenderContext(_renderer,_width,_height,_depth);

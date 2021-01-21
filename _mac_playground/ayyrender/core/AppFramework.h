@@ -34,17 +34,34 @@ public:
     void Draw(int x,int y,const Color& color);
     void WriteZ(int x,int y,float value);
     
+public:
+//    SDL_Surface* GetSurface() { return _surface;}
+    SDL_Texture* GetTexture() { return _texture;}
+    void* GetPixels() {return _pixels;}
+    int GetPitch() const {return _pitch;}
+    
 protected:
     
     void InitSDL(int width,int height);
     void InitKeyState();
     
-    void ClearBuffer();
-    void PresentFramebuffer();
+    void BeginDraw();
+    void EndDraw();
+    
+    
+    int GetPixelIndex(int row,int col);
     
 private:
     SDL_Window*     _window     = nullptr;
     SDL_Renderer*   _renderer   = nullptr;
+    SDL_Texture*    _texture    = nullptr;
+    
+    const SDL_PixelFormatEnum   _pixelFormat;
+    void*               _pixels = nullptr;
+    int                 _pitch  = 0;
+    SDL_PixelFormat*    _format = nullptr;
+    
+    
     Pipeline*       _pipeline   = nullptr;
     
     std::function<void(AppFramework* app,float deltaTime)>    _updateFunc = nullptr;

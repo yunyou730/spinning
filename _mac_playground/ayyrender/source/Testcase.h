@@ -18,6 +18,8 @@ public:
     void Update(AppFramework* app,float deltaTime);
     void Draw(AppFramework* ctx);
     
+    void TestDraw(AppFramework* ctx);
+    
 private:
     Actor _actor;
 };

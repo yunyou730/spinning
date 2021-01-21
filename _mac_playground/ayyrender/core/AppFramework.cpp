@@ -12,9 +12,10 @@ AYY_NS_BEGIN
 AppFramework::AppFramework(int width,int height)
     :_width(width)
     ,_height(height)
+    ,_pixelFormat(SDL_PIXELFORMAT_RGBA8888)
 {
     _pipeline = new Pipeline(width,height);
-    //InitSDL(width * pixelRatio,height * pixelRatio);
+//    _pipeline->SetClearColor(Color(255,0,0,255));
     InitSDL(width,height);
     InitKeyState();
 }
@@ -49,14 +50,11 @@ void AppFramework::InitSDL(int width,int height)
             throw std::runtime_error(SDL_GetError());
         }
         
-        _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
-        if (_renderer == nullptr)
-        {
-            throw std::runtime_error(SDL_GetError());
-        }
+        _renderer = SDL_CreateRenderer(_window,-1,SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+        _texture = SDL_CreateTexture(_renderer,_pixelFormat,SDL_TEXTUREACCESS_STREAMING,width,height);
+        _format = SDL_AllocFormat(_pixelFormat);
     }
     
-//    _context = new SDLRenderContext(_renderer,_width,_height,_depth);
 }
 
 void AppFramework::InitKeyState()
@@ -131,55 +129,55 @@ void AppFramework::MainLoop()
         }
         
         // draw
-        ClearBuffer();
+        BeginDraw();
         if(_drawFunc != nullptr)
         {
             _drawFunc(this);
         }
-        PresentFramebuffer();
-        
-        SDL_RenderPresent(_renderer);
-        
+        EndDraw();
     }
 }
 
-void AppFramework::ClearBuffer()
+void AppFramework::BeginDraw()
 {
-    Color color = _pipeline->GetClearColor();
-    SDL_SetRenderDrawColor(_renderer, color.r, color.g, color.b, color.a);
-    SDL_RenderClear(_renderer);
     _pipeline->ClearBuffer();
-}
-
-void AppFramework::PresentFramebuffer()
-{
-    /*
-    int width,height;
-    _pipeline->GetSize(width,height);
     
-    auto frameBuffer = _pipeline->GetFrameBuffer();
-    for(int y = 0;y < height;y++)
+    Color clearColor = _pipeline->GetClearColor();
+    
+    SDL_LockTexture(_texture,nullptr,&_pixels,&_pitch);
+
+//    Uint32 color = SDL_MapRGBA(_format,clearColor.r,clearColor.g,clearColor.b,clearColor.a);
+//    for(int i = 0;i < _pitch * 200 /4;i++)
+//    {
+//        ((Uint32*)_pixels)[i] = color;
+//    }
+    
+    for(int y = 0;y < _height;y++)
     {
-        for(int x = 0;x < width;x++)
-        {   
-            const Color& color = frameBuffer->Get(x,y);
-            SDL_SetRenderDrawColor(_renderer, color.r, color.g, color.b, color.a);
-            y = (height - 1) - y;
-            SDL_RenderDrawPoint(_renderer, x,y);
+        for(int x = 0;x < _width;x++)
+        {
+            Draw(x,y,clearColor);
         }
     }
-     */
+
+
+}
+
+void AppFramework::EndDraw()
+{
+    SDL_UnlockTexture(_texture);
+    SDL_RenderCopy(_renderer,_texture,NULL,NULL);
+    SDL_RenderPresent(_renderer);
 }
 
 void AppFramework::Clean()
 {
     _drawFunc = nullptr;
+    _updateFunc = nullptr;
     
     SDL_DestroyRenderer(_renderer);
-    _renderer = nullptr;
-    
+    SDL_DestroyTexture(_texture);
     SDL_DestroyWindow(_window);
-    _window = nullptr;
     
     SDL_Quit();
 }
@@ -196,12 +194,26 @@ bool AppFramework::QueryKeyState(SDL_KeyCode keyCode)
 
 void AppFramework::Draw(int x,int y,const Color& color)
 {
-    SDL_SetRenderDrawColor(_renderer, color.r, color.g, color.b, color.a);
-    y = (_height - 1) - y;
-    SDL_RenderDrawPoint(_renderer, x,y);
-    
     auto frameBuffer = _pipeline->GetFrameBuffer();
     frameBuffer->Set(x,y,color);
+    
+    Uint32 col = SDL_MapRGBA(_format,color.r,color.g,color.b,color.a);
+    int index = GetPixelIndex(x,y);
+    ((Uint32*)_pixels)[index] = col;
+
+    
+    
+//    /*
+//    SDL_SetRenderDrawColor(_renderer, color.r, color.g, color.b, color.a);
+//    y = (_height - 1) - y;
+//    SDL_RenderDrawPoint(_renderer, x,y);
+//    */
+}
+
+int AppFramework::GetPixelIndex(int x,int y)
+{
+    int index = y * (_pitch / 4) + x;
+    return index;
 }
 
 void AppFramework::WriteZ(int x,int y,float value)
