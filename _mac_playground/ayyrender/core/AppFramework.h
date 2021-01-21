@@ -35,10 +35,7 @@ public:
     void WriteZ(int x,int y,float value);
     
 public:
-//    SDL_Surface* GetSurface() { return _surface;}
     SDL_Texture* GetTexture() { return _texture;}
-    void* GetPixels() {return _pixels;}
-    int GetPitch() const {return _pitch;}
     
 protected:
     
@@ -49,7 +46,7 @@ protected:
     void EndDraw();
     
     
-    int GetPixelIndex(int row,int col);
+    int GetPixelIndex(int row,int col,int pitch);
     
 private:
     SDL_Window*     _window     = nullptr;
@@ -57,8 +54,6 @@ private:
     SDL_Texture*    _texture    = nullptr;
     
     const SDL_PixelFormatEnum   _pixelFormat;
-    void*               _pixels = nullptr;
-    int                 _pitch  = 0;
     SDL_PixelFormat*    _format = nullptr;
     
     

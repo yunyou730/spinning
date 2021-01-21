@@ -36,6 +36,8 @@ public:
     
     void WriteColor(int x,int y,const Color& color);
     void WriteZ(int x,int y,float value);
+    Color& GetColor(int x,int y) const;
+    
     
     FrameBuffer<Color>*     GetFrameBuffer() const { return _frameBuffer;}
     FrameBuffer<float>*     GetZBuffer() const { return _zBuffer;}

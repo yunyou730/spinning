@@ -22,6 +22,11 @@ void Pipeline::WriteColor(int x,int y,const Color& color)
     _frameBuffer->Set(x,y,color);
 }
 
+Color& Pipeline::GetColor(int x,int y) const
+{
+    return _frameBuffer->data[y][x];
+}
+
 void Pipeline::WriteZ(int x,int y,float value)
 {
     _zBuffer->Set(x,y,value);

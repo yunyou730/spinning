@@ -141,22 +141,27 @@ void AppFramework::MainLoop()
 void AppFramework::BeginDraw()
 {
     _pipeline->ClearBuffer();
-    
-    Color clearColor = _pipeline->GetClearColor();
-    
-    SDL_LockTexture(_texture,nullptr,&_pixels,&_pitch);
-
-    for(int y = 0;y < _height;y++)
-    {
-        for(int x = 0;x < _width;x++)
-        {
-            Draw(x,y,clearColor);
-        }
-    }
 }
 
 void AppFramework::EndDraw()
 {
+    void* pixels = nullptr;
+    int pitch  = 0;
+    
+    SDL_LockTexture(_texture,nullptr,&pixels,&pitch);
+    
+    for(int y = 0;y < _height;y++)
+    {
+        int screenY = _height - 1 - y;
+        for(int x = 0;x < _width;x++)
+        {
+            Color& color = _pipeline->GetColor(x,y);
+            Uint32 col = SDL_MapRGBA(_format,color.r,color.g,color.b,color.a);
+            int index = GetPixelIndex(x,screenY,pitch);
+            ((Uint32*)pixels)[index] = col;
+        }
+    }
+    
     SDL_UnlockTexture(_texture);
     SDL_RenderCopy(_renderer,_texture,NULL,NULL);
     SDL_RenderPresent(_renderer);
@@ -188,23 +193,15 @@ void AppFramework::Draw(int x,int y,const Color& color)
 {
     if(x < 0 || x >= _width || y < 0 || y >= _height)
         return;
-        
-    
-    y = _height - 1 - y;
     
     // fill frame buffer
     auto frameBuffer = _pipeline->GetFrameBuffer();
     frameBuffer->Set(x,y,color);
-    
-    // fill pixel
-    Uint32 col = SDL_MapRGBA(_format,color.r,color.g,color.b,color.a);
-    int index = GetPixelIndex(x,y);
-    ((Uint32*)_pixels)[index] = col;
 }
 
-int AppFramework::GetPixelIndex(int x,int y)
+int AppFramework::GetPixelIndex(int x,int y,int pitch)
 {
-    int index = y * (_pitch / 4) + x;
+    int index = y * (pitch / 4) + x;
     return index;
 }
 
