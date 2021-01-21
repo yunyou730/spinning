@@ -146,12 +146,6 @@ void AppFramework::BeginDraw()
     
     SDL_LockTexture(_texture,nullptr,&_pixels,&_pitch);
 
-//    Uint32 color = SDL_MapRGBA(_format,clearColor.r,clearColor.g,clearColor.b,clearColor.a);
-//    for(int i = 0;i < _pitch * 200 /4;i++)
-//    {
-//        ((Uint32*)_pixels)[i] = color;
-//    }
-    
     for(int y = 0;y < _height;y++)
     {
         for(int x = 0;x < _width;x++)
@@ -159,8 +153,6 @@ void AppFramework::BeginDraw()
             Draw(x,y,clearColor);
         }
     }
-
-
 }
 
 void AppFramework::EndDraw()
@@ -194,20 +186,20 @@ bool AppFramework::QueryKeyState(SDL_KeyCode keyCode)
 
 void AppFramework::Draw(int x,int y,const Color& color)
 {
+    if(x < 0 || x >= _width || y < 0 || y >= _height)
+        return;
+        
+    
+    y = _height - 1 - y;
+    
+    // fill frame buffer
     auto frameBuffer = _pipeline->GetFrameBuffer();
     frameBuffer->Set(x,y,color);
     
+    // fill pixel
     Uint32 col = SDL_MapRGBA(_format,color.r,color.g,color.b,color.a);
     int index = GetPixelIndex(x,y);
     ((Uint32*)_pixels)[index] = col;
-
-    
-    
-//    /*
-//    SDL_SetRenderDrawColor(_renderer, color.r, color.g, color.b, color.a);
-//    y = (_height - 1) - y;
-//    SDL_RenderDrawPoint(_renderer, x,y);
-//    */
 }
 
 int AppFramework::GetPixelIndex(int x,int y)

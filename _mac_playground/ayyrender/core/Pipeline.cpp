@@ -34,7 +34,7 @@ void Pipeline::ClearBuffer()
         for(int x = 0;x < _width;x++)
         {
             _frameBuffer->Set(x,y,_clearColor);
-            _zBuffer->Set(x,y,0.f);
+            _zBuffer->Set(x,y,0.f);     // temp fill with 0
         }
     }
 }

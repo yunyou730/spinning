@@ -116,10 +116,5 @@ void Testcase::Draw(AppFramework* ctx)
 
 void Testcase::TestDraw(AppFramework* ctx)
 {
-    // @miao todo
     SDL_Texture* texture = ctx->GetTexture();
-    
-//    SDL_Surface* surface = ctx->GetSurface();
-//    SDL_memset(surface->pixels,33,surface->h * surface->pitch);
-    printf("sss\n");
 }
