@@ -6,12 +6,11 @@
 //
 
 #include "Testcase.h"
-#include "Actor.h"
 #include "renderer.hpp"
 
 Testcase::Testcase()
 {
-    
+    _actor.Init();
 }
 
 Testcase::~Testcase()
@@ -77,7 +76,7 @@ void Testcase::Update(AppFramework* app,float deltaTime)
 
 void Testcase::Draw(AppFramework* ctx)
 {
-    Color col(255,0,0,255);
+//    Color col(255,0,0,255);
     
     Matrix<4> mvp = ctx->GetPipeline()->GetCamera()->ProjectionMatrix()
                         * ctx->GetPipeline()->GetCamera()->ViewMatrix()

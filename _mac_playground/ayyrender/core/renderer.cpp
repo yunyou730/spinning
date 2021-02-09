@@ -129,7 +129,9 @@ static Vertex LerpVertex(Vertex& v1,Vertex& v2,float t)
     return r;
 }
 
-
+/*
+ 这个函数有问题，会导致 有 “缝隙”
+ */
 void triangleFill(AppFramework* ctx,const Vertex& v1,const Vertex& v2,const Vertex& v3)
 {
     std::vector<Vertex> arr = {v1,v2,v3};
@@ -174,7 +176,7 @@ void triangleFill(AppFramework* ctx,const Vertex& v1,const Vertex& v2,const Vert
         float pctOfFar  = (float)(y - arr[0].screenPos.y) / totalHeight;
         float pctOfNear = (float)(y - arr[0].screenPos.y) / segmentHeight;
         
-        if(pctOfFar > 0 && pctOfNear > 0)
+        if(pctOfFar >= 0 && pctOfNear >= 0)
         {
             Vertex v1 = LerpVertex(arr[0],arr[2],pctOfFar);
             Vertex v2 = LerpVertex(arr[0],arr[1],pctOfNear);
@@ -189,7 +191,7 @@ void triangleFill(AppFramework* ctx,const Vertex& v1,const Vertex& v2,const Vert
         float pctOfFar  = (float)(y - arr[0].screenPos.y) / totalHeight;
         float pctOfNear = (float)(y - arr[1].screenPos.y) / segmentHeight;
         
-        if(pctOfFar > 0 && pctOfNear > 0)
+        if(pctOfFar >= 0 && pctOfNear >= 0)
         {
             Vertex v1 = LerpVertex(arr[0],arr[2],pctOfFar);
             Vertex v2 = LerpVertex(arr[1],arr[2],pctOfNear);

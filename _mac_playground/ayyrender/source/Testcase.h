@@ -6,7 +6,8 @@
 //
 #pragma once
 #include "../core/AppFramework.h"
-#include "Actor.h"
+#include "Cube.h"
+#include "Triangle.h"
 
 using namespace ayy;
 class Testcase
@@ -21,5 +22,7 @@ public:
     void TestDraw(AppFramework* ctx);
     
 private:
-    Actor _actor;
+//    Cube        _actor;
+//    Triangle    _triangle;
+    Triangle        _actor;
 };
