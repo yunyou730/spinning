@@ -99,7 +99,15 @@ void Testcase::Draw(AppFramework* ctx)
         Vec3f v1 = vertice[1].ndcPos - vertice[0].ndcPos;
         Vec3f v2 = vertice[2].ndcPos - vertice[1].ndcPos;
         Vec3f normalDir = (v1 ^ v2).Normalize();
-        if(ctx->GetPipeline()->GetCamera()->CheckBackFace(normalDir))
+        
+        
+        bool bDraw = true;
+        if(_bCheckBackface)
+        {
+            bDraw = ctx->GetPipeline()->GetCamera()->CheckBackFace(normalDir);
+        }
+        
+        if(bDraw)
         {
 //            triangle(ctx,col,vertice[0].screenPos,vertice[1].screenPos,vertice[2].screenPos);
             /*

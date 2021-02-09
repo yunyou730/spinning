@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2B5CA6B225D2BF920003C0BB /* Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B5CA6B025D2BF920003C0BB /* Triangle.cpp */; };
+		2B5CA6B725D2E6780003C0BB /* Quad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B5CA6B525D2E6780003C0BB /* Quad.cpp */; };
 		2BD76F5025A02211009F1754 /* res in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2BD76F4F25A02211009F1754 /* res */; };
 		2BE1509E259D9B5A00E62AE8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1509D259D9B5A00E62AE8 /* main.cpp */; };
 		2BE150AB259E5CEA00E62AE8 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE150AA259E5CEA00E62AE8 /* SDL2.framework */; };
@@ -39,6 +40,8 @@
 		2B5CA6AE25D2BE240003C0BB /* Geometric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Geometric.h; path = source/Geometric.h; sourceTree = "<group>"; };
 		2B5CA6B025D2BF920003C0BB /* Triangle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Triangle.cpp; path = source/Triangle.cpp; sourceTree = "<group>"; };
 		2B5CA6B125D2BF920003C0BB /* Triangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Triangle.h; path = source/Triangle.h; sourceTree = "<group>"; };
+		2B5CA6B525D2E6780003C0BB /* Quad.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Quad.cpp; path = source/Quad.cpp; sourceTree = "<group>"; };
+		2B5CA6B625D2E6780003C0BB /* Quad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Quad.h; path = source/Quad.h; sourceTree = "<group>"; };
 		2BD76F4F25A02211009F1754 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
 		2BE1507D259D99A000E62AE8 /* ayyrender */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ayyrender; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE1509D259D9B5A00E62AE8 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = source/main.cpp; sourceTree = "<group>"; };
@@ -102,6 +105,8 @@
 				2BEC824F25B2B3C500648B5A /* Cube.h */,
 				2B5CA6B125D2BF920003C0BB /* Triangle.h */,
 				2B5CA6B025D2BF920003C0BB /* Triangle.cpp */,
+				2B5CA6B625D2E6780003C0BB /* Quad.h */,
+				2B5CA6B525D2E6780003C0BB /* Quad.cpp */,
 				2BE1509D259D9B5A00E62AE8 /* main.cpp */,
 				2BEC827625B2C89000648B5A /* Testcase.cpp */,
 				2BEC827725B2C89000648B5A /* Testcase.h */,
@@ -186,6 +191,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B5CA6B725D2E6780003C0BB /* Quad.cpp in Sources */,
 				2BE1509E259D9B5A00E62AE8 /* main.cpp in Sources */,
 				2BEC827825B2C89000648B5A /* Testcase.cpp in Sources */,
 				2BEC826B25B2B98A00648B5A /* Camera.cpp in Sources */,

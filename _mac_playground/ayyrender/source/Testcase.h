@@ -8,6 +8,7 @@
 #include "../core/AppFramework.h"
 #include "Cube.h"
 #include "Triangle.h"
+#include "Quad.h"
 
 using namespace ayy;
 class Testcase
@@ -22,7 +23,9 @@ public:
     void TestDraw(AppFramework* ctx);
     
 private:
+    bool    _bCheckBackface = false;
+    
 //    Cube        _actor;
-//    Triangle    _triangle;
-    Triangle        _actor;
+//    Triangle        _actor;
+    Quad          _actor;
 };
