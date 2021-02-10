@@ -121,10 +121,18 @@ static Vertex LerpVertex(Vertex& v1,Vertex& v2,float t)
     
     r.screenPos = v1.screenPos + (v2.screenPos - v1.screenPos) * t;
     
+    /*
     r.color.r = Lerp<int>(v1.color.r,v2.color.r,t);
     r.color.g = Lerp<int>(v1.color.g,v2.color.g,t);
     r.color.b = Lerp<int>(v1.color.b,v2.color.b,t);
     r.color.a = Lerp<int>(v1.color.a,v2.color.a,t);
+    */
+    
+    
+    r.color.r = Lerp<float>(v1.color.r,v2.color.r,t);
+    r.color.g = Lerp<float>(v1.color.g,v2.color.g,t);
+    r.color.b = Lerp<float>(v1.color.b,v2.color.b,t);
+    r.color.a = Lerp<float>(v1.color.a,v2.color.a,t);
     
     return r;
 }
@@ -138,27 +146,23 @@ void triangleFill(AppFramework* ctx,const Vertex& v1,const Vertex& v2,const Vert
     std::sort(arr.begin(),arr.end(),[](const Vertex& lh,const Vertex& rh)->bool{
         return lh.screenPos.y < rh.screenPos.y;
     });
-    int totalHeight = arr[2].screenPos.y - arr[0].screenPos.y;
+    float totalHeight = arr[2].screenPos.y - arr[0].screenPos.y;
     if(totalHeight <= 0)
         return;
     
-    auto scanline = [&](int y,Vertex& v1,Vertex& v2)
+    auto scanline = [&](int y,Vertex v1,Vertex v2)
     {
         if(v1.screenPos.x > v2.screenPos.x)
         {
             std::swap(v1,v2);
         }
-        if(v2.screenPos.x == v1.screenPos.x)
-            return;
         
         for(int x = v1.screenPos.x;x <= v2.screenPos.x;x++)
         {
             float t = (float)(x - v1.screenPos.x) / (float)(v2.screenPos.x - v1.screenPos.x);
             Vertex v = LerpVertex(v1,v2,t);
             ctx->Draw(x,y,v.color);
-//            ctx->Draw(x,y,green);
         }
-        
     };
     // @todo
     /*
@@ -170,34 +174,38 @@ void triangleFill(AppFramework* ctx,const Vertex& v1,const Vertex& v2,const Vert
      如果有的话，再考虑 重心坐标有没有其他 差值 的 办法
      */
     
-    int segmentHeight = arr[1].screenPos.y - arr[0].screenPos.y + 1;    // +1 avoid div 0
-    for(int y = arr[0].screenPos.y;y <= arr[1].screenPos.y;y++)
+    int segmentHeight = arr[1].screenPos.y - arr[0].screenPos.y;
+    if(segmentHeight > 0)
     {
-        float pctOfFar  = (float)(y - arr[0].screenPos.y) / totalHeight;
-        float pctOfNear = (float)(y - arr[0].screenPos.y) / segmentHeight;
-        
-        if(pctOfFar >= 0 && pctOfNear >= 0)
+        for(int y = arr[0].screenPos.y;y <= arr[1].screenPos.y;y++)
         {
-            Vertex v1 = LerpVertex(arr[0],arr[2],pctOfFar);
-            Vertex v2 = LerpVertex(arr[0],arr[1],pctOfNear);
-            
-            scanline(y,v1,v2);
+            float pctOfFar  = (float)(y - arr[0].screenPos.y) / totalHeight;
+            float pctOfNear = (float)(y - arr[0].screenPos.y) / segmentHeight;
+            if(pctOfFar >= 0 && pctOfNear >= 0)
+            {
+                Vertex v1 = LerpVertex(arr[0],arr[2],pctOfFar);
+                Vertex v2 = LerpVertex(arr[0],arr[1],pctOfNear);
+                scanline(y,v1,v2);
+            }
         }
     }
     
-    segmentHeight = arr[2].screenPos.y - arr[1].screenPos.y + 1;    // +1 avoid div 0
-    for(int y = arr[1].screenPos.y;y <= arr[2].screenPos.y;y++)
+    segmentHeight = arr[2].screenPos.y - arr[1].screenPos.y;
+    if(segmentHeight > 0)
     {
-        float pctOfFar  = (float)(y - arr[0].screenPos.y) / totalHeight;
-        float pctOfNear = (float)(y - arr[1].screenPos.y) / segmentHeight;
-        
-        if(pctOfFar >= 0 && pctOfNear >= 0)
+        for(int y = arr[1].screenPos.y;y <= arr[2].screenPos.y;y++)
         {
-            Vertex v1 = LerpVertex(arr[0],arr[2],pctOfFar);
-            Vertex v2 = LerpVertex(arr[1],arr[2],pctOfNear);
-
-            scanline(y,v1,v2);
+            float pctOfFar  = (float)(y - (int)arr[0].screenPos.y) / totalHeight;
+            float pctOfNear = (float)(y - (int)arr[1].screenPos.y) / segmentHeight;
+            
+            if(pctOfFar >= 0 && pctOfNear >= 0)
+            {
+                Vertex v1 = LerpVertex(arr[0],arr[2],pctOfFar);
+                Vertex v2 = LerpVertex(arr[1],arr[2],pctOfNear);
+                
+                scanline(y,v1,v2);
+            }
         }
-
     }
+
 }

@@ -13,10 +13,10 @@ void Quad::InitVertices()
 {
     float size = 1.0f;
     
-    Vertex a(Vec4(-size,-size, size,1.),red);
-    Vertex b(Vec4( size,-size, size,1.),green);
-    Vertex c(Vec4(-size, size, size,1.),blue);
-    Vertex d(Vec4( size, size, size,1.),yellow);
+    Vertex a(Vec4(-size,-size, size,1.5),red);
+    Vertex b(Vec4( size,-size, size,1.5),green);
+    Vertex c(Vec4(-size, size, size,1.5),blue);
+    Vertex d(Vec4( size, size, size,1.5),yellow);
     
     // front
     _vertices.push_back(a);

@@ -20,7 +20,7 @@ struct Vertex
 //    Vec4    worldPos;       // local pos crossed by WorldMatrix
     Vec4    transformedPos; // pos producted by MVP
     Vec4    ndcPos;         // pos transformedPos * 1/w
-    Vec3f   screenPos;      // pos which ndcPos -> screen
+    Vec3i   screenPos;      // pos which ndcPos -> screen. 注意！这里必须取整！不然绘制到屏幕上 会有很多 坐标计算的 缝隙 、 多画出来一条线 等 等奇怪问题
 };
 
 template<typename T>

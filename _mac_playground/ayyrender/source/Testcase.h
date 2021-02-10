@@ -23,9 +23,9 @@ public:
     void TestDraw(AppFramework* ctx);
     
 private:
-    bool    _bCheckBackface = false;
+    bool    _bCheckBackface = true;
     
-//    Cube        _actor;
+    Cube        _actor;
 //    Triangle        _actor;
-    Quad          _actor;
+//    Quad          _actor;
 };
